@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
 
 </head>
@@ -14,13 +16,17 @@
     </header>
 
     <nav>
-        @Html.Partial("_LoginPartial")
+        
     </nav>
 
-    <main>
+    <main class="wrapper">
         @RenderBody()
+
+        
     </main>
 
     @RenderSection("scripts", required: false)
+
+
 </body>
 </html>

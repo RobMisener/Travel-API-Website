@@ -1,11 +1,10 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 0;
     padding-bottom: 20px;
+    font-family: 'Oswald', sans-serif;
 }
 
-.home-background {
-    background: 100%;
-}
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -25,4 +24,58 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.cityscape {
+    display: grid;
+    position: center;
+    width: 30rem;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: top;
+}
+
+a#loginLink, a#registerLink, button#loginLink, button#registerLink {
+    background-color:#197697;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+a#loginLink {
+    font-family: 'Oswald', sans-serif;
+    display: grid;
+    position: center;
+    width: 30rem;
+    height: 5em;
+    line-height: 5rem;
+    text-align: center;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a#registerLink, input {
+    font-family: 'Oswald', sans-serif;
+    display: grid;
+    position: center;
+    text-align: center;
+    width: 30rem;
+    padding: 0;
+    line-height: 5rem;
+    height: 5em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ .email, .password {
+    width: 20rem;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
