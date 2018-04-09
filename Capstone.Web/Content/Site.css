@@ -4,6 +4,28 @@
     font-family: 'Oswald', sans-serif;
 }
 
+html {
+    width: 100%;
+    text-align: center;
+}
+
+span.field-validation-error {
+    display: inline-block;
+    position: relative;
+    clear: right;
+}
+
+header, i {
+    width: 30rem;
+    display: grid;
+    position: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
+
 
 
 /* Set padding to keep content from hitting the edges */
@@ -35,9 +57,9 @@ textarea {
     vertical-align: top;
 }
 
-a#loginLink, a#registerLink, button#loginLink, 
+a#loginLink, a#registerLink, button#loginLink,
 button#registerLink, .loginSubmit, .registerSubmit {
-    background-color:#197697;
+    background-color: #000000;
     border: none;
     color: white;
     padding: 16px 32px;
@@ -51,7 +73,7 @@ button#registerLink, .loginSubmit, .registerSubmit {
     width: 30rem;
     display: grid;
     position: center;
-    margin-left:auto;
+    margin-left: auto;
     margin-right: auto;
 }
 
@@ -59,14 +81,12 @@ button#registerLink, .loginSubmit, .registerSubmit {
 
 a#loginLink {
     display: grid;
-    position:center;
-  
+    position: center;
 }
 
 a#registerLink {
     display: grid;
     position: center;
-   
 }
 
 #Email, #Password, #ConfirmPassword {
@@ -83,6 +103,5 @@ a {
     color: black;
     text-decoration: none;
     display: inline-block;
-    float: left;
-    
 }
+

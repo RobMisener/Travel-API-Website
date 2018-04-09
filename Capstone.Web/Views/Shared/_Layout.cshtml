@@ -6,18 +6,14 @@
     <link href="~/Content/Site.css" rel="stylesheet" />
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet">
 </head>
 <body>
 
     <header>
-        
+        <a href="@Url.Action("Index", "Home")"><i class="fa fa-map-marker" aria-hidden="true"><span id="title" style="font-family: 'Rock Salt', cursive"> CITY TOURS </span></i></a>
     </header>
-
-    <nav>
-        
-    </nav>
 
     <main class="wrapper">
         @RenderBody()
