@@ -13,7 +13,6 @@ using Capstone.Web.Models;
 
 namespace Capstone.Web.Controllers
 {
-
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -21,6 +20,7 @@ namespace Capstone.Web.Controllers
 
         public AccountController()
         {
+
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
