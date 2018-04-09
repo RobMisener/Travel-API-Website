@@ -10,26 +10,28 @@
     {
         @Html.AntiForgeryToken()
         <h4>Use a local account to log in.</h4>
-        <div class="email">
+        <div>
 			@Html.ValidationMessageFor(m => m.Email)
-            @Html.TextBoxFor(m => m.Email, new { placeholder = "email" })
+            @Html.TextBoxFor(m => m.Email, new { placeholder = "EMAIL" })
         </div>
-        <div class="password">
+        <div>
 			@Html.ValidationMessageFor(m => m.Password)
-            @Html.PasswordFor(m => m.Password, new { placeholder = "password" })
+            @Html.PasswordFor(m => m.Password, new { placeholder = "PASSWORD" })
         </div>
         <div>
             @Html.CheckBoxFor(m => m.RememberMe)
             @Html.LabelFor(m => m.RememberMe)
         </div>
         <div>
-            <input type="submit" value="Log in" />
+            <input class="loginSubmit" type="submit" value="Log in" />
         </div>
         <p>
-            @Html.ActionLink("Register as a new user", "Register")
+            <div class="registerNewUser">@Html.ActionLink("Sign Up", "Register")</div> <br />
+            <div class="forgotPassword">@Html.ActionLink("Forgot Password", "ChangePassword")</div>
         </p>
     }
 </section>
+
     
 
 

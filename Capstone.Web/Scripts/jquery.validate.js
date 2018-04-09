@@ -13,7 +13,8 @@
  *
  * NUGET: END LICENSE TEXT */
 /*!
- * jQuery Validation Plugin 1.11.1
+ * jQuery
+Plugin 1.11.1
  *
  * http://bassistance.de/jquery-plugins/jquery-plugin-validation/
  * http://docs.jquery.com/Plugins/Validation
