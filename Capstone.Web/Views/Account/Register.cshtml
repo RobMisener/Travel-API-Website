@@ -10,14 +10,17 @@
     @Html.AntiForgeryToken()
     <h4>Create a new account.</h4>    
     <div>
+		@Html.ValidationMessageFor(m => m.Email)
         @Html.TextBoxFor(m => m.Email, new { placeholder = "email" })
     </div>
-    <div>
-        @Html.PasswordFor(m => m.Password, new { placeholder = "password" })
-    </div>
-    <div>
-        @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "confirm password" })
-    </div>
+	<div>
+		@Html.ValidationMessageFor(m => m.Password)
+		@Html.PasswordFor(m => m.Password, new { placeholder = "password" })
+	</div>
+	<div>
+		@Html.ValidationMessageFor(m => m.ConfirmPassword)
+		@Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "confirm password" })
+	</div>
     <div>
         <input type="submit" value="Register" />
     </div>
