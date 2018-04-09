@@ -112,7 +112,7 @@ namespace Capstone.Web.Controllers
 
                 // Add the roles here to the user
                 //user.Roles.Add("Administrator");
-                //user.Roles.Add("Editor");
+                user.Roles.Add("RegisteredUser");
                 //....
 
 
