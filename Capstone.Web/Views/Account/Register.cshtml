@@ -9,16 +9,22 @@
 {
     @Html.AntiForgeryToken()
     <h4>Create a new account.</h4>    
-    <div>
+	<div>
 		@Html.ValidationMessageFor(m => m.Email)
+	</div>
+    <div>
         @Html.TextBoxFor(m => m.Email, new { placeholder = "EMAIL" })
     </div>
 	<div>
 		@Html.ValidationMessageFor(m => m.Password)
+	</div>
+	<div>
 		@Html.PasswordFor(m => m.Password, new { placeholder = "PASSWORD" })
 	</div>
 	<div>
 		@Html.ValidationMessageFor(m => m.ConfirmPassword)
+	</div>
+	<div>
 		@Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "CONFIRM PASSWORD" })
 	</div>
     <div>

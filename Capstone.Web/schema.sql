@@ -18,7 +18,7 @@ CREATE TABLE [dbo].[Users]
 CREATE TABLE [dbo].[UserRoles]
 (
 	[UserId] UNIQUEIDENTIFIER NOT NULL,
-	[Role] VARCHAR(MAX) NOT NULL,
+	[Role] VARCHAR(100) NOT NULL,
 
 	CONSTRAINT pk_UserRoles PRIMARY KEY (UserId, Role),
 	CONSTRAINT fk_UserRoles_Users FOREIGN KEY (UserId) REFERENCES Users(UserId)
