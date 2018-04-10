@@ -190,6 +190,7 @@
     <Compile Include="Authentication\User.cs" />
     <Compile Include="Authentication\UserStore.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AttractionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAL\ItineraryDAL.cs" />
@@ -246,6 +247,8 @@
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
+    <Content Include="Views\AttractionDetail.cshtml" />
+    <Content Include="Views\Attraction\Attraction.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
