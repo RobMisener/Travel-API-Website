@@ -24,3 +24,30 @@ CREATE TABLE [dbo].[UserRoles]
 	CONSTRAINT fk_UserRoles_Users FOREIGN KEY (UserId) REFERENCES Users(UserId)
 );
  
+
+ SELECT * FROM Users
+
+ CREATE TABLE [dbo].[Itinerary]
+
+ (
+	[ItinId] UNIQUEIDENTIFIER NOT NULL,
+	[UserId] UNIQUEIDENTIFIER NOT NULL,
+	[StartDate] DATE NOT NULL,
+
+	CONSTRAINT pk_Itinerary PRIMARY KEY (ItinId),
+	CONSTRAINT fk_Itinerary_Users FOREIGN KEY (UserId) REFERENCES Users(UserId)
+
+ 
+ );
+
+ CREATE TABLE [dbo].[Itinerary_Stops]
+
+ (
+	[ItinId] UNIQUEIDENTIFIER NOT NULL,
+	[PlaceId] UNIQUEIDENTIFIER NOT NULL,
+	[Order] INT NOT NULL,
+
+	CONSTRAINT pk_Itinerary_Stops PRIMARY KEY (PlaceId),
+	CONSTRAINT fk_Itinerary_Stops_Itinerary FOREIGN KEY (ItinId) REFERENCES Itinerary(ItinId)
+
+ );
