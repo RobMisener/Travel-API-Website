@@ -199,6 +199,8 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ItineraryModel.cs" />
+    <Compile Include="Models\LatLng.cs" />
+    <Compile Include="Models\LatLngBounds.cs" />
     <Compile Include="Models\LocationModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
