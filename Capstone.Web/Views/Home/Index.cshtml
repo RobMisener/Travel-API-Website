@@ -2,12 +2,12 @@
     ViewBag.Title = "Home Page";
 }
 
-<header>
+@*<header>
 	<a href="@Url.Action("Index", "Home")"><i class="fa fa-map-marker" aria-hidden="true"><span id="title" style="font-family: 'Rock Salt', cursive"> CITY TOURS </span></i></a>
-</header>
+</header>*@
 
 
-<div class="geolocation">
+@*<div class="geolocation">
 	<p>Click the button to get your coordinates.</p>
 
 	<button onclick="getLocation()">Try It</button>
@@ -30,15 +30,15 @@
 				"<br>Longitude: " + position.coords.longitude;
 		}
 	</script>
-</div>
-
-
-@*<div class="container">
-	<img class="hero" src="" />
-	@Html.Partial("_LoginPartial")
-
-	
 </div>*@
 
-@*Maybe underneath the buttons, we can add most popular 
-  locations or last places that were visited...*@
+
+<div class="homeContainer">
+	<div class="hero">
+		<img class="heroImg" src="~/Content/img/herocropped.jpeg" />
+		<div class="heroOverlay">
+			<h1>ROUTA</h1>
+			@Html.Partial("_LoginPartial")
+		</div>
+	</div>
+</div>

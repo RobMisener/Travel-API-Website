@@ -15,9 +15,9 @@
 }
 else
 {
-    <div class="indexButtons">
-        <a class="signUp">@Html.ActionLink("SIGN UP", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</a>
-      
-        <a class="logIn">@Html.ActionLink("LOG IN", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</a>
-    </div>
+	<div class="indexButtons">
+		<a class="signUp">@Html.ActionLink("SIGN UP", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</a>
+		<a class="logIn">@Html.ActionLink("LOG IN", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</a>
+		<a class="anon">@Html.ActionLink("GUEST", "Search", "Home", routeValues: null, htmlAttributes: new { id = "anonLink" })</a>
+	</div>
 }

@@ -7,5 +7,6 @@ namespace Capstone.Web.Models
 {
     public class LatLng
     {
+        //Possibly delete this model
     }
 }
