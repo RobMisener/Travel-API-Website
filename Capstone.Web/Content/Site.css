@@ -101,7 +101,7 @@ a#registerLink {
 }
 
 ul.indexButtons a,
-dd.changePassword a{
+dd a{
     color: black;
     text-decoration: none;
     display: inline-block;
