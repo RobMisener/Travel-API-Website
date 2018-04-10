@@ -17,11 +17,6 @@ namespace Capstone.Web.DAL
 			this.connectionString = connectionString;
 		}
 
-		public void InsertItineraryStops(string location )
-		{
-
-		}
-
 		public void InsertItineraryStops(int itinId, string placeId, int order )
         {
             List<ItineraryModel> output = new List<Reservation>();
@@ -40,8 +35,6 @@ namespace Capstone.Web.DAL
                 Console.WriteLine("An error occurred reading the database: " + ex.Message);               
             }
         }
-
-
 
 		public List<ItineraryModel> GetItineraryStopsById(string ItinId)
 		{
