@@ -188,7 +188,7 @@ namespace Capstone.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("LoggedInIndex", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
 
