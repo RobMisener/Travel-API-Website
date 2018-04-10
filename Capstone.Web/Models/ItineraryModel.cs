@@ -7,5 +7,9 @@ namespace Capstone.Web.Models
 {
 	public class ItineraryModel
 	{
+		public int ItinId { get; set; }
+		public string PlaceId { get; set; }
+		public int Order { get; set; }
 	}
+
 }
