@@ -100,13 +100,11 @@ a#registerLink {
     box-sizing: border-box;
 }
 
-a {
+ul.indexButtons a,
+dd.changePassword a{
     color: black;
     text-decoration: none;
     display: inline-block;
 }
 
-ul, li {
-    list-style-type: none;
-}
 
