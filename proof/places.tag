@@ -11,14 +11,14 @@
             <th>Category</th>
 
         </tr>
-        <tr each="{places}" data-id="{Id}">
+        <tr each="{place in places}" data-id="{Id}">
             <td>
-                <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={photos[0].photo_reference}&key=AIzaSyAWn4gmtYFt5QSkw_-ZXw91w8eidKrX91M"
-                />
+                <img src={getPhotoUrl(place)} />
+             
             </td>
-            <td>{name}</td>
-            <td>{getCategoryType(opening_hours[0].open_now)}</td>
-            <td>{getCategoryType(types)}</td>
+            <td>{place.name}</td>
+            <td>{place.open_now}</td>
+            <td>{getCategoryType(place.types)}</td>
             <td>
                 <button onclick="{remove}">Delete</button>
             </td>
@@ -31,7 +31,7 @@
                 <input type="text" name="name" placeholder="Name" />
             </td>
             <td>
-                <input type="text" name="open_now" placeholder="Opening Hours" />
+                <input type="text" name="opening_hours" placeholder="Opening Hours" />
             </td>
             <td>
                 <input type="text" name="types" placeholder="Category" />
@@ -41,7 +41,7 @@
             </td>
         </tr>
     </table>
-
+    <div id="service-helper"></div>
     <button hide="{newPlace}" onclick="{add}">Add </button>
 
     <script>
@@ -49,27 +49,10 @@
 
         this.places = [];
 
-        this.getCategoryType = (open_now) => {
-            const bools = {
-                "true": "OPEN",
-                "false": "CLOSED"
-            };
-
-            let result = '';
-
-            open_now.forEach(element => {
-                if (bools[element] !== undefined) {                    
-                    result = bools[element];
-                    
-                }
-            });
-
-            return result;
-        }
+        this.getPhotoUrl = (place) => place.photos[0].getUrl({maxWidth: 100, maxHeight: 100});
 
         this.getCategoryType = (types) => {
             const mapping = {
-                
                 "airport": "Airport",
                 "amusement_park": "Amusement Park",
                 "aquarium": "Aquarium",
@@ -113,14 +96,13 @@
                 "train_station": "Train Station",
                 "transit_station": "Transit Station",
                 "zoo": "Zoo"
-
             };
 
             let result = '';
             let appendCharacter = '';
 
             types.forEach(element => {
-                if (mapping[element] !== undefined) {                    
+                if (mapping[element] !== undefined) {
                     result += appendCharacter + mapping[element];
                     appendCharacter = ', '
                 }
@@ -134,18 +116,55 @@
             const location = this.root.querySelector("input[name='location']").value;
             console.log(location);
 
-            fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=\'point of interest\'+in+${location}&key= AIzaSyAWn4gmtYFt5QSkw_-ZXw91w8eidKrX91M`, {
-                "headers": {
-                    "Cache-Control": "no-cache",
-                },
-                "crossDomain": true,
-            })
-                .then(response => response.json())
-                .then(json => {
-                    console.log(json.results);
-                    this.places = json.results;
-                    this.update();
-                })
+            const geocoder = new google.maps.Geocoder();
+            const geocodeRequest = {
+                address: location
+            };
+            // call this function when done geocoding
+            geocoder.geocode(geocodeRequest, (results, status) => {
+
+                // if the geocoding worked successfully
+                if (status == google.maps.GeocoderStatus.OK) {
+
+                    // Create a LatLng representing the coordinates
+                    const latlng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+
+                    // Create a Places Request with location and a query
+                    const placeRequest = {
+                        location: latlng,
+                        query: `point of interest in ${location}`
+                    };
+
+                    // Use the places service to send a request
+                    const service = new google.maps.places.PlacesService(this.root.querySelector("#service-helper"));
+                    // call this function when receiving a response
+                    service.textSearch(placeRequest, (results, status) => {
+                        if (status == google.maps.places.PlacesServiceStatus.OK) {
+                            console.log(results);
+                            this.places = results;
+                            this.update();
+                            
+
+                        }
+                    });
+
+                }
+            });
+
+
+
+            // fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=\'point of interest\'+in+${location}&key=AIzaSyAnDomiUz3vcKkLHCi1YiytTZ7SHtyQuB0`, {
+            //     "headers": {
+            //         "Cache-Control": "no-cache",
+            //     },
+            //     "crossDomain": true,
+            // })
+            //     .then(response => response.json())
+            //     .then(json => {
+            //         console.log(json.results);
+            //         this.places = json.results;
+            //         this.update();
+            //     })
         }
 
         this.photo = () => {
@@ -153,7 +172,7 @@
             const photo = this.root.querySelector("input[name='photo']").value;
             console.log(photo);
 
-            fetch(`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo}&key=AIzaSyAWn4gmtYFt5QSkw_-ZXw91w8eidKrX91M`, {
+            fetch(`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo}&key=AIzaSyAnDomiUz3vcKkLHCi1YiytTZ7SHtyQuB0`, {
                 "headers": {
                     "Cache-Control": "no-cache",
                 },
@@ -176,7 +195,7 @@
 
             this.movies.splice(index, 1);
 
-            const url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=\'point of interest\'+in+Cleveland&key= AIzaSyAWn4gmtYFt5QSkw_-ZXw91w8eidKrX91M'
+            const url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=\'point of interest\'+in+Cleveland&key=AIzaSyAnDomiUz3vcKkLHCi1YiytTZ7SHtyQuB0'
             const settings = {
                 method: 'DELETE'
             };
