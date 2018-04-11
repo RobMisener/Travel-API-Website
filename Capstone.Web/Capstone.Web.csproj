@@ -190,7 +190,6 @@
     <Compile Include="Authentication\User.cs" />
     <Compile Include="Authentication\UserStore.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AttractionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAL\ItineraryDAL.cs" />
@@ -209,6 +208,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\img\city.gif" />
+    <Content Include="Content\img\hero.jpg" />
+    <Content Include="Content\img\herocropped.jpeg" />
     <Content Include="Content\img\ning-xia-night-market-gif.gif" />
     <Content Include="Content\img\nyc-cityscape.jpg" />
     <Content Include="Global.asax" />
@@ -246,9 +247,7 @@
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Search\Search.cshtml" />
-    <Content Include="Views\AttractionDetail.cshtml" />
-    <Content Include="Views\Attraction\Attraction.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

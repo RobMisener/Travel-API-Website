@@ -15,7 +15,7 @@ namespace Capstone.Web.Controllers
 
         public ActionResult Search()
         {
-            return View("Search");
+            return View();
         }
     }
 }

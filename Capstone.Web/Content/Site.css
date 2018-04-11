@@ -167,7 +167,7 @@ div.homeContainer div.heroOverlay {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
-	top: 33%;
+	top: 30%;
 	border: 5px solid black;
 	padding: 2em;
 }
