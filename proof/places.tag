@@ -7,7 +7,7 @@
         <tr>
             <th></th>
             <th>Name</th>
-            <th>Open Now</th>
+            <th>Open/Closed</th>
             <th>Category</th>
 
         </tr>
@@ -17,7 +17,7 @@
              
             </td>
             <td>{place.name}</td>
-            <td>{place.open_now}</td>
+            <td>{isOpen(place)}</td>
             <td>{getCategoryType(place.types)}</td>
             <td>
                 <button onclick="{remove}">Delete</button>
@@ -31,7 +31,7 @@
                 <input type="text" name="name" placeholder="Name" />
             </td>
             <td>
-                <input type="text" name="opening_hours" placeholder="Opening Hours" />
+                <input type="text" name="open_now" placeholder="Open/Closed" />
             </td>
             <td>
                 <input type="text" name="types" placeholder="Category" />
@@ -49,8 +49,30 @@
 
         this.places = [];
 
-        this.getPhotoUrl = (place) => place.photos[0].getUrl({maxWidth: 100, maxHeight: 100});
-
+        // this.getPhotoUrl = (place) => place.photos[0].getUrl({maxWidth: 100, maxHeight: 100});
+        
+        this.getPhotoUrl = (place) => {
+            if(place.photos[0] !== undefined) {
+                return place.photos[0].getUrl({maxWidth: 100, maxHeight: 100});
+            }
+            
+        }
+        this.isOpen = (place) => {
+            const bools = {
+                "true": "OPEN",
+                "false": "CLOSED"
+            };
+            // let result = '';
+// console.log(place.opening_hours);
+           if(place.opening_hours.open_now !== undefined) {
+               if(place.opening_hours.open_now) {
+                   return "OPEN"; 
+               } else {
+                   return "CLOSED";
+               }
+           }
+        }
+        
         this.getCategoryType = (types) => {
             const mapping = {
                 "airport": "Airport",
@@ -83,7 +105,6 @@
                 "museum": "Museum",
                 "night_club": "Night Club",
                 "park": "Park",
-                "point_of_interest": "Point of Interest",
                 "post_office": "Post Office",
                 "restaurant": "Restaurant",
                 "school": "School",
