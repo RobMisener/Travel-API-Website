@@ -169,8 +169,16 @@
                         }
                     });
 
+                    service.getDetails({placeId: 'ChIJ24asjOvvMIgRI-vc_lsvA6M'}, (place, status) => {
+                        if (status == google.maps.places.PlacesServiceStatus.OK) {
+                            console.log(place);
+                        }
+                    })
+
                 }
             });
+
+
 
 
 
@@ -207,29 +215,29 @@
                 })
         }
 
+// <!-- 
 
+//         this.remove = function (event) {
+//             const place = event.item;
 
-        this.remove = function (event) {
-            const place = event.item;
+//             const index = this.places.map(m => m.id).indexOf(place.id);
 
-            const index = this.places.map(m => m.id).indexOf(place.id);
+//             this.movies.splice(index, 1);
 
-            this.movies.splice(index, 1);
+//             const url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=\'point of interest\'+in+Cleveland&key=AIzaSyAnDomiUz3vcKkLHCi1YiytTZ7SHtyQuB0'
+//             const settings = {
+//                 method: 'DELETE'
+//             };
 
-            const url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=\'point of interest\'+in+Cleveland&key=AIzaSyAnDomiUz3vcKkLHCi1YiytTZ7SHtyQuB0'
-            const settings = {
-                method: 'DELETE'
-            };
+//             fetch(url, settings)
+//                 .then(response => {
+//                     this.update();
+//                 });
+//         }
 
-            fetch(url, settings)
-                .then(response => {
-                    this.update();
-                });
-        }
-
-        this.add = function () {
-            this.newPlace = {};
-        }
+//         this.add = function () {
+//             this.newPlace = {};
+//         } --> -->
         //ASK JOSH ABOUT THIS
         //   this.save = function() {
         //       this.newPlace.name = this.root.querySelector('input[]')
@@ -238,4 +246,7 @@
 
         const url = ``;
     </script>
+
+
+
 </places>
