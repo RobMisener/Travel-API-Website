@@ -1,4 +1,57 @@
 <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+
+    <!-- Adds a link to the riot compiler -->
+    <script src="https://cdn.jsdelivr.net/npm/riot@3.7/riot+compiler.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnDomiUz3vcKkLHCi1YiytTZ7SHtyQuB0&libraries=places"></script>
+</head>
+
+<body>
+
+
+    <newsearch></newsearch>
+    <newmap></newmap>
+    <newlist></newlist>
+
+
+
+    <!-- Reference the riot tags here -->
+    <script src="newsearch.tag" type="riot/tag"></script>
+    <script src="newmap.tag" type="riot/tag"></script>
+    <script src="newlist.tag" type="riot/tag"></script> 
+
+    <script>
+        let bus = {};
+
+        riot.observable(bus); //makes it so our bus can send and receive messages
+        // Mount the riot tags to the page here        
+        riot.mount('newsearch', { bus: bus });
+        riot.mount('newmap', { bus: bus });
+        riot.mount('newlist', { bus: bus });
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,6 +60,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.jsdelivr.net/npm/riot@3.7/riot+compiler.min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnDomiUz3vcKkLHCi1YiytTZ7SHtyQuB0&libraries=places"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/place/textsearch/json?query=cafe+in+latLng&key=AIzaSyAnDomiUz3vcKkLHCi1YiytTZ7SHtyQuB0"></script>
+
     <title>Document</title>
 </head>
 
@@ -18,12 +73,20 @@
 
     <script>
         riot.mount('places');
-    </script>
+    </script> -->
 
+<!--     
+ <map></map>
 
+ <script src="map.tag" type="riot/tag"></script>
+
+ <script>
+     riot.mount('map');
+ </script> -->
+<!-- 
 </body>
 
-</html>
+</html> -->
 
 
 
