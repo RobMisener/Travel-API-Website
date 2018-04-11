@@ -3,13 +3,16 @@
     <input type="text" name="location" />
     <button onclick={search}>Search</button>
 
-    <table>
-        <tr>
-            <th></th>
+    <div>
+        <p>Name</p>
+        <p>Description</p>
+        <p>Hours</p>
+        <p>Category</p>
+    </div>
             <th>Name</th>
-            <th>Open/Closed</th>
+            <th>Open/Closed</th
             <th>Category</th>
-
+            <th
         </tr>
         <tr each="{place in places}" data-id="{Id}">
             <td>
