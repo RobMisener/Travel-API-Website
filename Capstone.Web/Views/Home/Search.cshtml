@@ -8,15 +8,12 @@
 		<h1>ROUTA</h1>
 	</header>
 
-	<form action="/" method="post">
-		<input type="number" name="radius" value="" />
-		<button>Go!</button>
-	</form>
+	<places></places>
 
-	@*@foreach () {*@
-		<div>
-			<img src="#" alt="Alternate Text" />
-			<h4></h4>
-		</div>
-	@*}*@
+	<script src="~/Content/places.tag" type="riot/tag">
+	</script>
+
+	<script>
+    riot.mount('places');
+	</script>
 </div>
