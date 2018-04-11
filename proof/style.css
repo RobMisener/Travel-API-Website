@@ -1,0 +1,7 @@
+.searchComponent {
+    display: grid;
+    vertical-align: top;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
