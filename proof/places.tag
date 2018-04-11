@@ -17,7 +17,7 @@
                 />
             </td>
             <td>{name}</td>
-            <td>{open_now}</td>
+            <td>{getCategoryType(opening_hours[0].open_now)}</td>
             <td>{getCategoryType(types)}</td>
             <td>
                 <button onclick="{remove}">Delete</button>
@@ -31,7 +31,7 @@
                 <input type="text" name="name" placeholder="Name" />
             </td>
             <td>
-                <input type="text" name="opening_hours" placeholder="Opening Hours" />
+                <input type="text" name="open_now" placeholder="Opening Hours" />
             </td>
             <td>
                 <input type="text" name="types" placeholder="Category" />
@@ -49,11 +49,71 @@
 
         this.places = [];
 
+        this.getCategoryType = (open_now) => {
+            const bools = {
+                "true": "OPEN",
+                "false": "CLOSED"
+            };
+
+            let result = '';
+
+            open_now.forEach(element => {
+                if (bools[element] !== undefined) {                    
+                    result = bools[element];
+                    
+                }
+            });
+
+            return result;
+        }
 
         this.getCategoryType = (types) => {
             const mapping = {
-                "zoo": "Zoo",
-                "point_of_interest": "Point of Interest"
+                
+                "airport": "Airport",
+                "amusement_park": "Amusement Park",
+                "aquarium": "Aquarium",
+                "art_gallery": "Art Gallery",
+                "bakery": "Bakery",
+                "bank": "Bank",
+                "bar": "Bar",
+                "book_store": "Book Store",
+                "bowling_alley": "Bowling Alley",
+                "bus_station": "Bus Station",
+                "cafe": "Cafe",
+                "campground": "Campground",
+                "casino": "Casino",
+                "cemetery": "Cemetery",
+                "church": "Church",
+                "city_hall": "City Hall",
+                "embassy": "Embassy",
+                "fire_station": "Fire Station",
+                "funeral_home": "Funeral Home",
+                "gym": "Gym",
+                "hindu_temple": "Hindu Temple",
+                "jewelry_store": "Jewelry Store",
+                "library": "Library",
+                "lodging": "Lodging",
+                "meal_takeaway": "Meal Takeaway",
+                "mosque": "Mosque",
+                "movie_theater": "Movie Theater",
+                "museum": "Museum",
+                "night_club": "Night Club",
+                "park": "Park",
+                "point_of_interest": "Point of Interest",
+                "post_office": "Post Office",
+                "restaurant": "Restaurant",
+                "school": "School",
+                "shopping_mall": "Shopping Mall",
+                "spa": "Spa",
+                "staduim": "Stadium",
+                "store": "Store",
+                "subway_station": "Subway Station",
+                "synagogue": "Synagogue",
+                "train_station": "Train Station",
+                "transit_station": "Transit Station",
+                "zoo": "Zoo"
+
             };
 
             let result = '';
