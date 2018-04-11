@@ -61,7 +61,7 @@ textarea {
 }
 
 a#loginLink, a#registerLink, button#loginLink, a#anonLink, 
-button#registerLink, .loginSubmit, .registerSubmit {
+button#registerLink, .loginSubmit, .registerSubmit, input.searchButton {
     background-color: #000000;
     border: none;
     color: white;
@@ -137,7 +137,7 @@ a#anonLink:hover {
 	transition: all .4s ease;
 }
 
-#Email, #Password, #ConfirmPassword {
+#Email, #Password, #ConfirmPassword, .searchBox {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;

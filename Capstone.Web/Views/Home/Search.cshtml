@@ -1,19 +1,28 @@
 ﻿@{
-	ViewBag.Title = "Search";
+    ViewBag.Title = "Search";
 }
 
+<newsearch></newsearch>
+<newmap></newmap>
+<newlist></newlist>
 
-<div class="searchContainer">
-	<header>
-		<h1>ROUTA</h1>
-	</header>
 
-	<places></places>
 
-	<script src="~/Content/places.tag" type="riot/tag">
-	</script>
+<!-- Reference the riot tags here -->
+<script src="~/Content/newsearch.tag" type="riot/tag">
+</script>
+<script src="~/Content/newmap.tag" type="riot/tag">
+</script>
+<script src="~/Content/newlist.tag" type="riot/tag">
+</script>
 
-	<script>
-		riot.mount('places');
-	</script>
-</div>
+<script>
+    let bus = {};
+
+    riot.observable(bus); //makes it so our bus can send and receive messages
+    // Mount the riot tags to the page here
+    riot.mount('newsearch', { bus: bus });
+    riot.mount('newmap', { bus: bus });
+    riot.mount('newlist', { bus: bus });
+
+</script>
