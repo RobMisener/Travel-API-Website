@@ -1,4 +1,4 @@
-﻿<newmap class="map">
+﻿<newmap>
 
     <div id="map" style="height: 300px; width: 300px;"></div>
 

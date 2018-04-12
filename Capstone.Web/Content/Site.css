@@ -179,6 +179,29 @@ div.homeContainer div.heroOverlay h1 {
 }
 
 /* Search */
-div.searchContainer header h1 {
-	font-size: 5em;
+newsearch h1{
+	font-size: 8em;
+	margin: .4em 0;
 }
+
+/* List */
+.landmark {
+	width: 35vw;
+	border: 1px solid black;
+}
+.landmarkImg {
+	display: inline-block;
+	width: 18vw;
+	height: auto;
+}
+.landmarkInfo {
+	display: inline-block;
+	width: 15vw;
+	vertical-align: top;
+}
+.landmarkName {
+	font-size: 1.5em;
+	font-weight: 700;
+}
+
+/* Map */

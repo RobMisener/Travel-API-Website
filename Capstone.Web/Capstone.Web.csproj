@@ -215,9 +215,12 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="schema.sql" />
-    <Content Include="Content\newsearch.tag" />
-    <Content Include="Content\newmap.tag" />
+    <Content Include="newlist.tag" />
+    <Content Include="newmap.tag" />
+    <Content Include="newsearch.tag" />
     <Content Include="Content\newlist.tag" />
+    <Content Include="Content\newmap.tag" />
+    <Content Include="Content\newsearch.tag" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -251,7 +254,6 @@
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
-    <Content Include="Views\Home\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
