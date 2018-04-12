@@ -1,5 +1,5 @@
 ﻿<newsearch>
-	<h1>ROUTA</h1>
+    <h1>ROUTA</h1>
 
     <input class="searchBox" type="text" name="place" placeholder="enter a location" />
 
@@ -8,11 +8,27 @@
     <div id="service-helper"></div>
 
 
+
     <style>
     </style>
 
 
     <script>
+        /*collapsable*/
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
 
 
         this.search = function () {
