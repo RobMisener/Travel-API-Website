@@ -3,11 +3,18 @@
 }
 
 <div class="homeContainer">
-	<div class="hero">
-		<img class="heroImg" src="~/Content/img/herocropped.jpeg" />
-		<div class="heroOverlay">
-			<h1>ROUTA</h1>
-			@Html.Partial("_LoginPartial")
-		</div>
-	</div>
+    <div class="hero">
+        @*<img class="heroImg" src="~/Content/img/herocropped.jpeg" />*@
+
+        <video controls="controls" autoplay loop>
+            <source src="~/Content/img/862017385.mp4" type="video/mp4" />
+        </video>
+
+        <div class="heroOverlay">
+            <h1>ROUTA</h1>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
 </div>
+
+
