@@ -49,7 +49,7 @@ namespace Capstone.Web
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
 					conn.Open();
-					SqlCommand cmd = new SqlCommand($"DELETE FROM Itinerary_Stops WHERE ItinId = {itinID} AND PlaceId = {placeId} ", conn);
+					SqlCommand cmd = new SqlCommand($"DELETE FROM Itinerary_Stops WHERE ItinId = @itinID AND PlaceId = @placeId", conn);
 					cmd.ExecuteNonQuery();
 					//SqlCommand readercmd = new SqlCommand(@"SELECT * FROM Itinerary_Stops", conn);
 				}
