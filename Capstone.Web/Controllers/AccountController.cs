@@ -121,7 +121,7 @@ namespace Capstone.Web.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Search", "Home");
                 }
                 AddErrors(result);
             }
