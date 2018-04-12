@@ -1,25 +1,49 @@
 ﻿<newlist>
 
+
     <div class="landmark" each={place in places}>
-        <img class="landmarkImg" src={getPhotoUrl(place)} />
-		<div class="landmarkInfo">
-			<p class="landmarkName">{place.name}</p>
-			<p class="landmarkOpen">{isOpen(place)}</p>
-			<p class="landmarkCategory">{getCategoryType(place.types)}</p>
+        
+		<div if={checkIfOpen(place)}>
+			<img class="landmarkImg" src={getPhotoUrl(place)} />
+			<div class="landmarkInfo">
+				<p class="landmarkName">{place.name}</p>
+				<p class="landmarkOpen">{isOpen(place)}</p>
+				<p class="landmarkCategory">{getCategoryType(place.types)}</p>
+			</div>
 		</div>
     </div>
 
+
+
     <script>
 
-        this.places = [];
-
+		this.places = [];
         // When a searchresult message arrives, look at the data attached to it
         this.opts.bus.on('searchresult', data => {
-
-            this.places = data.results;
-            this.update();
-
+			this.places = data.results;
+			this.checkBox = data.isOpen;
+			this.update();
+			
         });
+
+		this.checkIfOpen = (place) => {
+			// if openstatus equals false means the checkbox is unchecked.
+			if (this.checkBox === false) {
+				return true;
+			}
+			// let result = '';
+			// console.log(place.opening_hours);
+			if (place.opening_hours.open_now !== undefined) {
+				if (place.opening_hours.open_now) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			else {
+				return false;
+			}
+		}
 
         this.getPhotoUrl = (place) => {
             if(place.photos[0] !== undefined) {
@@ -30,6 +54,7 @@
 
 		this.getCategoryType = (types) => {
 			const mapping = {
+				"point of interest": "Other",
 				"airport": "Airport",
 				"amusement_park": "Amusement Park",
 				"aquarium": "Aquarium",
