@@ -1,0 +1,30 @@
+﻿@model Capstone.Web.Models.LocationModel
+
+@{
+    ViewBag.Title = "Location";
+}
+
+<h3>@Model.Name</h3>
+<br />
+
+<br />
+<div>
+    <div id="detailPage">
+        <img src="~/Content/@(Model.PlaceId).jpg" />
+    </div>
+    <div id="detailPage">
+        <p style="text-align: center;">@Model.LongDescription</p>
+        <br />
+        <br />
+        <div id="detailFactboxDiv" style="margin-left: 30px;">
+            <div id="detailedInfo">
+                <p><strong>Address: </strong>@Model.Address</p>
+                <p><strong>City: </strong>@Model.City</p>
+                <p><strong>Hours: </strong>@Model.Category</p>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+    </div>
+</div>

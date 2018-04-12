@@ -44,7 +44,7 @@
         }
 
         this.createMarker = function (place, map) {
-            var name = '<div id="content"><strong>' + place.name + '</strong><p>' + place.formatted_address + '</p><p>' + place. + '</p></div>';
+            var name = '<div id="content"><strong>' + place.name + '</strong><p>' + place.formatted_address + '</p></div>';
           
 
             var placeLoc = place.geometry.location;
