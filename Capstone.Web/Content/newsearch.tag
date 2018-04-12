@@ -1,214 +1,109 @@
 ﻿<newsearch>
-    <h1>ROUTA</h1>
+	<h1>ROUTA</h1>
 
-    <input class="searchBox" type="text" name="place" placeholder="enter a location" />
+	<input class="searchBox" type="text" name="place" placeholder="enter a location" />
 
-    <input class="searchButton" type="button" onclick="{search}" value="SEARCH" />
+	<input class="searchButton" type="button" onclick="{search}" value="SEARCH" />
 
-    <div id="service-helper"></div>
-
-
-
-    <style>
-    </style>
-
-
-    <script>
-        /*collapsable*/
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
-
-        for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                    content.style.display = "none";
-                } else {
-                    content.style.display = "block";
-                }
-            });
-        }
-
-
-        this.search = function () {
-
-            const location = this.root.querySelector("input[name='place']").value;
-            console.log(location);
-
-            const geocoder = new google.maps.Geocoder();
-            const geocodeRequest = {
-                address: location
-            };
-            // call this function when done geocoding
-            geocoder.geocode(geocodeRequest, (results, status) => {
-                // if the geocoding worked successfully
-                if (status == google.maps.GeocoderStatus.OK) {
-
-                    // Create a LatLng representing the coordinates
-                    const latlng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-
-                    // Create a Places Request with location and a query
-                    const placeRequest = {
-                        location: latlng,
-                        query: `point of interest in ${location}`
-                    };
-
-                    // Use the places service to send a request
-                    const service = new google.maps.places.PlacesService(this.root.querySelector("#service-helper"));
-                    // call this function when receiving a response
-                    service.textSearch(placeRequest, (results, status) => {
-                        if (status == google.maps.places.PlacesServiceStatus.OK) {
-                            this.opts.bus.trigger('searchresult', { location: latlng, results: results });
-                        }
-                    });
-                }
-            });
-        }
-    </script>
-
-</newsearch>
-
-
-
-
-
-
-
-
-
-
-<!--<places>
-
-	<input type="text" name="location" />
-	<button onclick={search}>Search</button>
-
-	<table>
-		<tr>
-			<th></th>
-			<th>Name</th>
-			<th>Open/Closed</th>
-			<th>Category</th>
-
-		</tr>
-		<tr each="{place in places}" data-id="{Id}">
-			<td>
-				<img src={getPhotoUrl(place)} />	
-			</td>
-			<td>{place.name}</td>
-			<td>{isOpen(place)}</td>
-			<td>{getCategoryType(place.types)}</td>
-			
-		</tr>
-		<tr show="{newPlace}">
-			<td>
-				<input type="image" name="photo" placeholder="Photos" />
-			</td>
-			<td>
-				<input type="text" name="name" placeholder="Name" />
-			</td>
-			<td>
-				<input type="text" name="open_now" placeholder="Open/Closed" />
-			</td>
-			<td>
-				<input type="text" name="types" placeholder="Category" />
-			</td>
-			<td>
-				<button onclick="{save}">Save</button>
-			</td>
-		</tr>
-	</table>
 	<div id="service-helper"></div>
-	<button hide="{newPlace}" onclick="{add}">Add </button>
+
+	
+	<button onclick="{collapse}" class="collapsible">+ ADVANCED SETTINGS</button>
+	<div class="advanceSearch">
+		<p>CATEGORY:</p>
+		<select id="dropdown" name="category" size="4" multiple>
+			<option value="point of interest">Other</option>
+			<option value="airport">Airport</option>
+			<option value="amusement_park">Amusement Park</option>
+			<option value="aquarium">Aquarium</option>
+			<option value="art_gallery">Art Gallery</option>
+			<option value="bakery">Bakery</option>
+			<option value="bank">Bank</option>
+			<option value="bar">Bar</option>
+			<option value="book_store">Book Store</option>
+			<option value="bowling_alley">Bowling Alley</option>
+			<option value="bus_station">Bus Station</option>
+			<option value="cafe">Cafe</option>
+			<option value="campground">Campground</option>
+			<option value="casino">Casino</option>
+			<option value="cemetery">Cemetery</option>
+			<option value="church">Church</option>
+			<option value="city_hall">City Hall</option>
+			<option value="embassy">Embassy</option>
+			<option value="fire_station">Fire Station</option>
+			<option value="funeral_home">Funeral Home</option>
+			<option value="gym">Gym</option>
+			<option value="hindu_temple">Hindu Temple</option>
+			<option value="jewelry_store">Jewelry Store</option>
+			<option value="library">Library</option>
+			<option value="lodging">Lodging</option>
+			<option value="meal_takeaway">Meal Takeaway</option>
+			<option value="mosque">Mosque</option>
+			<option value="movie_theaher">Movie Theater</option>
+			<option value="museum">Museum</option>
+			<option value="night_club">Night Club</option>
+			<option value="park">Park</option>
+			<option value="post_office">Post Office</option>
+			<option value="restaurant">Restaurant</option>
+			<option value="school">School</option>
+			<option value="shopping_mall">Shopping Mall</option>
+			<option value="spa">Spa</option>
+			<option value="stadium">Stadium</option>
+			<option value="store">Store</option>
+			<option value="subway_station">Subway Station</option>
+			<option value="synagogue">Synagogue</option>
+			<option value="train_station">Train Station</option>
+			<option value="transit_station">Transit STation</option>
+			<option value="zoo">Zoo</option>
+		</select>
+		<input id="openNow_Checkbox" type="checkbox" name="" value="Bike" checked="checked">OPEN NOW</br>
+	</div>
 
 	<script>
 
-		this.places = [];
+		var open = true;
 
-		this.getPhotoUrl = (place) => {
-			if (place.photos[0] !== undefined) {
-				return place.photos[0].getUrl({ maxWidth: 100, maxHeight: 100 });
+
+		/*collapsable*/
+		this.collapse = function () {
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+
+			for (i = 0; i < coll.length; i++) {
+				coll[i].addEventListener("click", function () {
+					this.classList.toggle("active");
+					var content = this.nextElementSibling;
+					if (content.style.display === "block") {
+						content.style.display = "none";
+					} else {
+						content.style.display = "block";
+					}
+				});
 			}
 		}
-		this.isOpen = (place) => {
-			const bools = {
-				"true": "OPEN",
-				"false": "CLOSED"
-			};
-			// let result = '';
-			// console.log(place.opening_hours);
-			if (place.opening_hours.open_now !== undefined) {
-				if (place.opening_hours.open_now) {
-					return "OPEN";
-				} else {
-					return "CLOSED";
-				}
-			}
-		}
 
-		this.getCategoryType = (types) => {
-			const mapping = {
-				"airport": "Airport",
-				"amusement_park": "Amusement Park",
-				"aquarium": "Aquarium",
-				"art_gallery": "Art Gallery",
-				"bakery": "Bakery",
-				"bank": "Bank",
-				"bar": "Bar",
-				"book_store": "Book Store",
-				"bowling_alley": "Bowling Alley",
-				"bus_station": "Bus Station",
-				"cafe": "Cafe",
-				"campground": "Campground",
-				"casino": "Casino",
-				"cemetery": "Cemetery",
-				"church": "Church",
-				"city_hall": "City Hall",
-				"embassy": "Embassy",
-				"fire_station": "Fire Station",
-				"funeral_home": "Funeral Home",
-				"gym": "Gym",
-				"hindu_temple": "Hindu Temple",
-				"jewelry_store": "Jewelry Store",
-				"library": "Library",
-				"lodging": "Lodging",
-				"meal_takeaway": "Meal Takeaway",
-				"mosque": "Mosque",
-				"movie_theater": "Movie Theater",
-				"museum": "Museum",
-				"night_club": "Night Club",
-				"park": "Park",
-				"post_office": "Post Office",
-				"restaurant": "Restaurant",
-				"school": "School",
-				"shopping_mall": "Shopping Mall",
-				"spa": "Spa",
-				"stadium": "Stadium",
-				"store": "Store",
-				"subway_station": "Subway Station",
-				"synagogue": "Synagogue",
-				"train_station": "Train Station",
-				"transit_station": "Transit Station",
-				"zoo": "Zoo"
-			};
 
-			let result = '';
-			let appendCharacter = '';
+		this.search = function () {
 
-			types.forEach(element => {
-				if (mapping[element] !== undefined) {
-					result += appendCharacter + mapping[element];
-					appendCharacter = ', '
-				}
-			});
-
-			return result;
-		}
-
-		this.search = () => {
-
-			const location = this.root.querySelector("input[name='location']").value;
+			const location = this.root.querySelector("input[name='place']").value;
 			console.log(location);
+			console.log(open);
+			//boolIsOpen = true;
+			var checkbox = document.querySelector('#openNow_Checkbox');
+			if (checkbox.checked) {
+				boolIsOpen = true;
+			}
+			else {
+				boolIsOpen = false;
+			}
+			//var isOpen = checkbox.value;
+			//var boolIsOpen = false;
+			//if (isOpen === 'Bike') {
+			//	boolIsOpen = true;
+			//}
+
+			const category = this.root.querySelector("select[name='category']").value;
+			console.log(category);
 
 			const geocoder = new google.maps.Geocoder();
 			const geocodeRequest = {
@@ -216,95 +111,39 @@
 			};
 			// call this function when done geocoding
 			geocoder.geocode(geocodeRequest, (results, status) => {
-
 				// if the geocoding worked successfully
 				if (status == google.maps.GeocoderStatus.OK) {
 
 					// Create a LatLng representing the coordinates
 					const latlng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-
-					// Create a Places Request with location and a query
-					const placeRequest = {
-						location: latlng,
-						query: `point of interest in ${location}`
-					};
+	
+					let placeRequest = {};
+					if (category) {
+						placeRequest = {
+							location: latlng,
+							query: `${category} in ${location}`
+						};
+					}
+					else {
+						 placeRequest = {
+							location: latlng,
+							query: `point of interest in ${location}`
+						}
+					}
 
 					// Use the places service to send a request
 					const service = new google.maps.places.PlacesService(this.root.querySelector("#service-helper"));
 					// call this function when receiving a response
 					service.textSearch(placeRequest, (results, status) => {
 						if (status == google.maps.places.PlacesServiceStatus.OK) {
-							console.log(results);
-							this.places = results;
-							this.update();
-
-
+							this.opts.bus.trigger('searchresult', { location: latlng, results: results, isOpen: boolIsOpen });
 						}
 					});
-
 				}
 			});
-
-			// fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=\'point of interest\'+in+${location}&key=AIzaSyAnDomiUz3vcKkLHCi1YiytTZ7SHtyQuB0`, {
-			//     "headers": {
-			//         "Cache-Control": "no-cache",
-			//     },
-			//     "crossDomain": true,
-			// })
-			//     .then(response => response.json())
-			//     .then(json => {
-			//         console.log(json.results);
-			//         this.places = json.results;
-			//         this.update();
-			//     })
 		}
-
-		this.photo = () => {
-			const photoRef = photos.photo_reference;
-			const photo = this.root.querySelector("input[name='photo']").value;
-			console.log(photo);
-
-			fetch(`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo}&key=AIzaSyAnDomiUz3vcKkLHCi1YiytTZ7SHtyQuB0`, {
-				"headers": {
-					"Cache-Control": "no-cache",
-				},
-				"crossDomain": true,
-			})
-				.then(response => response.json())
-				.then(json => {
-					console.log(json.results);
-					this.places = json.results;
-					this.update();
-				})
-		}
-
-		//this.remove = function (event) {
-		//	const place = event.item;
-
-		//	const index = this.places.map(m => m.id).indexOf(place.id);
-
-		//	this.movies.splice(index, 1);
-
-		//	const url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=\'point of interest\'+in+Cleveland&key=AIzaSyAnDomiUz3vcKkLHCi1YiytTZ7SHtyQuB0'
-		//	const settings = {
-		//		method: 'DELETE'
-		//	};
-
-		//	fetch(url, settings)
-		//		.then(response => {
-		//			this.update();
-		//		});
-		//}
-
-		//this.add = function () {
-		//	this.newPlace = {};
-		//}
-		//ASK JOSH ABOUT THIS
-		//   this.save = function() {
-		//       this.newPlace.name = this.root.querySelector('input[]')
-		//  }
-
-
-		const url = ``;
 	</script>
-</places>-->
+
+</newsearch>
+
+
