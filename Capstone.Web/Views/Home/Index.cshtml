@@ -6,15 +6,24 @@
     <div class="hero">
         @*<img class="heroImg" src="~/Content/img/herocropped.jpeg" />*@
 
-        <video controls="controls" autoplay loop>
-            <source src="~/Content/img/862017385.mp4" type="video/mp4" />
-        </video>
+        <div class="homeVideo">
+            <video autoplay loop class="indexVideo" >
+
+                <source src="~/Content/img/862017385.mp4" class="indexVideo" type="video/mp4" />
+
+            </video>
+        </div>
 
         <div class="heroOverlay">
+
+            <div class="notBlurred">
             <h1>ROUTA</h1>
             @Html.Partial("_LoginPartial")
+            </div>
+
         </div>
     </div>
+
 </div>
 
 
