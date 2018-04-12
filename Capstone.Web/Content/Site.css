@@ -72,6 +72,79 @@ button#registerLink, .loginSubmit, .registerSubmit, input.searchButton {
     margin-top: 5px;
 }
 
+.pwMessage {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: 30rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    /* The actual popup */
+    .pwMessage .popuptext {
+        visibility: hidden;
+        font-size: 11px;
+        width: 15rem;
+        background-color: #555;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 8px 2px;
+        position: absolute;
+        z-index: 1;
+        top: 12rem;
+        right: 7.5rem;
+        /*bottom: 125%;
+        left: 50%;*/
+        margin-left: -80px;
+    }
+
+        /* Popup arrow */
+        .pwMessage .popuptext::after {
+            content: "";
+            position: absolute;
+            /*background-color: red;*/
+            top: -0.55rem;
+            left: 7.5rem;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+            transform: scaleY(-1);
+        }
+
+    /* Toggle this class - hide and show the popup */
+    .pwMessage .show {
+        visibility: visible;
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+    }
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
 .indexButtons {
     width: 30rem;
     display: grid;
