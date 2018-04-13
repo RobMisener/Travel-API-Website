@@ -51,3 +51,9 @@ CREATE TABLE [dbo].[UserRoles]
 	CONSTRAINT fk_Itinerary_Stops_Itinerary FOREIGN KEY (ItinId) REFERENCES Itinerary(ItinId)
 
  );
+ALTER TABLE Itinerary_Stops
+ADD Name VARCHAR(50) NOT NULL, 
+Address VARCHAR(50) NOT NULL, 
+Latitude FLOAT NOT NULL, 
+Longitude FLOAT NOT NULL, 
+Category VARCHAR(50) NOT NULL;

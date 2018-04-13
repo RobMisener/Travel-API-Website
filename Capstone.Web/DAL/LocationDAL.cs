@@ -3,6 +3,7 @@
 //using System.Linq;
 //using System.Web;
 //using Capstone.Web.Models;
+public int Order { get; set; }
 //using System.Data.SqlClient;
 
 //namespace Capstone.Web.DAL
