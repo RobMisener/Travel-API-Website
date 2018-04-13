@@ -16,7 +16,7 @@ namespace Capstone.Web
         {
             this.connectionString = connectionString;
         }
-        private const string SQL_GetItinerary = @"SELECT * FROM Itinerary_Stops WHERE ItinId = @ItinId";
+        private const string SQL_GetItinerary = @"SELECT * FROM Itinerary_Stops JOIN Itinerary on Itinerary_Stops.ItinId = Itinerary.ItinId WHERE ItinId = @ItinId";
 
         string connectionString;
         //const string SQL_SelectParkByParkCode = @"SELECT * FROM database WHERE parkCode = @parkCode;";
@@ -31,7 +31,7 @@ namespace Capstone.Web
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     {
                         conn.Open();
-                        SqlCommand cmd = new SqlCommand($"INSERT INTO Itinerary (UserId, StartDate) VALUES (@UserId, @StartDate)", conn);
+                        SqlCommand cmd = new SqlCommand("INSERT INTO Itinerary (UserId, StartDate) VALUES (@UserId, @StartDate)", conn);
                         cmd.Parameters.AddWithValue("@UserId", userId);
                         cmd.Parameters.AddWithValue("@StartDate", startDate);
                         cmd.ExecuteNonQuery();
@@ -44,6 +44,52 @@ namespace Capstone.Web
                         if (reader.Read())
                         {
                             var newItinId = Convert.ToInt32(reader["ItinId"]);
+                            foreach (var stop in stops)
+                            {
+                                SqlCommand newcmd = new SqlCommand("INSERT INTO Itinerary_Stops (PlaceId, Order, Name, Latitude, Longitude, Category) VALUES (@PlaceId, @Order, @Name, @Latitude, @Longitude, @Category)", conn);
+                                cmd.Parameters.AddWithValue("@PlaceId", stop.PlaceID);
+                                cmd.Parameters.AddWithValue("@Order", stop.Order);
+                                cmd.Parameters.AddWithValue("@Name", stop.Name);
+                                cmd.Parameters.AddWithValue("@Latitude", stop.Latitude);
+                                cmd.Parameters.AddWithValue("@Longitude", stop.Longitude);
+                                cmd.Parameters.AddWithValue("@Category", stop.Category);
+                                cmd.ExecuteNonQuery();
+
+                            }
+                        }
+                    }
+
+                }
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("An error occurred reading the database: " + ex.Message);
+                return false;
+            }
+        }
+
+        public bool UpdateItinerary(int userId, DateTime startDate, List<ItineraryStop> stops)
+        {
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand("UPDATE Itinerary (StartDate) SET StartDate = @StartDate", conn);
+                        cmd.Parameters.AddWithValue("@StartDate", startDate);
+                        cmd.ExecuteNonQuery();
+
+                        // delete original stops from itinerary_stops
+                        cmd = new SqlCommand("DELETE * from Itinerary_Stops WHERE ItinId = @ItinId", conn);
+                        cmd.ExecuteNonQuery();
+
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        if (reader.Read())
+                        {
                             foreach (var stop in stops)
                             {
                                 SqlCommand newcmd = new SqlCommand($"INSERT INTO Itinerary_Stops (PlaceId, Order, Name, Latitude, Longitude, Category) VALUES (@PlaceId, @Order, @Name, @Latitude, @Longitude, @Category)", conn);
@@ -67,24 +113,21 @@ namespace Capstone.Web
                 Console.WriteLine("An error occurred reading the database: " + ex.Message);
                 return false;
             }
+
         }
 
-        SqlCommand cmd2 = new SqlCommand($"UPDATE Itinerary (StartDate) VALUES (@StartDate)", conn);
-        cmd.Parameters.AddWithValue("@StartDate", startDate);
-                        cmd.ExecuteNonQuery();
 
 
 
         public void DeleteItinerary(int itinID)
         {
             //delete itinerary from table 
-            List<ItineraryModel> output = new List<ItineraryModel>();
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand($"DELETE FROM Itinerary WHERE ItinId = @itinID", conn);
+                    SqlCommand cmd = new SqlCommand($"DELETE * FROM Itinerary WHERE ItinId = @itinID", conn);
                     cmd.ExecuteNonQuery();
                 }
             }
