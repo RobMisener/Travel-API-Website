@@ -19,8 +19,6 @@ namespace Capstone.Web.Controllers
 			this.dal = dal;
 		}
 
-		public ActionResult
-
 		[Route("api/itinerary/")]
 		[HttpPost]
 		public IHttpActionResult SaveItinerary(ItineraryModel model)
