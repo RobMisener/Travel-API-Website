@@ -15,11 +15,7 @@
 		</div>
     </div>
 
-
-
     <script>
-
-
 
 		this.places = [];
         // When a searchresult message arrives, look at the data attached to it
