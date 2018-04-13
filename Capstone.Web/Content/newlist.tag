@@ -7,8 +7,10 @@
 			<img class="landmarkImg" src={getPhotoUrl(place)} />
 			<div class="landmarkInfo">
 				<p class="landmarkName">{place.name}</p>
+                <p class="landmarkAddress">{place.formatted_address}</p>
 				<p class="landmarkOpen">{isOpen(place)}</p>
 				<p class="landmarkCategory">{getCategoryType(place.types)}</p>
+                <a target="_blank" class="googleLink" href={nameSplitting(place)}>Learn more...</a>
 			</div>
 		</div>
     </div>
@@ -16,6 +18,8 @@
 
 
     <script>
+
+
 
 		this.places = [];
         // When a searchresult message arrives, look at the data attached to it
@@ -110,7 +114,26 @@
 			});
 
 			return result;
-		}
+        }
+
+        this.nameSplitting = (place) => {
+            var str = place.name;
+            var replaced = str.split(' ').join('+');
+            let url = "http://www.google.com/search?q=";
+            return  (url + replaced);
+            console.log(replaced);
+
+
+
+            //let link;
+
+            //for (let i = 0; i < place.name.length-1; i++) {
+            //    link = place.name.replace(' ', '+');
+            //}
+           
+            //console.log(link);
+           
+        }
 
 		this.isOpen = (place) => {
 			const bools = {

@@ -11,7 +11,7 @@
 	<button onclick="{collapse}" class="collapsible">+ ADVANCED SETTINGS</button>
 	<div class="advanceSearch">
 		<p>CATEGORY:</p>
-		<select id="dropdown" name="category" size="4" multiple>
+		<select name="category">
 			<option value="point of interest">Other</option>
 			<option value="airport">Airport</option>
 			<option value="amusement_park">Amusement Park</option>
