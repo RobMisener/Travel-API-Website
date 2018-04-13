@@ -34,3 +34,6 @@
 //}
 
 
+//name
+//adress, loc, lat, long,
+

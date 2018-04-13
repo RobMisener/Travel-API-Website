@@ -21,6 +21,29 @@ namespace Capstone.Web
 			this.connectionString = connectionString;
 		}
 
+		public CreateItinerary(int itinId, int userId, DateTime startDate, string placeId, int order)
+		{
+			//create/insert into Sql Table Itin/ItinStops
+
+		}
+
+
+		//function for change order
+		public ChangeOrder(int ItinId, int itinOrderNumber1, int itinOrderNumber2) {
+
+			int tempOrder;
+
+
+
+
+		}
+
+
+		//function for update date
+		public UpdateDate () {
+
+		}
+
 		public void InsertItineraryStops(int itinId, string placeId, int order)
 		{
 			List<ItineraryModel> output = new List<ItineraryModel>();

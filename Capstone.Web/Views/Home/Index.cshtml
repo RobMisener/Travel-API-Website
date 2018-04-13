@@ -7,18 +7,21 @@
         @*<img class="heroImg" src="~/Content/img/herocropped.jpeg" />*@
 
         <div class="homeVideo">
-            <video autoplay loop class="indexVideo" >
-
-                <source src="~/Content/img/862017385.mp4" class="indexVideo" type="video/mp4" />
-
+            <video autoplay loop class="indexVideo">
+                <source defaultPlaybackRate=0.5 src="~/Content/img/862017385.mp4" class="indexVideo" type="video/mp4" />
             </video>
         </div>
+
+        <script>
+            var vid = document.getElementsByTagName("source");
+            vid.playbackRate = 0.5;
+        </script>
 
         <div class="heroOverlay">
 
             <div class="notBlurred">
-            <h1>ROUTA</h1>
-            @Html.Partial("_LoginPartial")
+                <h1>ROUTA</h1>
+                @Html.Partial("_LoginPartial")
             </div>
 
         </div>
