@@ -1,6 +1,6 @@
 ﻿<newmap class="map">
 
-    <div id="map" style="height: 300px; width: 300px;"></div>
+    <div id="map"></div>
 
 
 

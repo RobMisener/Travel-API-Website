@@ -3,27 +3,31 @@
 
     <div class="landmark" each={place in places}>
 
-        <div if={checkIfOpen(place)}>
-            <img class="landmarkImg" src={getPhotoUrl(place)} />
-            <div class="landmarkInfo">
-                <p class="landmarkName">{place.name}</p>
-                <p class="landmarkAddress">{place.formatted_address}</p>
-                <p class="landmarkOpen">{isOpen(place)}</p>
-                <p class="landmarkCategory">{getCategoryType(place.types)}</p>
-                <a target="_blank" class="googleLink" href={nameSplitting(place)}>Learn more...</a>
-              
-
-            </div>
-        </div>
+		<div if={checkIfOpen(place)}>
+			<img class="landmarkImg" src={getPhotoUrl(place)} />
+			<div class="landmarkInfo">
+				<p class="landmarkName">{place.name}</p>
+				<p class="landmarkAddress">{place.formatted_address}</p>
+				<p class="landmarkOpen">{isOpen(place)}</p>
+				<p class="landmarkCategory">{getCategoryType(place.types)}</p>
+				<a target="_blank" class="googleLink" href={nameSplitting(place)}>Learn more...</a>
+			</div>
+			<a onclick="{ addPlace }" class="addButton" href="#">+</a>
+			<hr class="breaker" />
+		</div>
     </div>
 
     <script>
-      
+		this.addPlace = (e) => {
+			let placeId = e.item.place.place_id;
+		}
+
         this.places = [];
         // When a searchresult message arrives, look at the data attached to it
         this.opts.bus.on('searchresult', data => {
             this.places = data.results;
-            this.checkBox = data.isOpen;
+			this.checkBox = data.isOpen;
+			this.placeId;
             this.update();
 
         });

@@ -7,57 +7,60 @@
 
 	<div id="service-helper"></div>
 
-	
-	<button onclick="{collapse}" class="collapsible">+ ADVANCED SETTINGS</button>
-	<div class="advanceSearch">
-		<p>CATEGORY:</p>
-		<select name="category">
-			<option value="point of interest">Other</option>
-			<option value="airport">Airport</option>
-			<option value="amusement_park">Amusement Park</option>
-			<option value="aquarium">Aquarium</option>
-			<option value="art_gallery">Art Gallery</option>
-			<option value="bakery">Bakery</option>
-			<option value="bank">Bank</option>
-			<option value="bar">Bar</option>
-			<option value="book_store">Book Store</option>
-			<option value="bowling_alley">Bowling Alley</option>
-			<option value="bus_station">Bus Station</option>
-			<option value="cafe">Cafe</option>
-			<option value="campground">Campground</option>
-			<option value="casino">Casino</option>
-			<option value="cemetery">Cemetery</option>
-			<option value="church">Church</option>
-			<option value="city_hall">City Hall</option>
-			<option value="embassy">Embassy</option>
-			<option value="fire_station">Fire Station</option>
-			<option value="funeral_home">Funeral Home</option>
-			<option value="gym">Gym</option>
-			<option value="hindu_temple">Hindu Temple</option>
-			<option value="jewelry_store">Jewelry Store</option>
-			<option value="library">Library</option>
-			<option value="lodging">Lodging</option>
-			<option value="meal_takeaway">Meal Takeaway</option>
-			<option value="mosque">Mosque</option>
-			<option value="movie_theaher">Movie Theater</option>
-			<option value="museum">Museum</option>
-			<option value="night_club">Night Club</option>
-			<option value="park">Park</option>
-			<option value="post_office">Post Office</option>
-			<option value="restaurant">Restaurant</option>
-			<option value="school">School</option>
-			<option value="shopping_mall">Shopping Mall</option>
-			<option value="spa">Spa</option>
-			<option value="stadium">Stadium</option>
-			<option value="store">Store</option>
-			<option value="subway_station">Subway Station</option>
-			<option value="synagogue">Synagogue</option>
-			<option value="train_station">Train Station</option>
-			<option value="transit_station">Transit STation</option>
-			<option value="zoo">Zoo</option>
-		</select>
-		<input id="openNow_Checkbox" type="checkbox" name="" value="Bike" checked="checked">OPEN NOW</br>
+	<div class="advanceSearchContainer">
+		<button onclick="{collapse}" class="collapsible">+ ADVANCED SETTINGS</button>
+
+		<div class="advanceSearch">
+			<p>CATEGORY:</p>
+			<select class="categories" name="category">
+				<option value="point of interest">Other</option>
+				<option value="airport">Airport</option>
+				<option value="amusement_park">Amusement Park</option>
+				<option value="aquarium">Aquarium</option>
+				<option value="art_gallery">Art Gallery</option>
+				<option value="bakery">Bakery</option>
+				<option value="bank">Bank</option>
+				<option value="bar">Bar</option>
+				<option value="book_store">Book Store</option>
+				<option value="bowling_alley">Bowling Alley</option>
+				<option value="bus_station">Bus Station</option>
+				<option value="cafe">Cafe</option>
+				<option value="campground">Campground</option>
+				<option value="casino">Casino</option>
+				<option value="cemetery">Cemetery</option>
+				<option value="church">Church</option>
+				<option value="city_hall">City Hall</option>
+				<option value="embassy">Embassy</option>
+				<option value="fire_station">Fire Station</option>
+				<option value="funeral_home">Funeral Home</option>
+				<option value="gym">Gym</option>
+				<option value="hindu_temple">Hindu Temple</option>
+				<option value="jewelry_store">Jewelry Store</option>
+				<option value="library">Library</option>
+				<option value="lodging">Lodging</option>
+				<option value="meal_takeaway">Meal Takeaway</option>
+				<option value="mosque">Mosque</option>
+				<option value="movie_theaher">Movie Theater</option>
+				<option value="museum">Museum</option>
+				<option value="night_club">Night Club</option>
+				<option value="park">Park</option>
+				<option value="post_office">Post Office</option>
+				<option value="restaurant">Restaurant</option>
+				<option value="school">School</option>
+				<option value="shopping_mall">Shopping Mall</option>
+				<option value="spa">Spa</option>
+				<option value="stadium">Stadium</option>
+				<option value="store">Store</option>
+				<option value="subway_station">Subway Station</option>
+				<option value="synagogue">Synagogue</option>
+				<option value="train_station">Train Station</option>
+				<option value="transit_station">Transit STation</option>
+				<option value="zoo">Zoo</option>
+			</select>
+			<input id="openNow_Checkbox" type="checkbox" name="" value="Bike" checked="checked">OPEN NOW
+		</div>
 	</div>
+	
 
 	<script>
 

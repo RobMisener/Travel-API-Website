@@ -226,16 +226,26 @@ dd a{
     text-decoration: none;
     display: inline-block;
 }
-
-/* Home */
-div.homeContainer img.heroImg {
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	height: 100vh;
-	width: 100%;
-	position: relative;
+ul.indexButtons li {
+	list-style: none;
 }
+ul.indexButtons li a {
+	color: white;
+	padding-bottom: 1em;
+}
+ul.indexButtons li a.searchPage {
+	border: 1px solid white;	
+	padding: .5em 1em;
+}
+	/* Home */
+	div.homeContainer img.heroImg {
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		height: 100vh;
+		width: 100%;
+		position: relative;
+	}
 
 div.homeContainer div.homeVideo {
     -webkit-filter: blur(1px);
@@ -276,25 +286,54 @@ newsearch h1{
 /* List */
 .landmark {
 	width: 40vw;
-	border: 1px solid black;
+	margin-left: 9em;
+	position: relative;
+	
 }
 .landmarkImg {
 	display: inline-block;
 	width: 18vw;
 	height: auto;
+	padding: 1em;
 }
 .landmarkInfo {
 	display: inline-block;
 	width: 15vw;
 	vertical-align: top;
+	padding-bottom: 1em;
+}
+.googleLink {
+	color: black
 }
 .landmarkName {
 	font-size: 1.5em;
 	font-weight: 700;
 }
+.breaker {
+	border-color: black;
+}
+a.addButton {
+	border-radius: 50%;
+	background-color: black;
+	color: white;
+	text-decoration: none;
+	padding: 10px 16px;
+	position: absolute;
+	right:0;
+	right: 0;
+	bottom: 5px;
+}
 
 /* Map */
+newmap {
+	position: absolute;
+	right: 9em;
+}
 
+#map {
+	height: 50vh;
+	width: 35vw;
+}
 
 /*collapsable*/
 .collapsible {
@@ -308,15 +347,26 @@ newsearch h1{
     outline: none;
     font-size: 15px;
 }
-
 .active, .collapsible:hover {
     background-color: #555;
 }
 .advanceSearch {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color: #f1f1f1;
+	padding: 0 18px;
+	display: none;
+	overflow: hidden;
+	background-color: #f1f1f1;
 	width: 17.5vw;
 	margin: 0 auto;
+	padding-bottom: 1.2em;
 }
+.advanceSearchContainer {
+	margin-bottom: 4em;
+}
+select.categories {
+	display: block;
+	margin: 0 auto;
+	width: 20vw;
+	margin-bottom: 1em;
+}
+
+
