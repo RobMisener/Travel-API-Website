@@ -22,7 +22,7 @@ namespace Capstone.Web
         //const string SQL_SelectParkByParkCode = @"SELECT * FROM database WHERE parkCode = @parkCode;";
 
 
-        public bool CreateItinerary(int userId, DateTime startDate, List<ItineraryStop> stops)
+        public bool CreateItinerary(string itinName, int userId, DateTime startDate, List<ItineraryStop> stops)
         {
             try
             {
@@ -31,7 +31,8 @@ namespace Capstone.Web
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     {
                         conn.Open();
-                        SqlCommand cmd = new SqlCommand("INSERT INTO Itinerary (UserId, StartDate) VALUES (@UserId, @StartDate)", conn);
+                        SqlCommand cmd = new SqlCommand("INSERT INTO Itinerary (ItinName, UserId, StartDate) VALUES (@ItinName, @UserId, @StartDate)", conn);
+                        cmd.Parameters.AddWithValue("ItinName", itinName);
                         cmd.Parameters.AddWithValue("@UserId", userId);
                         cmd.Parameters.AddWithValue("@StartDate", startDate);
                         cmd.ExecuteNonQuery();

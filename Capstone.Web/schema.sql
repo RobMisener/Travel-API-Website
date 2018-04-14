@@ -57,3 +57,6 @@ Address VARCHAR(50) NOT NULL,
 Latitude FLOAT NOT NULL, 
 Longitude FLOAT NOT NULL, 
 Category VARCHAR(50) NOT NULL;
+
+ALTER TABLE Itinerary
+ADD ItinName Varchar(50) NOT NULL;
