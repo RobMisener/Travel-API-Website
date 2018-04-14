@@ -89,8 +89,6 @@
 		this.search = function () {
 
 			const location = this.root.querySelector("input[name='place']").value;
-			console.log(location);
-			console.log(open);
 			//boolIsOpen = true;
 			var checkbox = document.querySelector('#openNow_Checkbox');
 			if (checkbox.checked) {
@@ -99,14 +97,8 @@
 			else {
 				boolIsOpen = false;
 			}
-			//var isOpen = checkbox.value;
-			//var boolIsOpen = false;
-			//if (isOpen === 'Bike') {
-			//	boolIsOpen = true;
-			//}
 
 			const category = this.root.querySelector("select[name='category']").value;
-			console.log(category);
 
 			const geocoder = new google.maps.Geocoder();
 			const geocodeRequest = {

@@ -22,9 +22,7 @@
 
 <script>
 	let bus = {};
-	let shortbus = {};
-	riot.observable(bus);
-	riot.observable(shortbus);//makes it so our bus can send and receive messages
+	riot.observable(bus);//makes it so our bus can send and receive messages
 	// Mount the riot tags to the page here
 	riot.mount('newsearch', { bus: bus });
 	riot.mount('newmap', { bus: bus });

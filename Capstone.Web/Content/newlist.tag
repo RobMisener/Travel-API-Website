@@ -18,8 +18,11 @@
     </div>
 
     <script>
+		let placeId;
+
 		this.addPlace = (e) => {
-			let placeId = e.item.place.place_id;
+			placeId = e.item.place.place_id;
+			this.opts.bus.trigger('placeid', { placeId: placeId});
 		}
 
         this.places = [];
@@ -27,10 +30,11 @@
         this.opts.bus.on('searchresult', data => {
             this.places = data.results;
 			this.checkBox = data.isOpen;
-			this.placeId;
+			this.placeId = placeId;
             this.update();
+		});
 
-        });
+		
 
         this.checkIfOpen = (place) => {
             // if openstatus equals false means the checkbox is unchecked.
