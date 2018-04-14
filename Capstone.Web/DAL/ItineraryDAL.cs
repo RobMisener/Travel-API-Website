@@ -154,9 +154,9 @@ namespace Capstone.Web
                         {
                             ItineraryModel itineraryModel = new ItineraryModel
                             {
-                                ItinId = Convert.ToInt32(reader["ItinId"]),
-                                PlaceId = Convert.ToString(reader["PlaceId"]),
-                                Order = Convert.ToInt32(reader["Order"]),
+                                //ItinId = Convert.ToInt32(reader["ItinId"]),
+                                //PlaceId = Convert.ToString(reader["PlaceId"]),
+                                //Order = Convert.ToInt32(reader["Order"]),
                             };
 
                             output.Add(itineraryModel);

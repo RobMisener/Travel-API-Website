@@ -7,7 +7,7 @@ namespace Capstone.Web.DAL
 {
 	public interface IItineraryDAL
 	{
-		List <ItineraryModel> ite
+		//List <ItineraryModel> ite
 
 
 	}
