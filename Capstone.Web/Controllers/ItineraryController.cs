@@ -36,6 +36,7 @@ namespace Capstone.Web.Controllers
 		{
 
             bool result = dal.CreateItinerary(model);
+
             return RedirectToAction("Itinerary");
 
 		}
