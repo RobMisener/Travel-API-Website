@@ -47,6 +47,13 @@ for (i = 0; i < coll.length; i++) {
                     
                     // Create a Places Request with location and a query
                     const placeRequest = {
+                        if(type) {
+                            const placeRequest ={
+                                
+                            } 
+                            const location = latlng;
+                            query: `${type} in ${location}`
+                        }
                         location: latlng,
                         query: `point of interest in ${location}`
                     };
