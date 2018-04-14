@@ -5,7 +5,15 @@
         <p>{name}</p>
     </div>
 
+<div class="thumbsUp">
+        <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
 
+
+
+</div>
+<div class="thumbsDown">
+        <i onclick="myFunction(this)" class="fa fa-thumbs-down"></i>
+</div>
 
     <style>
         img {
