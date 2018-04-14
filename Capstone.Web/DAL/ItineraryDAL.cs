@@ -6,21 +6,19 @@ using System.Transactions;
 using Capstone.Web.Models;
 using System.Data.SqlClient;
 
-namespace Capstone.Web
+namespace Capstone.Web.DAL
 {
 
-    public class ItineraryDAL
+    public class ItineraryDAL: IItineraryDAL
     {
+
+        private string connectionString;
 
         public ItineraryDAL(string connectionString)
         {
             this.connectionString = connectionString;
         }
         private const string SQL_GetItinerary = @"SELECT * FROM Itinerary_Stops JOIN Itinerary on Itinerary_Stops.ItinId = Itinerary.ItinId WHERE ItinId = @ItinId";
-
-        string connectionString;
-        //const string SQL_SelectParkByParkCode = @"SELECT * FROM database WHERE parkCode = @parkCode;";
-
 
         public bool CreateItinerary(int userId, DateTime startDate, List<ItineraryStop> stops)
         {
@@ -58,6 +56,7 @@ namespace Capstone.Web
                             }
                         }
                     }
+                    scope.Complete();
 
                 }
                 return true;
@@ -105,8 +104,10 @@ namespace Capstone.Web
                         }
                     }
 
+                    scope.Complete();
                 }
                 return true;
+
             }
             catch (SqlException ex)
             {
@@ -115,9 +116,6 @@ namespace Capstone.Web
             }
 
         }
-
-
-
 
         public void DeleteItinerary(int itinID)
         {
@@ -152,12 +150,19 @@ namespace Capstone.Web
 
                         while (reader.Read())
                         {
-                            ItineraryModel itineraryModel = new ItineraryModel
+                            ItineraryModel itineraryModel = new ItineraryModel();
+                            itineraryModel.ItinId = Convert.ToInt32(reader["ItinId"]);
+                            itineraryModel.UserId = Convert.ToInt32(reader["UserId"]);
+                            itineraryModel.StartDate = Convert.ToDateTime(reader["StartDate"]);
+                            foreach (var stop in itineraryModel.Stops)
                             {
-                                ItinId = Convert.ToInt32(reader["ItinId"]),
-                                PlaceId = Convert.ToString(reader["PlaceId"]),
-                                Order = Convert.ToInt32(reader["Order"]),
-                            };
+                                stop.PlaceID = Convert.ToString(reader["PlaceId"]);
+                                stop.Name = Convert.ToString(reader["Name"]);
+                                stop.Address = Convert.ToString(reader["Address"]);
+                                stop.Latitude = Convert.ToDouble(reader["Latitude"]);
+                                stop.Longitude = Convert.ToDouble(reader["Longitude"]);
+                                stop.Category = Convert.ToString(reader["Category"]);
+                            }
 
                             output.Add(itineraryModel);
                         }
@@ -169,9 +174,10 @@ namespace Capstone.Web
                     Console.WriteLine("An error occurred reading the database: " + ex.Message);
                     return output;
                 }
-
             }
+
         }
+    }
 
 
         //private ItineraryModel MapItineraryFromReader(SqlDataReader reader)

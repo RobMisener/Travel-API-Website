@@ -260,6 +260,7 @@
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\Itinerary.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

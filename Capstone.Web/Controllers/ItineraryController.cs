@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
+using System.Web.Mvc;
 using System.Web.Http;
 using Capstone.Web.DAL;
 
@@ -19,18 +21,24 @@ namespace Capstone.Web.Controllers
 			this.dal = dal;
 		}
 
-		[Route("api/itinerary/")]
+        // GET: Survey
+        public ActionResult Itinerary()
+        {
+            List<ItineraryModel> itineraryModelList = dal.GetItinerary();
+
+            return View(itineraryModelList);
+        }
+
+        [Route("api/itinerary/")]
 		[HttpPost]
-		public IHttpActionResult SaveItinerary(ItineraryModel model)
+		public IHttpActionResult Itinerary(ItineraryModel model)
 		{
 
-
-
-			// Calls the DAL to save the itinerary to the database
-			return null;
-
+            bool result = dal.CreateItinerary(model);
+            return RedirectToAction("Itinerary");
 
 		}
+
 
     }
 }
