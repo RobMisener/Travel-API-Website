@@ -37,7 +37,7 @@ namespace Capstone.Web.Controllers
 
             bool result = dal.CreateItinerary(model);
 
-            return RedirectToAction("Itinerary");
+            return RedirectToAction("_LoginPartial");
 
 		}
         //POST: Update Itinerary
@@ -47,7 +47,7 @@ namespace Capstone.Web.Controllers
         {
 
             bool result = dal.UpdateItinerary(model);
-            return RedirectToAction("Itinerary");
+            return RedirectToAction("_LoginPartial");
 
         }
         //DELETE: Delete Itinerary
@@ -57,7 +57,7 @@ namespace Capstone.Web.Controllers
         {
 
             bool result = dal.DeleteItinerary(model);
-            return RedirectToAction("Itinerary");
+            return RedirectToAction("_LoginPartial");
 
         }
 
