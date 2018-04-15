@@ -11,7 +11,6 @@ namespace Capstone.Web
 
     public class ItineraryDAL
     {
-
         public ItineraryDAL(string connectionString)
         {
             this.connectionString = connectionString;
@@ -19,7 +18,6 @@ namespace Capstone.Web
         private const string SQL_GetItinerary = @"SELECT * FROM Itinerary_Stops JOIN Itinerary on Itinerary_Stops.ItinId = Itinerary.ItinId WHERE ItinId = @ItinId";
 
         string connectionString;
-
 
         public bool CreateItinerary(string itinName, int userId, DateTime startDate, List<ItineraryStop> stops)
         {
@@ -115,10 +113,6 @@ namespace Capstone.Web
             }
 
         }
-
-
-
-
         public void DeleteItinerary(int itinID)
         {
             //delete itinerary from table 
@@ -173,10 +167,10 @@ namespace Capstone.Web
                                     }
                                     output.Add(itineraryModel);
                                 }
-
-                            return output;
+                            }
+                            scope.Complete();
                         }
-
+                        return output;
                     }
                 }
                 catch (SqlException ex)

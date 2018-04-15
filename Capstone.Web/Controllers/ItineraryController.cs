@@ -13,7 +13,6 @@ namespace Capstone.Web.Controllers
 {
     public class ItineraryController : ApiController
     {
-
 		IItineraryDAL dal;
 
 		public ItineraryController(IItineraryDAL dal)
@@ -22,7 +21,8 @@ namespace Capstone.Web.Controllers
 		}
 
         // GET: Itinerary
-        public ActionResult GetItinerary()
+        [System.Web.Http.HttpGet]
+        public ActionResult DisplayItinerary(int itinId)
         {
             List<ItineraryModel> itineraryModelList = dal.GetItinerary();
 
@@ -33,7 +33,7 @@ namespace Capstone.Web.Controllers
         //POST: Create Itinerary
         [System.Web.Http.HttpPost]
         [System.Web.Http.Route("api/itinerary/")]
-		public IHttpActionResult CreateItinerary(ItineraryModel model)
+		public IHttpActionResult CreateNewItinerary(ItineraryModel model)
 		{
 
             bool result = dal.CreateItinerary(model);
@@ -43,22 +43,22 @@ namespace Capstone.Web.Controllers
 		}
         //POST: Update Itinerary
         [System.Web.Http.HttpPost]
-        [System.Web.Http.Route("api/itinerary/")]
+        [System.Web.Http.Route("api/itinerary/{ItinId")]
         public IHttpActionResult UpdateItinerary(ItineraryModel model)
         {
 
             bool result = dal.UpdateItinerary(model);
-            return RedirectToAction("_LoginPartial");
+            return Ok();
 
         }
         //DELETE: Delete Itinerary
         [System.Web.Http.HttpDelete]
         [System.Web.Http.Route("api/itinerary/{ItinId}")]
-        public IHttpActionResult DeleteItinerary(ItineraryModel model)
+        public IHttpActionResult RemoveItinerary(ItineraryModel model)
         {
 
             bool result = dal.DeleteItinerary(model);
-            return RedirectToAction("_LoginPartial");
+            return Ok();
 
         }
 

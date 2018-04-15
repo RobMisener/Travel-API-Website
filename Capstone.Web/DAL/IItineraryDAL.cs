@@ -11,7 +11,7 @@ namespace Capstone.Web.DAL
 	{
         bool CreateItinerary(ItineraryModel model);
         bool UpdateItinerary(ItineraryModel model);
-        bool DeleteItinerary(ItineraryModel model);
+        void DeleteItinerary(ItineraryModel model);
         List<ItineraryModel> GetItinerary();
 
 
