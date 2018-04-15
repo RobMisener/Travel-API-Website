@@ -26,12 +26,13 @@ namespace Capstone.Web.Controllers
         {
             List<ItineraryModel> itineraryModelList = dal.GetItinerary();
 
-            return Ok(itineraryModelList);
+            return View(itineraryModelList);
         }
 
+
         //POST: Create Itinerary
-        [HttpPost]
-        [Route("api/itinerary/")]
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.Route("api/itinerary/")]
 		public IHttpActionResult CreateItinerary(ItineraryModel model)
 		{
 
@@ -41,8 +42,8 @@ namespace Capstone.Web.Controllers
 
 		}
         //POST: Update Itinerary
-        [HttpPost]
-        [Route("api/itinerary/")]
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.Route("api/itinerary/")]
         public IHttpActionResult UpdateItinerary(ItineraryModel model)
         {
 
@@ -51,8 +52,8 @@ namespace Capstone.Web.Controllers
 
         }
         //DELETE: Delete Itinerary
-        [HttpDelete]
-        [Route("api/itinerary/")]
+        [System.Web.Http.HttpDelete]
+        [System.Web.Http.Route("api/itinerary/{ItinId}")]
         public IHttpActionResult DeleteItinerary(ItineraryModel model)
         {
 
