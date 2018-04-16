@@ -53,6 +53,7 @@
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
 				},
+				credentials: 'include',
 				body: JSON.stringify( this.itinerary )
 			}).then(response => console.log(response));
 			
