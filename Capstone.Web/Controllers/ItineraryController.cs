@@ -38,9 +38,9 @@ namespace Capstone.Web.Controllers
                 //dal.UpdateItinerary(model);
             }
             else
-            {
-                var username = User.Identity.GetUserName();
-                dal.CreateItinerary(model.ItinName, Guid.Parse("10C65D7C-6BDB-4C22-8334-3D5CFB06890E"), model.StartDate, model.Stops);
+            {               
+                var userId = RequestContext.Principal.Identity.GetUserId();                
+                dal.CreateItinerary(model.ItinName, Guid.Parse(userId), model.StartDate, model.Stops);
             }
 
             return Ok();
