@@ -198,6 +198,7 @@
     <Compile Include="DAL\IItineraryDAL.cs" />
     <Compile Include="DAL\ItineraryDAL.cs" />
     <Compile Include="DAL\LocationDAL.cs" />
+    <Compile Include="DAL\RatedPlacesDALcs.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -205,6 +206,7 @@
     <Compile Include="Models\ItineraryModel.cs" />
     <Compile Include="Models\ItineraryStop.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RatedPlacesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -276,7 +278,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55900</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
