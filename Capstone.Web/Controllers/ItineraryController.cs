@@ -23,10 +23,12 @@ namespace Capstone.Web.Controllers
         ItineraryDAL dal = new ItineraryDAL(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/itinerary")]
-        public IHttpActionResult Get()
+        [System.Web.Http.Route("api/itinerary/{ItinId}")]
+        public IHttpActionResult Get(Guid ItinId)
         {
+            var username = User.Identity.GetUserName();
 
+            bool result = dal.GetItinerary(ItinId);
             return Ok();
         }
 

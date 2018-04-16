@@ -69,7 +69,7 @@ namespace Capstone.Web
             }
         }
 
-        public bool UpdateItinerary(Guid itinId, int userId, DateTime startDate, List<ItineraryStop> stops)
+        public bool UpdateItinerary(Guid itinId, Guid userId, DateTime startDate, List<ItineraryStop> stops)
         {
             try
             {
@@ -112,7 +112,7 @@ namespace Capstone.Web
             }
 
         }
-        public void DeleteItinerary(int itinID)
+        public void DeleteItinerary(Guid itinID)
         {
             //delete itinerary from table 
             try
@@ -130,7 +130,7 @@ namespace Capstone.Web
             }
         }
 
-        public List<ItineraryModel> GetItinerary(int ItinId)
+        public List<ItineraryModel> GetItinerary(Guid ItinId)
         {
             List<ItineraryModel> output = new List<ItineraryModel>();
             {
@@ -150,9 +150,9 @@ namespace Capstone.Web
                             {
                                 ItineraryModel itineraryModel = new ItineraryModel();
                                 {
-                                    itineraryModel.ItinId = Convert.ToInt32(reader["ItinId"]);
+                                    itineraryModel.ItinId = Convert.ToString(reader["ItinId"]);
                                     itineraryModel.ItinName = Convert.ToString(reader["ItinName"]);
-                                    itineraryModel.UserId = Convert.ToInt32(reader["UserId"]);
+                                    itineraryModel.UserId = Convert.ToString(reader["UserId"]);
                                     itineraryModel.StartDate = Convert.ToDateTime(reader["StartDate"]);
                                     foreach (var stop in itineraryModel.Stops)
                                     {
