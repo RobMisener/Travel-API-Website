@@ -79,7 +79,9 @@ namespace Capstone.Web.Controllers
             if (user != null)
             {
                 await SignInManager.SignInAsync(user, model.RememberMe, rememberBrowser: false);
-                return RedirectToLocal(returnUrl);
+                //return RedirectToLocal(returnUrl);
+                return RedirectToAction("Search", "Home");
+
             }
             else
             {
