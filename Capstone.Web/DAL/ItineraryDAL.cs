@@ -113,8 +113,7 @@ namespace Capstone.Web
             }
 
         }
-
-		public void DeleteItinerary(int itinID)
+        public void DeleteItinerary(int itinID)
         {
             //delete itinerary from table 
             try

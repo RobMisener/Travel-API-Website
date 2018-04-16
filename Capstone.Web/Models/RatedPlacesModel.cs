@@ -12,9 +12,9 @@ namespace Capstone.Web.Models
 {
 	public class RatedPlacesModel
 	{
-		public string PlaceId;
-		public string PlaceName;
-		public int ThumbsUpCount;
-		public int ThumbsDownCount;
+		public string PlaceId { get; set; }
+		public string PlaceName { get; set; }
+		public int ThumbsUpCount { get; set; }
+		public int ThumbsDownCount { get; set; }
 	}
 }

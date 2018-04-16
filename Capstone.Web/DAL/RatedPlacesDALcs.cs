@@ -8,7 +8,7 @@ namespace Capstone.Web.DAL
 	public class RatedPlacesDALcs
 	{
 
-		public bool AddPlaceToDatabase(string name, int placeId)
+		public bool AddPlaceToDatabase(string placeId)
 		{
 				try
 				{
@@ -17,33 +17,22 @@ namespace Capstone.Web.DAL
 						using (SqlConnection conn = new SqlConnection(connectionString))
 						{
 							conn.Open();
-							SqlCommand cmd = new SqlCommand("INSERT INTO Itinerary (ItinName, UserId, StartDate) VALUES (@ItinName, @UserId, @StartDate)", conn);
-							cmd.Parameters.AddWithValue("@ItinName", itinName);
-							cmd.Parameters.AddWithValue("@UserId", userId);
-							cmd.Parameters.AddWithValue("@StartDate", startDate);
+							SqlCommand cmd = new SqlCommand("INSERT INTO Itinerary (placeId) VALUES (@PlaceId)", conn);
+							cmd.Parameters.AddWithValue("@PlaceId", placeId);
+
 							cmd.ExecuteNonQuery();
 
-							// loop through stops, and insert a stop into intenaryStop
-							cmd = new SqlCommand("SELECT * from itinerary WHERE ItinId = (SELECT MAX(ItinId) FROM itinerary);", conn);
+							//cmd = new SqlCommand(@"Select * from Rated_Places", conn);
+							//SqlDataReader reader = cmd.ExecuteReader();
 
-							SqlDataReader reader = cmd.ExecuteReader();
+							//if (reader.Read())
+							//{
 
-							if (reader.Read())
-							{
-								var newItinId = Convert.ToInt32(reader["ItinId"]);
-								foreach (var stop in stops)
-								{
-									SqlCommand newcmd = new SqlCommand("INSERT INTO Itinerary_Stops (PlaceId, Order, Name, Latitude, Longitude, Category) VALUES (@PlaceId, @Order, @Name, @Latitude, @Longitude, @Category)", conn);
-									cmd.Parameters.AddWithValue("@PlaceId", stop.PlaceID);
-									cmd.Parameters.AddWithValue("@Order", stop.Order);
-									cmd.Parameters.AddWithValue("@Name", stop.Name);
-									cmd.Parameters.AddWithValue("@Latitude", stop.Latitude);
-									cmd.Parameters.AddWithValue("@Longitude", stop.Longitude);
-									cmd.Parameters.AddWithValue("@Category", stop.Category);
-									cmd.ExecuteNonQuery();
+							//		SqlCommand newcmd = new SqlCommand("INSERT INTO Itinerary (placeId) VALUES (@PlaceId), conn);
+							//		cmd.Parameters.AddWithValue("@PlaceId", placeId);
 
-								}
-							}
+							//		cmd.ExecuteNonQuery();
+							//}
 						}
 						scope.Complete();
 					}
