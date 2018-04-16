@@ -10,9 +10,11 @@
 		<button>Create Itinerary</button>
 		<button>Delete Itinerary</button>
 	</div>
-	
+
+
 
 	<script>
+		
 
 		this.places = [];
 		this.itinerary = {
@@ -24,7 +26,7 @@
 
 		this.opts.bus.on('addPlace', data => {
 			this.places.push(data.place);
-			
+
 			this.update();
 		});
 
@@ -54,9 +56,9 @@
 					'Content-Type': 'application/json'
 				},
 				credentials: 'include',
-				body: JSON.stringify( this.itinerary )
+				body: JSON.stringify(this.itinerary)
 			}).then(response => console.log(response));
-			
+
 
 
 
