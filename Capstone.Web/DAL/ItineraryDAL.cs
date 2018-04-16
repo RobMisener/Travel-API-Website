@@ -89,7 +89,7 @@ namespace Capstone.Web
                         foreach (var stop in stops)
                         {
                             cmd = new SqlCommand($"INSERT INTO Itinerary_Stops (ItinId, PlaceId, [Order], Name, Latitude, Longitude, Category) VALUES (@PlaceId, @Order, @Name, @Latitude, @Longitude, @Category)", conn);
-                            cmd.Parameters.AddWithValue("@ItinId", ItinId);
+                            cmd.Parameters.AddWithValue("@ItinId", itinId);
                             cmd.Parameters.AddWithValue("@PlaceId", stop.PlaceID);
                             cmd.Parameters.AddWithValue("@Order", stop.Order);
                             cmd.Parameters.AddWithValue("@Name", stop.Name);
@@ -150,9 +150,9 @@ namespace Capstone.Web
                             {
                                 ItineraryModel itineraryModel = new ItineraryModel();
                                 {
-                                    itineraryModel.ItinId = Convert.ToString(reader["ItinId"]);
+                                    itineraryModel.ItinId = Convert.ToInt32(reader["ItinId"]);
                                     itineraryModel.ItinName = Convert.ToString(reader["ItinName"]);
-                                    itineraryModel.UserId = Convert.ToString(reader["UserId"]);
+                                    //itineraryModel.UserId = Convert.ToString(reader["UserId"]);
                                     itineraryModel.StartDate = Convert.ToDateTime(reader["StartDate"]);
                                     foreach (var stop in itineraryModel.Stops)
                                     {

@@ -28,7 +28,7 @@ namespace Capstone.Web.Controllers
         {
             var username = User.Identity.GetUserName();
 
-            bool result = dal.GetItinerary(ItinId);
+            dal.GetItinerary(ItinId);
             return Ok();
         }
 
@@ -40,9 +40,9 @@ namespace Capstone.Web.Controllers
         {
             if (model.ItinId != 0)
             {
-                var username = User.Identity.GetUserName();
+                //var username = User.Identity.GetUserName();
 
-                bool result = dal.UpdateItinerary(model);
+                //bool result = dal.UpdateItinerary(model);
                 return Ok();
 
             }
@@ -67,17 +67,17 @@ namespace Capstone.Web.Controllers
 
         //}
 
-        //DELETE: Delete Itinerary
-        [System.Web.Http.HttpDelete]
-        [System.Web.Http.Route("api/itinerary/{ItinId}")]
-        public IHttpActionResult RemoveItinerary(ItineraryModel model)
-        {
-            var username = User.Identity.GetUserName();
+        ////DELETE: Delete Itinerary
+        //[System.Web.Http.HttpDelete]
+        //[System.Web.Http.Route("api/itinerary/{ItinId}")]
+        //public IHttpActionResult RemoveItinerary(ItineraryModel model)
+        //{
+        //    var username = User.Identity.GetUserName();
 
-            bool result = dal.DeleteItinerary(model);
-            return Ok();
+        //    bool result = dal.DeleteItinerary(model);
+        //    return Ok();
 
-        }
+        //}
 
 
     }
