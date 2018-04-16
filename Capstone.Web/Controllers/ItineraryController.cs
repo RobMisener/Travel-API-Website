@@ -8,66 +8,64 @@ using System.Web.Mvc;
 using System.Web.Http;
 using Capstone.Web.Models;
 using Capstone.Web.DAL;
+using System.Configuration;
+using Microsoft.AspNet.Identity;
 
 namespace Capstone.Web.Controllers
 {
     public class ItineraryController : ApiController
     {
-        IItineraryDAL dal;
+        ItineraryDAL dal = new ItineraryDAL(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
-        public ItineraryController(IItineraryDAL dal)
-        {
-            this.dal = dal;
-        }
+        
 
-        public ActionResult Itinerary()
-        {
-            var itinerary = dal.GetItinerary();
-
-            return PartialView("_LoginPartial", itinerary);
-        }
-
-        // GET: Itinerary
         [System.Web.Http.HttpGet]
-        public ActionResult DisplayItinerary(int itinId)
+        [System.Web.Http.Route("api/itinerary")]
+        public IHttpActionResult Get()
         {
-            List<ItineraryModel> itineraryModelList = dal.GetItinerary();
 
-            return View(itineraryModelList);
+            return Ok();
         }
 
 
         //POST: Create Itinerary
         [System.Web.Http.HttpPost]
-        [System.Web.Http.Route("api/itinerary/")]
-        public IHttpActionResult CreateNewItinerary(ItineraryModel model)
+        [System.Web.Http.Route("api/itinerary")]
+        public IHttpActionResult SaveItinerary(ItineraryModel model)
         {
+            if (model.ItinId != 0)
+            {
+                //dal.UpdateItinerary(model);
+            }
+            else
+            {
+                var username = User.Identity.GetUserName();
+                dal.CreateItinerary(model.ItinName, Guid.Parse("10C65D7C-6BDB-4C22-8334-3D5CFB06890E"), model.StartDate, model.Stops);
+            }
 
-            bool result = dal.CreateItinerary(model);
-
-            return RedirectToAction("_LoginPartial");
+            return Ok();
 
         }
         //POST: Update Itinerary
-        [System.Web.Http.HttpPost]
-        [System.Web.Http.Route("api/itinerary/{ItinId")]
-        public IHttpActionResult UpdateItinerary(ItineraryModel model)
-        {
+        //[System.Web.Http.HttpPost]
+        //[System.Web.Http.Route("api/itinerary/{ItinId")]
+        //public IHttpActionResult UpdateItinerary(ItineraryModel model)
+        //{
 
-            bool result = dal.UpdateItinerary(model);
-            return Ok();
+        //    bool result = dal.UpdateItinerary(model);
+        //    return Ok();
 
-        }
+        //}
         //DELETE: Delete Itinerary
-        [System.Web.Http.HttpDelete]
-        [System.Web.Http.Route("api/itinerary/{ItinId}")]
-        public IHttpActionResult RemoveItinerary(ItineraryModel model)
-        {
+        //[System.Web.Http.HttpDelete]
+        //[System.Web.Http.Route("api/itinerary/{ItinId}")]
+        //public IHttpActionResult RemoveItinerary(ItineraryModel model)
+        //{
 
-            bool result = dal.DeleteItinerary(model);
-            return Ok();
+        //    bool result = dal.DeleteItinerary(model);
+        //    return Ok();
 
-        }
+        //}
 
 
     }

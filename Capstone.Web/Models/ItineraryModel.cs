@@ -9,7 +9,7 @@ namespace Capstone.Web.Models
 	{
 		public int ItinId { get; set; }
 		public string ItinName { get; set;}
-		public int UserId { get; set; }
+		public Guid UserId { get; set; }
 		public DateTime StartDate { get; set; }
 		public List<ItineraryStop> Stops { get; set; }
 	}

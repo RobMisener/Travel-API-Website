@@ -30,7 +30,7 @@ CREATE TABLE [dbo].[UserRoles]
  CREATE TABLE [dbo].[Itinerary]
 
  (
-	[ItinId] UNIQUEIDENTIFIER NOT NULL,
+	[ItinId] int identity(1,1) NOT NULL,
 	[UserId] UNIQUEIDENTIFIER NOT NULL,
 	[StartDate] DATE NOT NULL,
 
@@ -43,8 +43,8 @@ CREATE TABLE [dbo].[UserRoles]
  CREATE TABLE [dbo].[Itinerary_Stops]
 
  (
-	[ItinId] UNIQUEIDENTIFIER NOT NULL,
-	[PlaceId] UNIQUEIDENTIFIER NOT NULL,
+	[ItinId] int NOT NULL,
+	[PlaceId] varchar(200) NOT NULL,
 	[Order] INT NOT NULL,
 
 	CONSTRAINT pk_Itinerary_Stops PRIMARY KEY (PlaceId),
@@ -52,8 +52,8 @@ CREATE TABLE [dbo].[UserRoles]
 
  );
 ALTER TABLE Itinerary_Stops
-ADD Name VARCHAR(50) NOT NULL, 
-Address VARCHAR(50) NOT NULL, 
+ADD Name VARCHAR(200) NOT NULL, 
+Address VARCHAR(200) NOT NULL, 
 Latitude FLOAT NOT NULL, 
 Longitude FLOAT NOT NULL, 
 Category VARCHAR(50) NOT NULL;

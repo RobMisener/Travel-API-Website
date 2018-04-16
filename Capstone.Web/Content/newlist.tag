@@ -21,9 +21,8 @@
 		let placeId;
 
 		this.addPlace = (e) => {
-			placeId = e.item.place.place_id;
-			placeId = e.item.place.name;
-			this.opts.bus.trigger('placeid', { placeId: placeId, name: name});
+		
+			this.opts.bus.trigger('addPlace', { place: e.item.place });
 		}
 
         this.places = [];
