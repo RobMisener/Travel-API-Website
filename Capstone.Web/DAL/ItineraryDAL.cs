@@ -16,6 +16,7 @@ namespace Capstone.Web
         {
             this.connectionString = connectionString;
         }
+
         private const string SQL_GetItinerary = @"SELECT * FROM Itinerary_Stops JOIN Itinerary on Itinerary_Stops.ItinId = Itinerary.ItinId WHERE ItinId = @ItinId";
 
         string connectionString;
@@ -37,9 +38,9 @@ namespace Capstone.Web
                         cmd.ExecuteNonQuery();
 
                         // loop through stops, and insert a stop into intenaryStop
-                        cmd = new SqlCommand("SELECT * from itinerary WHERE ItinId = (SELECT MAX(ItinId) FROM itinerary);", conn);                        
+                        cmd = new SqlCommand("SELECT * from itinerary WHERE ItinId = (SELECT MAX(ItinId) FROM itinerary);", conn);
                         int newItinId = Convert.ToInt32(cmd.ExecuteScalar());
-                                                
+
 
                         foreach (var stop in stops)
                         {
@@ -68,7 +69,7 @@ namespace Capstone.Web
             }
         }
 
-        public bool UpdateItinerary(int userId, DateTime startDate, List<ItineraryStop> stops)
+        public bool UpdateItinerary(Guid itinId, Guid userId, DateTime startDate, List<ItineraryStop> stops)
         {
             try
             {
@@ -77,30 +78,27 @@ namespace Capstone.Web
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     {
                         conn.Open();
-                        SqlCommand cmd = new SqlCommand("UPDATE Itinerary (StartDate) SET StartDate = @StartDate", conn);
+                        SqlCommand cmd = new SqlCommand("UPDATE Itinerary (StartDate) WHERE ItinId = @itinId SET StartDate = @StartDate", conn);
                         cmd.Parameters.AddWithValue("@StartDate", startDate);
                         cmd.ExecuteNonQuery();
 
                         // delete original stops from itinerary_stops
-                        cmd = new SqlCommand("DELETE * from Itinerary_Stops WHERE ItinId = @ItinId", conn);
+                        cmd = new SqlCommand("DELETE * from Itinerary_Stops WHERE ItinId = @itinId", conn);
                         cmd.ExecuteNonQuery();
 
-                        SqlDataReader reader = cmd.ExecuteReader();
-
-                        if (reader.Read())
+                        foreach (var stop in stops)
                         {
-                            foreach (var stop in stops)
-                            {
-                                SqlCommand newcmd = new SqlCommand($"INSERT INTO Itinerary_Stops (PlaceId, Order, Name, Latitude, Longitude, Category) VALUES (@PlaceId, @Order, @Name, @Latitude, @Longitude, @Category)", conn);
-                                cmd.Parameters.AddWithValue("@PlaceId", stop.PlaceID);
-                                cmd.Parameters.AddWithValue("@Order", stop.Order);
-                                cmd.Parameters.AddWithValue("@Name", stop.Name);
-                                cmd.Parameters.AddWithValue("@Latitude", stop.Latitude);
-                                cmd.Parameters.AddWithValue("@Longitude", stop.Longitude);
-                                cmd.Parameters.AddWithValue("@Category", stop.Category);
-                                cmd.ExecuteNonQuery();
+                            cmd = new SqlCommand($"INSERT INTO Itinerary_Stops (ItinId, PlaceId, [Order], Name, Latitude, Longitude, Category) VALUES (@PlaceId, @Order, @Name, @Latitude, @Longitude, @Category)", conn);
+                            cmd.Parameters.AddWithValue("@ItinId", ItinId);
+                            cmd.Parameters.AddWithValue("@PlaceId", stop.PlaceID);
+                            cmd.Parameters.AddWithValue("@Order", stop.Order);
+                            cmd.Parameters.AddWithValue("@Name", stop.Name);
+                            cmd.Parameters.AddWithValue("@Address", stop.Address);
+                            cmd.Parameters.AddWithValue("@Latitude", stop.Latitude);
+                            cmd.Parameters.AddWithValue("@Longitude", stop.Longitude);
+                            cmd.Parameters.AddWithValue("@Category", stop.Category);
+                            cmd.ExecuteNonQuery();
 
-                            }
                         }
                     }
                     scope.Complete();
@@ -114,7 +112,7 @@ namespace Capstone.Web
             }
 
         }
-        public void DeleteItinerary(int itinID)
+        public void DeleteItinerary(Guid itinID)
         {
             //delete itinerary from table 
             try
@@ -132,56 +130,56 @@ namespace Capstone.Web
             }
         }
 
-        //public List<ItineraryModel> GetItinerary(int ItinId)
-        //{
-        //    List<ItineraryModel> output = new List<ItineraryModel>();
-        //    {
-        //        try
-        //        {
-        //            using (TransactionScope scope = new TransactionScope())
-        //            {
-        //                using (SqlConnection conn = new SqlConnection(connectionString))
-        //                {
-        //                    conn.Open();
+        public List<ItineraryModel> GetItinerary(Guid ItinId)
+        {
+            List<ItineraryModel> output = new List<ItineraryModel>();
+            {
+                try
+                {
+                    using (TransactionScope scope = new TransactionScope())
+                    {
+                        using (SqlConnection conn = new SqlConnection(connectionString))
+                        {
+                            conn.Open();
 
-        //                    SqlCommand cmd = new SqlCommand(SQL_GetItinerary, conn);
+                            SqlCommand cmd = new SqlCommand(SQL_GetItinerary, conn);
 
-        //                    SqlDataReader reader = cmd.ExecuteReader();
+                            SqlDataReader reader = cmd.ExecuteReader();
 
-        //                    while (reader.Read())
-        //                    {
-        //                        ItineraryModel itineraryModel = new ItineraryModel();
-        //                        {
-        //                            itineraryModel.ItinId = Convert.ToInt32(reader["ItinId"]);
-        //                            itineraryModel.ItinName = Convert.ToString(reader["ItinName"]);
-        //                            itineraryModel.UserId = Convert.ToInt32(reader["UserId"]);
-        //                            itineraryModel.StartDate = Convert.ToDateTime(reader["StartDate"]);
-        //                            foreach (var stop in itineraryModel.Stops)
-        //                            {
-        //                                stop.PlaceID = Convert.ToString(reader["PlaceId"]);
-        //                                stop.Name = Convert.ToString(reader["Name"]);
-        //                                stop.Address = Convert.ToString(reader["Address"]);
-        //                                stop.Order = Convert.ToInt32(reader["Order"]);
-        //                                stop.Latitude = Convert.ToDouble(reader["Latitude"]);
-        //                                stop.Longitude = Convert.ToDouble(reader["Longitude"]);
-        //                                stop.Category = Convert.ToString(reader["Category"]);
-        //                            }
-        //                            output.Add(itineraryModel);
-        //                        }
-        //                    }
-        //                    scope.Complete();
-        //                }
-        //                return output;
-        //            }
-        //        }
-        //        catch (SqlException ex)
-        //        {
-        //            Console.WriteLine("An error occurred reading the database: " + ex.Message);
-        //            return output;
-        //        }
+                            while (reader.Read())
+                            {
+                                ItineraryModel itineraryModel = new ItineraryModel();
+                                {
+                                    itineraryModel.ItinId = Convert.ToString(reader["ItinId"]);
+                                    itineraryModel.ItinName = Convert.ToString(reader["ItinName"]);
+                                    itineraryModel.UserId = Convert.ToString(reader["UserId"]);
+                                    itineraryModel.StartDate = Convert.ToDateTime(reader["StartDate"]);
+                                    foreach (var stop in itineraryModel.Stops)
+                                    {
+                                        stop.PlaceID = Convert.ToString(reader["PlaceId"]);
+                                        stop.Name = Convert.ToString(reader["Name"]);
+                                        stop.Address = Convert.ToString(reader["Address"]);
+                                        stop.Order = Convert.ToInt32(reader["Order"]);
+                                        stop.Latitude = Convert.ToDouble(reader["Latitude"]);
+                                        stop.Longitude = Convert.ToDouble(reader["Longitude"]);
+                                        stop.Category = Convert.ToString(reader["Category"]);
+                                    }
+                                    output.Add(itineraryModel);
+                                }
+                            }
+                            scope.Complete();
+                        }
+                        return output;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine("An error occurred reading the database: " + ex.Message);
+                    return output;
+                }
 
-        //    }
-        //}
+            }
+        }
 
 
         //private ItineraryModel MapItineraryFromReader(SqlDataReader reader)

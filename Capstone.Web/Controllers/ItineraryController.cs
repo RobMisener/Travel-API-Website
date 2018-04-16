@@ -10,6 +10,11 @@ using Capstone.Web.Models;
 using Capstone.Web.DAL;
 using System.Configuration;
 using Microsoft.AspNet.Identity;
+using Ninject;
+using Ninject.Web.Common.WebHost;
+using Ninject.Web.WebApi;
+
+
 
 namespace Capstone.Web.Controllers
 {
@@ -17,13 +22,13 @@ namespace Capstone.Web.Controllers
     {
         ItineraryDAL dal = new ItineraryDAL(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
-        
-
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/itinerary")]
-        public IHttpActionResult Get()
+        [System.Web.Http.Route("api/itinerary/{ItinId}")]
+        public IHttpActionResult Get(Guid ItinId)
         {
+            var username = User.Identity.GetUserName();
 
+            bool result = dal.GetItinerary(ItinId);
             return Ok();
         }
 
@@ -35,7 +40,11 @@ namespace Capstone.Web.Controllers
         {
             if (model.ItinId != 0)
             {
-                //dal.UpdateItinerary(model);
+                var username = User.Identity.GetUserName();
+
+                bool result = dal.UpdateItinerary(model);
+                return Ok();
+
             }
             else
             {               
@@ -51,21 +60,24 @@ namespace Capstone.Web.Controllers
         //[System.Web.Http.Route("api/itinerary/{ItinId")]
         //public IHttpActionResult UpdateItinerary(ItineraryModel model)
         //{
+        //    var username = User.Identity.GetUserName();
 
         //    bool result = dal.UpdateItinerary(model);
         //    return Ok();
 
         //}
+
         //DELETE: Delete Itinerary
-        //[System.Web.Http.HttpDelete]
-        //[System.Web.Http.Route("api/itinerary/{ItinId}")]
-        //public IHttpActionResult RemoveItinerary(ItineraryModel model)
-        //{
+        [System.Web.Http.HttpDelete]
+        [System.Web.Http.Route("api/itinerary/{ItinId}")]
+        public IHttpActionResult RemoveItinerary(ItineraryModel model)
+        {
+            var username = User.Identity.GetUserName();
 
-        //    bool result = dal.DeleteItinerary(model);
-        //    return Ok();
+            bool result = dal.DeleteItinerary(model);
+            return Ok();
 
-        //}
+        }
 
 
     }

@@ -7,13 +7,13 @@ using Capstone.Web.Models;
 
 namespace Capstone.Web.DAL
 {
-	public interface IItineraryDAL
-	{
-        bool CreateItinerary(ItineraryModel model);
-        bool UpdateItinerary(ItineraryModel model);
-        void DeleteItinerary(ItineraryModel model);
-        List<ItineraryModel> GetItinerary();
+	//public interface IItineraryDAL
+	//{
+ //       bool CreateItinerary(ItineraryModel model);
+ //       bool UpdateItinerary(ItineraryModel model);
+ //       void DeleteItinerary(ItineraryModel model);
+ //       List<ItineraryModel> GetItinerary();
 
 
-    }
+ //   }
 }
