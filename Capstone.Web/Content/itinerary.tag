@@ -1,8 +1,9 @@
 ﻿<itinerary>
 
 	<div class="itineraryContainer">
-		<div class="itineraryList">
-			<p class="landmarkName">{placeId}</p>
+		<div each={place in places} class="itineraryList">
+			<p class="landmarkName">{place}</p>
+			<input type="hidden" name="placeId" value="{place}" />
 		</div>
 		<button>Save</button>
 		<button>Delete</button>
@@ -11,10 +12,9 @@
 
 	<script>
 
-		this.placeId = "";
+		this.places = [];
 		this.opts.bus.on('placeid', data => {
-
-			this.placeId = data.placeId;
+			this.places.push(data.placeId);
 			this.update();
 		});
 
