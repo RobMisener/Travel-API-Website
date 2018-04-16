@@ -1,14 +1,19 @@
 ﻿<itinerary>
 
 	<div class="itineraryContainer">
+		<form action="" method="post">
+			<input class="itineraryName" type="text" placeholder="Itinerary Name" name="itineraryName" />
+			<input class="itineraryDate" type="text" placeholder="Itinerary Date" name="itineraryDate" />
+		</form>
+		<button class="saveButton" onclick={ save }>Save Itinerary</button>
+		<button class="deleteButton">Delete Itinerary</button>
+
 		<div each={place in places} class="itineraryList">
 			<p class="landmarkName">{place.name}</p>
 			<input type="hidden" name="placeId" value="{place.place_id}" />
-			<button onclick={remove}>Remove</button>
+			<button class="removeButton" onclick={remove}>Remove</button>
 		</div>
-		<button onclick={ save }>Save</button>
-		<button>Create Itinerary</button>
-		<button>Delete Itinerary</button>
+
 	</div>
 
 
@@ -19,14 +24,13 @@
 		this.places = [];
 		this.itinerary = {
 			ItinId: 0,
-			ItinName: 'Test',
+			ItinName: "itinName",
 			StartDate: '4/16/2018',
 			Stops: []
 		};
 
 		this.opts.bus.on('addPlace', data => {
 			this.places.push(data.place);
-
 			this.update();
 		});
 

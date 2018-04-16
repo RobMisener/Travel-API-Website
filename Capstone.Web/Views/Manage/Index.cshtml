@@ -1,18 +1,31 @@
 ﻿@model Capstone.Web.Models.IndexViewModel
 @{
-    ViewBag.Title = "Manage";
+	ViewBag.Title = "Manage";
 }
 
 <h2>@ViewBag.Title.</h2>
 
 <p>@ViewBag.StatusMessage</p>
 <div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>            
-                @Html.ActionLink("Change your password", "ChangePassword")            
-        </dd>                                
-    </dl>
+	<h4>Change your account settings</h4>
+	<hr />
+		<p>
+			@Html.ActionLink("Change your password", "ChangePassword")
+		</p>
+
+		<a href="@Url.Action("Search", "Home")">Search Landmarks</a>
+
+		@*@foreach (var itin in Model)
+		{
+			<div>
+				<h3>@itin.ItinName</h3>
+				<p>@itin.StartDate</p>
+				<hr />
+				@foreach (var place in itin.Stops)
+				{
+					<p>place</p>
+				}
+			</div>
+		}*@
+	</dl>
 </div>

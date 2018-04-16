@@ -3,7 +3,7 @@
 
 	<input class="searchBox" type="text" name="place" placeholder="enter a location" />
 
-	<input class="searchButton" type="button" onclick="{search}" value="SEARCH" />
+	<input id="enter" class="searchButton" type="button" onclick="{search}" value="SEARCH" />
 
 	<div id="service-helper"></div>
 

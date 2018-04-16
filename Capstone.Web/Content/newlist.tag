@@ -12,7 +12,7 @@
 				<p class="landmarkCategory">{getCategoryType(place.types)}</p>
 				<a target="_blank" class="googleLink" href={nameSplitting(place)}>Learn more...</a>
 			</div>
-			<a onclick="{ addPlace }" class="addButton" href="#">+</a>
+			<button onclick="{ addPlace }" class="addButton">+</button>
 			<hr class="breaker" />
 		</div>
     </div>
@@ -20,8 +20,7 @@
     <script>
 		let placeId;
 
-		this.addPlace = (e) => {
-		
+		this.addPlace = (e) => {	
 			this.opts.bus.trigger('addPlace', { place: e.item.place });
 		}
 

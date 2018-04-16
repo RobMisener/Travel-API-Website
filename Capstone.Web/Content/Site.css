@@ -61,7 +61,8 @@ textarea {
 }
 
 a#loginLink, a#registerLink, button#loginLink, a#anonLink, 
-button#registerLink, .loginSubmit, .registerSubmit, input.searchButton {
+button#registerLink, .loginSubmit, .registerSubmit, input.searchButton,
+.removeButton, .saveButton, .createButton, .deleteButton, input.changePassword{
     background-color: #000000;
     border: none;
     color: white;
@@ -210,7 +211,7 @@ a#anonLink:hover {
 	transition: all .4s ease;
 }
 
-#Email, #Password, #ConfirmPassword, .searchBox, .filterButton {
+#Email, #Password, #ConfirmPassword, .searchBox, .filterButton, .itineraryName , .itineraryDate, #OldPassword, #NewPassword{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -312,7 +313,7 @@ newsearch h1{
 .breaker {
 	border-color: black;
 }
-a.addButton {
+button.addButton {
 	border-radius: 50%;
 	background-color: black;
 	color: white;
@@ -322,6 +323,7 @@ a.addButton {
 	right:0;
 	right: 0;
 	bottom: 5px;
+	border-color: black;
 }
 
 /* Map */
@@ -369,4 +371,11 @@ select.categories {
 	margin-bottom: 1em;
 }
 
+/* Itinerary */
+div.itineraryContainer {
+	width: 25vw;
+	position: absolute;
+	right: 9em;
+	top:95vh;
+}
 

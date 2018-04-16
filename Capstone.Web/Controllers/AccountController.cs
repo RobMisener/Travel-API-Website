@@ -80,7 +80,7 @@ namespace Capstone.Web.Controllers
             {
                 await SignInManager.SignInAsync(user, model.RememberMe, rememberBrowser: false);
                 //return RedirectToLocal(returnUrl);
-                return RedirectToAction("Search", "Home");
+                return RedirectToAction("Index", "Manage");
 
             }
             else
