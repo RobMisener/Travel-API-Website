@@ -13,7 +13,7 @@
     <a class="links" href="@Url.Action("Search", "Home")">Search Landmarks</a>
     @foreach (var itinerary in Model.ItineraryList)
     {
-        <h3><a href="#">@itinerary.ItinName</a></h3>
+        <h3><a href="@Url.Action("ItineraryView", "Home")">@itinerary.ItinName</a></h3>
         <p>@itinerary.StartDate.ToString("MM/dd/yyyy")</p>
         <hr class="breaker2" />
     }
