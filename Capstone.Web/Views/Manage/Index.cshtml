@@ -3,17 +3,14 @@
 	ViewBag.Title = "Manage";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2 class="titles">@ViewBag.Title.</h2>
 
 <p>@ViewBag.StatusMessage</p>
 <div>
 	<h4>Change your account settings</h4>
 	<hr />
-		<p>
-			@Html.ActionLink("Change your password", "ChangePassword")
-		</p>
-
-		<a href="@Url.Action("Search", "Home")">Search Landmarks</a>
+		<a class="links" href="@Url.Action("ChangePassword")">Change Password</a>
+		<a class="links" href="@Url.Action("Search", "Home")">Search Landmarks</a>
 
 		@*@foreach (var itin in Model)
 		{

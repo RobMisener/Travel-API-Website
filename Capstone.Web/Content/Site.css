@@ -62,7 +62,7 @@ textarea {
 
 a#loginLink, a#registerLink, button#loginLink, a#anonLink, 
 button#registerLink, .loginSubmit, .registerSubmit, input.searchButton,
-.removeButton, .saveButton, .createButton, .deleteButton, input.changePassword{
+.removeButton, .saveButton, .createButton, .deleteButton, input.changePassword, .links{
     background-color: #000000;
     border: none;
     color: white;
@@ -71,6 +71,10 @@ button#registerLink, .loginSubmit, .registerSubmit, input.searchButton,
     cursor: pointer;
     text-align: center;
     margin-top: 5px;
+}
+.links {
+	display: inline-block;
+	margin-top: 2em;
 }
 
 .pwMessage {
@@ -278,6 +282,10 @@ div.homeContainer div.heroOverlay h1 {
 	margin-bottom: .2em;
 }
 
+.titles {
+	font-size: 4em;
+}
+
 /* Search */
 newsearch h1{
 	font-size: 8em;
@@ -375,7 +383,9 @@ select.categories {
 div.itineraryContainer {
 	width: 25vw;
 	position: absolute;
-	right: 9em;
-	top:95vh;
+	right: 0;
+	top: 0;
 }
+
+
 

@@ -31,9 +31,7 @@
 			this.checkBox = data.isOpen;
 			this.placeId = placeId;
             this.update();
-		});
-
-		
+		});	
 
         this.checkIfOpen = (place) => {
             // if openstatus equals false means the checkbox is unchecked.
@@ -127,17 +125,6 @@
             let url = "http://www.google.com/search?q=";
             return (url + replaced);
             console.log(replaced);
-
-
-
-            //let link;
-
-            //for (let i = 0; i < place.name.length-1; i++) {
-            //    link = place.name.replace(' ', '+');
-            //}
-
-            //console.log(link);
-
         }
 
         this.isOpen = (place) => {
@@ -155,8 +142,6 @@
                 }
             }
         }
-
-
 
     </script>
 </newlist>
