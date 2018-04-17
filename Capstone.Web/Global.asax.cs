@@ -33,7 +33,7 @@ namespace Capstone.Web
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
             // Configure Bindings
-            // kernel.Bind<interface>().To<class>();
+            //kernel.Bind<interface>().To<class>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
 
