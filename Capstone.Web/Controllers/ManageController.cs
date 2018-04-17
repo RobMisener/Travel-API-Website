@@ -21,7 +21,7 @@ namespace Capstone.Web.Controllers
 
         public ManageController()
         {
-            
+
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -64,13 +64,12 @@ namespace Capstone.Web.Controllers
             // Populate this page with properties needed for the manage page (if necessary)                
 
             var userId = User.Identity.GetUserId();
-            var model = new IndexViewModel
-            {
-                dal.GetItinerary(Guid.Parse(Convert.ToString(UserId));
+            var model = new IndexViewModel();
+
+            model.ItineraryList = dal.GetItinerary(Guid.Parse(Convert.ToString(userId)));
             return View(model);
-            }
-            
         }
+
 
 
 

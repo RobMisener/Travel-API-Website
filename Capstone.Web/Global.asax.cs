@@ -1,5 +1,4 @@
-﻿using Capstone.Web.DAL;
-using Ninject;
+﻿using Ninject;
 using Ninject.Web.Common.WebHost;
 using Ninject.Web.WebApi;
 using System;

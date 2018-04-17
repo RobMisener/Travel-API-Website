@@ -148,8 +148,9 @@ namespace Capstone.Web
                     {
                         conn.Open();
 
-                        SqlCommand cmd = new SqlCommand(SQL_GetItinerary, conn);
-
+                        SqlCommand cmd = new SqlCommand(@"SELECT * FROM Itinerary WHERE UserId = @UserId ORDER BY StartDate; ", conn);
+                        cmd.Parameters.AddWithValue("@UserId", UserId);
+                        
                         SqlDataReader reader = cmd.ExecuteReader();
 
                         while (reader.Read())
@@ -160,16 +161,16 @@ namespace Capstone.Web
                                 itineraryModel.ItinName = Convert.ToString(reader["ItinName"]);
                                 itineraryModel.UserId = Guid.Parse(Convert.ToString(reader["UserId"]));
                                 itineraryModel.StartDate = Convert.ToDateTime(reader["StartDate"]);
-                                foreach (var stop in itineraryModel.Stops)
-                                {
-                                    stop.PlaceID = Convert.ToString(reader["PlaceId"]);
-                                    stop.Name = Convert.ToString(reader["Name"]);
-                                    stop.Address = Convert.ToString(reader["Address"]);
-                                    stop.Order = Convert.ToInt32(reader["Order"]);
-                                    stop.Latitude = Convert.ToDouble(reader["Latitude"]);
-                                    stop.Longitude = Convert.ToDouble(reader["Longitude"]);
-                                    stop.Category = Convert.ToString(reader["Category"]);
-                                }
+                                //foreach (var stop in itineraryModel.Stops)
+                                //{
+                                //    stop.PlaceID = Convert.ToString(reader["PlaceId"]);
+                                //    stop.Name = Convert.ToString(reader["Name"]);
+                                //    stop.Address = Convert.ToString(reader["Address"]);
+                                //    stop.Order = Convert.ToInt32(reader["Order"]);
+                                //    stop.Latitude = Convert.ToDouble(reader["Latitude"]);
+                                //    stop.Longitude = Convert.ToDouble(reader["Longitude"]);
+                                //    stop.Category = Convert.ToString(reader["Category"]);
+                                //}
                                 output.Add(itineraryModel);
                             }
                         }

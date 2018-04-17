@@ -7,12 +7,7 @@ namespace Capstone.Web.Models
 {
     public class IndexViewModel
     {
-        List<ItineraryModel> ItineraryList {
-            get
-            {
-                dal.GetItinerary();
-            }
-        }
+        public List<ItineraryModel> ItineraryList { get; set; }
     }
 
     public class ChangePasswordViewModel
