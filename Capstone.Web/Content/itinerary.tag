@@ -63,15 +63,12 @@
 				body: JSON.stringify(this.itinerary)
 			}).then(response => console.log(response));
 
-
-
-
 		}
 
 		this.remove = function (event) {
 			let toBeRemoved = event.item;
 
-			let index = this.places.map(m => m.name).indexOf(toBeRemoved.name);
+			let index = this.places.map(m => m.name).indexOf(toBeRemoved.place.name);
 
 			this.places.splice(index, 1);
 		}

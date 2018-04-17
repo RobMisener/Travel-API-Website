@@ -357,7 +357,7 @@ newmap {
 	display: none;
 	overflow: hidden;
 	background-color: #f1f1f1;
-	width: 17.5vw;
+	width: 50%;
 	margin: 0 auto;
 	padding-bottom: 1.2em;
 }
@@ -367,7 +367,7 @@ newmap {
 select.categories {
 	display: block;
 	margin: 0 auto;
-	width: 20vw;
+	width: 100%;
 	margin-bottom: 1em;
 }
 

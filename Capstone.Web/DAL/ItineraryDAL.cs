@@ -182,18 +182,18 @@ namespace Capstone.Web
         }
 
 
-        //private ItineraryModel MapItineraryFromReader(SqlDataReader reader)
-        //{
-        //	LocationModel Location = new LocationModel
-        //	{
-        //		ItinId = Convert.ToString(reader["Name"]),
-        //		PlaceId = Convert.ToString(reader["PlaceId"]),
-        //		Order = Convert.ToString(reader["Order"]),
-        //	};
+        private ItineraryModel MapItineraryFromReader(SqlDataReader reader)
+        {
+            LocationModel Location = new LocationModel
+            {
+                ItinId = Convert.ToString(reader["Name"]),
+                PlaceId = Convert.ToString(reader["PlaceId"]),
+                Order = Convert.ToString(reader["Order"]),
+            };
 
-        //	return Location;
+            return Location;
 
-        //}
+        }
 
     }
 }
