@@ -88,8 +88,8 @@ namespace Capstone.Web
 
                         foreach (var stop in stops)
                         {
-                            cmd = new SqlCommand($"INSERT INTO Itinerary_Stops (ItinId, PlaceId, [Order], Name, Latitude, Longitude, Category) VALUES (@PlaceId, @Order, @Name, @Latitude, @Longitude, @Category)", conn);
-                            cmd.Parameters.AddWithValue("@ItinId", ItinId);
+                            cmd = new SqlCommand($"INSERT INTO Itinerary_Stops (ItinId, PlaceId, [Order], Name, Latitude, Longitude, Category) VALUES (@ItinId, @PlaceId, @Order, @Name, @Latitude, @Longitude, @Category)", conn);
+                            cmd.Parameters.AddWithValue("@ItinId", stop.ItinId);
                             cmd.Parameters.AddWithValue("@PlaceId", stop.PlaceID);
                             cmd.Parameters.AddWithValue("@Order", stop.Order);
                             cmd.Parameters.AddWithValue("@Name", stop.Name);
