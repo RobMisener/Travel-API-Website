@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Http;
 using Capstone.Web.Models;
-using Capstone.Web.DAL;
+//using Capstone.Web.DAL;
 using System.Configuration;
 using Microsoft.AspNet.Identity;
 using Ninject;
@@ -23,13 +23,12 @@ namespace Capstone.Web.Controllers
         ItineraryDAL dal = new ItineraryDAL(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/itinerary/{UserId")]
+        [System.Web.Http.Route("api/itinerary/{UserId}")]
         public IHttpActionResult Get(Guid UserId)
         {
             var username = User.Identity.GetUserName();
-
-            dal.GetItinerary(UserId);
-            return Ok();
+            var returnedItinerary = dal.GetItinerary(UserId);
+            return Ok(returnedItinerary);
         }
 
 
