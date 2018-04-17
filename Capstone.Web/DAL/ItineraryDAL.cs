@@ -32,6 +32,7 @@ namespace Capstone.Web
                         conn.Open();
                         SqlCommand cmd = new SqlCommand("INSERT INTO Itinerary (ItinName, UserId, StartDate) VALUES (@ItinName, @UserId, @StartDate)", conn);
 
+ //                       cmd.Parameters.AddWithValue("@ItinId", itinId);
                         cmd.Parameters.AddWithValue("@ItinName", itinName);
                         cmd.Parameters.AddWithValue("@UserId", userId);
                         cmd.Parameters.AddWithValue("@StartDate", startDate);
@@ -69,7 +70,7 @@ namespace Capstone.Web
             }
         }
 
-        public bool UpdateItinerary(Guid itinId, Guid userId, DateTime startDate, List<ItineraryStop> stops)
+        public bool UpdateItinerary(int itinId, Guid userId, DateTime startDate, List<ItineraryStop> stops)
         {
             try
             {
@@ -89,7 +90,7 @@ namespace Capstone.Web
                         foreach (var stop in stops)
                         {
                             cmd = new SqlCommand($"INSERT INTO Itinerary_Stops (ItinId, PlaceId, [Order], Name, Latitude, Longitude, Category) VALUES (@ItinId, @PlaceId, @Order, @Name, @Latitude, @Longitude, @Category)", conn);
-                            cmd.Parameters.AddWithValue("@ItinId", stop.ItinId);
+                            cmd.Parameters.AddWithValue("@ItinId", itinId);
                             cmd.Parameters.AddWithValue("@PlaceId", stop.PlaceID);
                             cmd.Parameters.AddWithValue("@Order", stop.Order);
                             cmd.Parameters.AddWithValue("@Name", stop.Name);
@@ -112,7 +113,7 @@ namespace Capstone.Web
             }
 
         }
-        public void DeleteItinerary(Guid itinID)
+        public void DeleteItinerary(int itinID)
         {
             //delete itinerary from table 
             try
@@ -130,7 +131,7 @@ namespace Capstone.Web
             }
         }
 
-        public List<ItineraryModel> GetItinerary(Guid ItinId)
+        public List<ItineraryModel> GetItinerary(int ItinId)
         {
             List<ItineraryModel> output = new List<ItineraryModel>();
             {
@@ -150,9 +151,9 @@ namespace Capstone.Web
                             {
                                 ItineraryModel itineraryModel = new ItineraryModel();
                                 {
-                                    itineraryModel.ItinId = Convert.ToString(reader["ItinId"]);
+                                    itineraryModel.ItinId = Convert.ToInt32(reader["ItinId"]);
                                     itineraryModel.ItinName = Convert.ToString(reader["ItinName"]);
-                                    itineraryModel.UserId = Convert.ToString(reader["UserId"]);
+                                    itineraryModel.UserId = Guid.Parse(Convert.ToString(reader["UserId"]));
                                     itineraryModel.StartDate = Convert.ToDateTime(reader["StartDate"]);
                                     foreach (var stop in itineraryModel.Stops)
                                     {
@@ -182,18 +183,18 @@ namespace Capstone.Web
         }
 
 
-        private ItineraryModel MapItineraryFromReader(SqlDataReader reader)
-        {
-            LocationModel Location = new LocationModel
-            {
-                ItinId = Convert.ToString(reader["Name"]),
-                PlaceId = Convert.ToString(reader["PlaceId"]),
-                Order = Convert.ToString(reader["Order"]),
-            };
+        //private ItineraryModel MapItineraryFromReader(SqlDataReader reader)
+        //{
+        //    LocationModel Location = new LocationModel
+        //    {
+        //        ItinId = Convert.ToString(reader["Name"]),
+        //        PlaceId = Convert.ToString(reader["PlaceId"]),
+        //        Order = Convert.ToString(reader["Order"]),
+        //    };
 
-            return Location;
+        //    return Location;
 
-        }
+        //}
 
     }
 }
