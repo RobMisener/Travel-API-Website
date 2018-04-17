@@ -47,7 +47,7 @@ CREATE TABLE [dbo].[UserRoles]
 	[PlaceId] varchar(200) NOT NULL,
 	[Order] INT NOT NULL,
 
-	CONSTRAINT pk_Itinerary_Stops PRIMARY KEY (PlaceId),
+	CONSTRAINT pk_Itinerary_Stops PRIMARY KEY (PlaceId, ItinId),
 	CONSTRAINT fk_Itinerary_Stops_Itinerary FOREIGN KEY (ItinId) REFERENCES Itinerary(ItinId)
 
  );
@@ -74,3 +74,4 @@ ADD ItinName Varchar(50) NOT NULL;
  	CONSTRAINT fk_RatedPlaces_Itinerary_Stops FOREIGN KEY (PlaceId) REFERENCES Itinerary_Stops(PlaceId)
  );
 
+ 

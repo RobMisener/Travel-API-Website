@@ -17,12 +17,11 @@ namespace Capstone.Web
             this.connectionString = connectionString;
         }
 
-        private const string SQL_GetItinerary = @"SELECT * FROM Itinerary_Stops JOIN Itinerary on Itinerary_Stops.ItinId = Itinerary.ItinId WHERE ItinId = @ItinId";
-
         string connectionString;
 
-        public bool CreateItinerary(string itinName, Guid userId, DateTime startDate, List<ItineraryStop> stops)
+        public int CreateItinerary(string itinName, Guid userId, DateTime startDate, List<ItineraryStop> stops)
         {
+            int newItinId = 0;
             try
             {
                 using (TransactionScope scope = new TransactionScope())
@@ -40,7 +39,7 @@ namespace Capstone.Web
 
                         // loop through stops, and insert a stop into intenaryStop
                         cmd = new SqlCommand("SELECT * from itinerary WHERE ItinId = (SELECT MAX(ItinId) FROM itinerary);", conn);
-                        int newItinId = Convert.ToInt32(cmd.ExecuteScalar());
+                        newItinId = Convert.ToInt32(cmd.ExecuteScalar());
 
 
                         foreach (var stop in stops)
@@ -61,16 +60,21 @@ namespace Capstone.Web
 
                     scope.Complete();
                 }
-                return true;
+                return newItinId;
             }
             catch (SqlException ex)
             {
                 Console.WriteLine("An error occurred reading the database: " + ex.Message);
-                return false;
+                return 0;
             }
         }
 
-        public bool UpdateItinerary(int itinId, Guid userId, DateTime startDate, List<ItineraryStop> stops)
+        internal void UpdateItinerary()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int UpdateItinerary(int itinId, string itinName, Guid userId, DateTime startDate, List<ItineraryStop> stops)
         {
             try
             {
@@ -104,12 +108,12 @@ namespace Capstone.Web
                     }
                     scope.Complete();
                 }
-                return true;
+                return itinId;
             }
             catch (SqlException ex)
             {
                 Console.WriteLine("An error occurred reading the database: " + ex.Message);
-                return false;
+                return 0;
             }
 
         }
@@ -131,10 +135,11 @@ namespace Capstone.Web
             }
         }
 
-        public List<ItineraryModel> GetItinerary(int ItinId)
-        {
+        private const string SQL_GetItinerary = @"SELECT * FROM Itinerary_Stops JOIN Itinerary on Itinerary_Stops.ItinId = Itinerary.ItinId WHERE UserId = @UserId ORDER BY ItinId, [Order]";
+
+        public List<ItineraryModel> GetItinerary(Guid UserId) {
+
             List<ItineraryModel> output = new List<ItineraryModel>();
-            {
                 try
                 {
                     using (TransactionScope scope = new TransactionScope())

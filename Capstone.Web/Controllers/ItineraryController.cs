@@ -23,12 +23,12 @@ namespace Capstone.Web.Controllers
         ItineraryDAL dal = new ItineraryDAL(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/itinerary/{ItinId}")]
-        public IHttpActionResult Get(int ItinId)
+        [System.Web.Http.Route("api/itinerary/{UserId")]
+        public IHttpActionResult Get(Guid UserId)
         {
             var username = User.Identity.GetUserName();
 
-            dal.GetItinerary(ItinId);
+            dal.GetItinerary(UserId);
             return Ok();
         }
 
@@ -40,30 +40,31 @@ namespace Capstone.Web.Controllers
         {
             if (model.ItinId != 0)
             {
-                //dal.UpdateItinerary(model);
-                //return Ok();
+                var userId = RequestContext.Principal.Identity.GetUserId();
+                model.ItinId = dal.UpdateItinerary(model.ItinId, model.ItinName, Guid.Parse(userId), model.StartDate, model.Stops);
 
             }
             else
             {
                 var userId = RequestContext.Principal.Identity.GetUserId();
-                dal.CreateItinerary(model.ItinName, Guid.Parse(userId), model.StartDate, model.Stops);
+                model.ItinId = dal.CreateItinerary(model.ItinName, Guid.Parse(userId), model.StartDate, model.Stops);
+
             }
 
-            return Ok();
+            return Ok(model);
 
         }
-        //POST: Update Itinerary
-        [System.Web.Http.HttpPost]
-        [System.Web.Http.Route("api/itinerary/{ItinId")]
-        public IHttpActionResult UpdateItinerary(ItineraryModel model)
-        {
-            var username = User.Identity.GetUserName();
+        ////POST: Update Itinerary
+        //[System.Web.Http.HttpPost]
+        //[System.Web.Http.Route("api/itinerary/{ItinId}")]
+        //public IHttpActionResult UpdateItinerary(ItineraryModel model)
+        //{
+        //    var username = User.Identity.GetUserName();
 
-            //dal.UpdateItinerary(model);
-            return Ok();
+        //    //dal.UpdateItinerary(model);
+        //    return Ok();
 
-        }
+        //}
 
         //DELETE: Delete Itinerary
         [System.Web.Http.HttpDelete]

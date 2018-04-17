@@ -1,4 +1,4 @@
-﻿@model Capstone.Web.Models.IndexViewModel
+﻿@model List<Capstone.Web.Models.ItineraryModel>
 @{
 	ViewBag.Title = "Manage";
 }
@@ -9,20 +9,10 @@
 <div>
 	<h4>Change your account settings</h4>
 	<hr />
-		<a class="links" href="@Url.Action("ChangePassword")">Change Password</a>
-		<a class="links" href="@Url.Action("Search", "Home")">Search Landmarks</a>
+	<a class="links" href="@Url.Action("ChangePassword")">Change Password</a>
+	<a class="links" href="@Url.Action("Search", "Home")">Search Landmarks</a>	
 
-		@*@foreach (var itin in Model)
-		{
-			<div>
-				<h3>@itin.ItinName</h3>
-				<p>@itin.StartDate</p>
-				<hr />
-				@foreach (var place in itin.Stops)
-				{
-					<p>place</p>
-				}
-			</div>
-		}*@
-	</dl>
+    
 </div>
+
+
