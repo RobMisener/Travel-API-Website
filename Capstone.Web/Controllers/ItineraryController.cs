@@ -22,13 +22,22 @@ namespace Capstone.Web.Controllers
     {
         ItineraryDAL dal = new ItineraryDAL(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
+        //[System.Web.Http.HttpGet]
+        //[System.Web.Http.Route("api/itinerary/{UserId}")]
+        //public IHttpActionResult Get()
+        //{
+        //    var username = User.Identity.GetUserName();
+        //    var returnedItinerary = dal.GetItinerary(UserId);
+        //    return Ok(returnedItinerary);
+        //}
+
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/itinerary/{UserId}")]
-        public IHttpActionResult Get(Guid UserId)
+        [System.Web.Http.Route("api/itinerary/{ItinId}")]
+        public IHttpActionResult SingleItinerary(int ItinId)
         {
-            var username = User.Identity.GetUserName();
-            var returnedItinerary = dal.GetItinerary(UserId);
-            return Ok(returnedItinerary);
+//          var username = User.Identity.GetUserName();
+          var soloItinerary = dal.GetSingleItinerary(ItinId);
+          return Ok(soloItinerary);
         }
 
 

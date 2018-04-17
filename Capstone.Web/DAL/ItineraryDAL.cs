@@ -185,49 +185,56 @@ namespace Capstone.Web
             }
 
         }
-        public ItineraryModel GetSingleItinerary(Guid UserId)
+        public ItineraryModel GetSingleItinerary(int ItinId)
         {
-            ItineraryModel output = new ItineraryModel();
+            ItineraryModel output = null;
 
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-
-                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM Itinerary_Stops JOIN Itinerary on Itinerary_Stops.ItinId = Itinerary.ItinId WHERE UserId = @UserId ORDER BY Itinerary_Stops.ItinId, [Order];", conn);
-                    cmd.Parameters.AddWithValue("@UserId", UserId);
+                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM Itinerary WHERE ItinId = @ItinId; ", conn);
+                    cmd.Parameters.AddWithValue("@ItinId", ItinId);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
+                    if (reader.Read())
+                    {
+                        output = new ItineraryModel();
+
+                        output.ItinId = Convert.ToInt32(reader["ItinId"]);
+                        output.ItinName = Convert.ToString(reader["ItinName"]);
+                        output.UserId = Guid.Parse(Convert.ToString(reader["UserId"]));
+                        output.StartDate = Convert.ToDateTime(reader["StartDate"]);
+
+                    }
+                    reader.Close();
+
+                    SqlCommand cmd2 = new SqlCommand(@"SELECT * FROM Itinerary_Stops WHERE Itinerary_Stops.ItinId = @ItinId ORDER BY [Order];", conn);
+                    cmd2.Parameters.AddWithValue("@ItinId", ItinId);
+
+                    reader = cmd2.ExecuteReader();
+                    output.Stops = new List<ItineraryStop>();
                     while (reader.Read())
                     {
-                        ItineraryModel itineraryModel = new ItineraryModel();
-                        {
-                            itineraryModel.ItinId = Convert.ToInt32(reader["ItinId"]);
-                            itineraryModel.ItinName = Convert.ToString(reader["ItinName"]);
-                            itineraryModel.UserId = Guid.Parse(Convert.ToString(reader["UserId"]));
-                            itineraryModel.StartDate = Convert.ToDateTime(reader["StartDate"]);
-                            //foreach (var stop in itineraryModel.Stops)
-                            //{
-                            //    stop.PlaceID = Convert.ToString(reader["PlaceId"]);
-                            //    stop.Name = Convert.ToString(reader["Name"]);
-                            //    stop.Address = Convert.ToString(reader["Address"]);
-                            //    stop.Order = Convert.ToInt32(reader["Order"]);
-                            //    stop.Latitude = Convert.ToDouble(reader["Latitude"]);
-                            //    stop.Longitude = Convert.ToDouble(reader["Longitude"]);
-                            //    stop.Category = Convert.ToString(reader["Category"]);
-                            //}
-                            output.Add(itineraryModel);
-                        }
+                        ItineraryStop stop = new ItineraryStop();
+                        stop.PlaceID = Convert.ToString(reader["PlaceId"]);
+                        stop.Name = Convert.ToString(reader["Name"]);
+                        stop.Address = Convert.ToString(reader["Address"]);
+                        stop.Order = Convert.ToInt32(reader["Order"]);
+                        stop.Latitude = Convert.ToDouble(reader["Latitude"]);
+                        stop.Longitude = Convert.ToDouble(reader["Longitude"]);
+                        stop.Category = Convert.ToString(reader["Category"]);
+                        output.Stops.Add(stop);
                     }
-                    return output;
                 }
+                return output;
             }
             catch (SqlException ex)
             {
                 Console.WriteLine("An error occurred reading the database: " + ex.Message);
-                return output;
+                return null;
             }
 
         }
