@@ -1,29 +1,30 @@
-﻿@model IList<Capstone.Web.Models.ItineraryModel>
+﻿
 
 
 @using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-	using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-	{
-		@Html.AntiForgeryToken()
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
 
-		<ul class="indexButtons">
-			<li>
-				@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-			</li>
-			<li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-			<li><a href="Manage/Index">Manage/Itineraries</a></li>
-			<li><a class="searchPage" href="@Url.Action("Search", "Home")">Search Page</a></li>
-		</ul>
+        <ul class="indexButtons">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            <li><a href="Manage/Index">Manage/Itineraries</a></li>
+            <li><a class="searchPage" href="@Url.Action("Search", "Home")">Search Page</a></li>
+        </ul>
+        
 
-	}
+    }
 }
 else
 {
-	<div class="indexButtons">
-		<a class="signUp">@Html.ActionLink("SIGN UP", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</a>
-		<a class="logIn">@Html.ActionLink("LOG IN", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</a>
-		<a class="anon">@Html.ActionLink("GUEST", "Search", "Home", routeValues: null, htmlAttributes: new { id = "anonLink" })</a>
-	</div>
+    <div class="indexButtons">
+        <a class="signUp">@Html.ActionLink("SIGN UP", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</a>
+        <a class="logIn">@Html.ActionLink("LOG IN", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</a>
+        <a class="anon">@Html.ActionLink("GUEST", "Search", "Home", routeValues: null, htmlAttributes: new { id = "anonLink" })</a>
+    </div>
 }

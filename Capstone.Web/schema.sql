@@ -74,3 +74,4 @@ ADD ItinName Varchar(50) NOT NULL;
  	CONSTRAINT fk_RatedPlaces_Itinerary_Stops FOREIGN KEY (PlaceId) REFERENCES Itinerary_Stops(PlaceId)
  );
 
+ 

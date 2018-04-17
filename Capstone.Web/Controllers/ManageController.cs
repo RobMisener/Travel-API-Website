@@ -7,17 +7,21 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Capstone.Web.Models;
+using System.Configuration;
 
 namespace Capstone.Web.Controllers
 {
     [Authorize]
     public class ManageController : Controller
     {
+        ItineraryDAL dal = new ItineraryDAL(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
         public ManageController()
         {
+            
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
