@@ -13,7 +13,7 @@
                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-            <li><a href="Manage/Index">Manage/Itineraries</a></li>
+            <li><a href="@Url.Action("Index", "Manage")">Manage/Itineraries</a></li>
             <li><a class="searchPage" href="@Url.Action("Search", "Home")">Search Page</a></li>
         </ul>
         
