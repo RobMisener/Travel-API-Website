@@ -17,8 +17,6 @@ namespace Capstone.Web
             this.connectionString = connectionString;
         }
 
-        private const string SQL_GetItinerary = @"SELECT * FROM Itinerary_Stops JOIN Itinerary on Itinerary_Stops.ItinId = Itinerary.ItinId WHERE ItinId = @ItinId";
-
         string connectionString;
 
         public int CreateItinerary(string itinName, Guid userId, DateTime startDate, List<ItineraryStop> stops)
@@ -137,10 +135,11 @@ namespace Capstone.Web
             }
         }
 
-        public List<ItineraryModel> GetItinerary(int ItinId)
-        {
+        private const string SQL_GetItinerary = @"SELECT * FROM Itinerary_Stops JOIN Itinerary on Itinerary_Stops.ItinId = Itinerary.ItinId WHERE UserId = @UserId ORDER BY ItinId, [Order]";
+
+        public List<ItineraryModel> GetItinerary(Guid UserId) {
+
             List<ItineraryModel> output = new List<ItineraryModel>();
-            {
                 try
                 {
                     using (TransactionScope scope = new TransactionScope())

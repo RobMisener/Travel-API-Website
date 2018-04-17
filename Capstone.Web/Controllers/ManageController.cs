@@ -66,9 +66,10 @@ namespace Capstone.Web.Controllers
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
-
-            };
+                dal.GetItinerary(Guid.Parse(Convert.ToString(UserId));
             return View(model);
+            }
+            
         }
 
 
