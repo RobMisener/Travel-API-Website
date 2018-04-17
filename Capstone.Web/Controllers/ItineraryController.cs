@@ -40,8 +40,8 @@ namespace Capstone.Web.Controllers
         {
             if (model.ItinId != 0)
             {
-                //dal.UpdateItinerary(model);
-                //return Ok();
+                var userId = RequestContext.Principal.Identity.GetUserId();
+                model.ItinId = dal.UpdateItinerary(model.ItinId, model.ItinName, Guid.Parse(userId), model.StartDate, model.Stops);
 
             }
             else
@@ -54,17 +54,17 @@ namespace Capstone.Web.Controllers
             return Ok(model);
 
         }
-        //POST: Update Itinerary
-        [System.Web.Http.HttpPost]
-        [System.Web.Http.Route("api/itinerary/{ItinId}")]
-        public IHttpActionResult UpdateItinerary(ItineraryModel model)
-        {
-            var username = User.Identity.GetUserName();
+        ////POST: Update Itinerary
+        //[System.Web.Http.HttpPost]
+        //[System.Web.Http.Route("api/itinerary/{ItinId}")]
+        //public IHttpActionResult UpdateItinerary(ItineraryModel model)
+        //{
+        //    var username = User.Identity.GetUserName();
 
-            //dal.UpdateItinerary(model);
-            return Ok();
+        //    //dal.UpdateItinerary(model);
+        //    return Ok();
 
-        }
+        //}
 
         //DELETE: Delete Itinerary
         [System.Web.Http.HttpDelete]

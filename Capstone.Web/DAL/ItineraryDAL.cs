@@ -71,7 +71,12 @@ namespace Capstone.Web
             }
         }
 
-        public bool UpdateItinerary(int itinId, Guid userId, DateTime startDate, List<ItineraryStop> stops)
+        internal void UpdateItinerary()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int UpdateItinerary(int itinId, string itinName, Guid userId, DateTime startDate, List<ItineraryStop> stops)
         {
             try
             {
@@ -105,12 +110,12 @@ namespace Capstone.Web
                     }
                     scope.Complete();
                 }
-                return true;
+                return itinId;
             }
             catch (SqlException ex)
             {
                 Console.WriteLine("An error occurred reading the database: " + ex.Message);
-                return false;
+                return 0;
             }
 
         }
