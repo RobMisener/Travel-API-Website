@@ -15,7 +15,6 @@ namespace Capstone.Web
         {
             this.connectionString = connectionString;
         }
-
         string connectionString;
 
         public int CreateItinerary(string itinName, Guid userId, DateTime startDate, List<ItineraryStop> stops)
@@ -30,7 +29,7 @@ namespace Capstone.Web
                         conn.Open();
                         SqlCommand cmd = new SqlCommand("INSERT INTO Itinerary (ItinName, UserId, StartDate) VALUES (@ItinName, @UserId, @StartDate)", conn);
 
-                        //                       cmd.Parameters.AddWithValue("@ItinId", itinId);
+                        //cmd.Parameters.AddWithValue("@ItinId", itinId);
                         cmd.Parameters.AddWithValue("@ItinName", itinName);
                         cmd.Parameters.AddWithValue("@UserId", userId);
                         cmd.Parameters.AddWithValue("@StartDate", startDate);
@@ -150,7 +149,7 @@ namespace Capstone.Web
 
                         SqlCommand cmd = new SqlCommand(@"SELECT * FROM Itinerary WHERE UserId = @UserId ORDER BY StartDate; ", conn);
                         cmd.Parameters.AddWithValue("@UserId", UserId);
-                        
+
                         SqlDataReader reader = cmd.ExecuteReader();
 
                         while (reader.Read())
@@ -186,7 +185,55 @@ namespace Capstone.Web
             }
 
         }
+        public ItineraryModel GetSingleItinerary(Guid UserId)
+        {
+            ItineraryModel output = new ItineraryModel();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM Itinerary_Stops JOIN Itinerary on Itinerary_Stops.ItinId = Itinerary.ItinId WHERE UserId = @UserId ORDER BY Itinerary_Stops.ItinId, [Order];", conn);
+                    cmd.Parameters.AddWithValue("@UserId", UserId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        ItineraryModel itineraryModel = new ItineraryModel();
+                        {
+                            itineraryModel.ItinId = Convert.ToInt32(reader["ItinId"]);
+                            itineraryModel.ItinName = Convert.ToString(reader["ItinName"]);
+                            itineraryModel.UserId = Guid.Parse(Convert.ToString(reader["UserId"]));
+                            itineraryModel.StartDate = Convert.ToDateTime(reader["StartDate"]);
+                            //foreach (var stop in itineraryModel.Stops)
+                            //{
+                            //    stop.PlaceID = Convert.ToString(reader["PlaceId"]);
+                            //    stop.Name = Convert.ToString(reader["Name"]);
+                            //    stop.Address = Convert.ToString(reader["Address"]);
+                            //    stop.Order = Convert.ToInt32(reader["Order"]);
+                            //    stop.Latitude = Convert.ToDouble(reader["Latitude"]);
+                            //    stop.Longitude = Convert.ToDouble(reader["Longitude"]);
+                            //    stop.Category = Convert.ToString(reader["Category"]);
+                            //}
+                            output.Add(itineraryModel);
+                        }
+                    }
+                    return output;
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("An error occurred reading the database: " + ex.Message);
+                return output;
+            }
+
+        }
     }
+
+
 
 
     //private ItineraryModel MapItineraryFromReader(SqlDataReader reader)
