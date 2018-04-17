@@ -21,8 +21,9 @@ namespace Capstone.Web
 
         string connectionString;
 
-        public bool CreateItinerary(string itinName, Guid userId, DateTime startDate, List<ItineraryStop> stops)
+        public int CreateItinerary(string itinName, Guid userId, DateTime startDate, List<ItineraryStop> stops)
         {
+            int newItinId = 0;
             try
             {
                 using (TransactionScope scope = new TransactionScope())
@@ -40,7 +41,7 @@ namespace Capstone.Web
 
                         // loop through stops, and insert a stop into intenaryStop
                         cmd = new SqlCommand("SELECT * from itinerary WHERE ItinId = (SELECT MAX(ItinId) FROM itinerary);", conn);
-                        int newItinId = Convert.ToInt32(cmd.ExecuteScalar());
+                        newItinId = Convert.ToInt32(cmd.ExecuteScalar());
 
 
                         foreach (var stop in stops)
@@ -61,12 +62,12 @@ namespace Capstone.Web
 
                     scope.Complete();
                 }
-                return true;
+                return newItinId;
             }
             catch (SqlException ex)
             {
                 Console.WriteLine("An error occurred reading the database: " + ex.Message);
-                return false;
+                return 0;
             }
         }
 

@@ -47,15 +47,16 @@ namespace Capstone.Web.Controllers
             else
             {
                 var userId = RequestContext.Principal.Identity.GetUserId();
-                dal.CreateItinerary(model.ItinName, Guid.Parse(userId), model.StartDate, model.Stops);
+                model.ItinId = dal.CreateItinerary(model.ItinName, Guid.Parse(userId), model.StartDate, model.Stops);
+
             }
 
-            return Ok();
+            return Ok(model);
 
         }
         //POST: Update Itinerary
         [System.Web.Http.HttpPost]
-        [System.Web.Http.Route("api/itinerary/{ItinId")]
+        [System.Web.Http.Route("api/itinerary/{ItinId}")]
         public IHttpActionResult UpdateItinerary(ItineraryModel model)
         {
             var username = User.Identity.GetUserName();
