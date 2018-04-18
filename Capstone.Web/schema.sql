@@ -37,8 +37,8 @@ CREATE TABLE [dbo].[UserRoles]
 	CONSTRAINT pk_Itinerary PRIMARY KEY (ItinId),
 	CONSTRAINT fk_Itinerary_Users FOREIGN KEY (UserId) REFERENCES Users(UserId)
 
- 
  );
+
 
  CREATE TABLE [dbo].[Itinerary_Stops]
 
