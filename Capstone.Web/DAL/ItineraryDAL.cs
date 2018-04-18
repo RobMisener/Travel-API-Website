@@ -81,17 +81,20 @@ namespace Capstone.Web
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     {
                         conn.Open();
-                        SqlCommand cmd = new SqlCommand("UPDATE Itinerary (StartDate) WHERE ItinId = @itinId SET StartDate = @StartDate", conn);
+                        SqlCommand cmd = new SqlCommand("UPDATE Itinerary SET StartDate = @StartDate WHERE ItinId = @itinId", conn);
+                        cmd.Parameters.AddWithValue("@itinId", itinId);
                         cmd.Parameters.AddWithValue("@StartDate", startDate);
                         cmd.ExecuteNonQuery();
 
                         // delete original stops from itinerary_stops
-                        cmd = new SqlCommand("DELETE * from Itinerary_Stops WHERE ItinId = @itinId", conn);
+                        cmd = new SqlCommand("DELETE from Itinerary_Stops WHERE ItinId = @itinId", conn);
+                        cmd.Parameters.AddWithValue("@itinId", itinId);
+
                         cmd.ExecuteNonQuery();
 
                         foreach (var stop in stops)
                         {
-                            cmd = new SqlCommand($"INSERT INTO Itinerary_Stops (ItinId, PlaceId, [Order], Name, Latitude, Longitude, Category) VALUES (@ItinId, @PlaceId, @Order, @Name, @Latitude, @Longitude, @Category)", conn);
+                            cmd = new SqlCommand("INSERT INTO Itinerary_Stops (ItinId, PlaceId, [Order], Name, Address, Latitude, Longitude, Category) VALUES (@ItinId, @PlaceId, @Order, @Name, @Address, @Latitude, @Longitude, @Category)", conn);
                             cmd.Parameters.AddWithValue("@ItinId", itinId);
                             cmd.Parameters.AddWithValue("@PlaceId", stop.PlaceID);
                             cmd.Parameters.AddWithValue("@Order", stop.Order);
@@ -100,6 +103,7 @@ namespace Capstone.Web
                             cmd.Parameters.AddWithValue("@Latitude", stop.Latitude);
                             cmd.Parameters.AddWithValue("@Longitude", stop.Longitude);
                             cmd.Parameters.AddWithValue("@Category", stop.Category);
+
                             cmd.ExecuteNonQuery();
 
                         }
