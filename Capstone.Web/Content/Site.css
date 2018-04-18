@@ -29,7 +29,16 @@ header, i {
     text-align: center;
 }
 
+.home {
+    color: black;
+    text-decoration: none;
+    
+}
 
+.fa fa-home {
+    font-size: 4rem;
+    margin: 0;
+}
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -384,7 +393,7 @@ div.itineraryContainer {
 	width: 25vw;
 	position: absolute;
 	right: 13em;
-	top: 57em;
+	top: 70em;
 
 }
 div.itineraryList {

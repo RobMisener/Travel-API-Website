@@ -1,36 +1,38 @@
 ﻿<itinerary>
 
-	<div class="itineraryContainer">
-		<form action="" method="post">
-			<input class="itineraryName" value="{itinerary.ItinName}" type="text" placeholder="Itinerary Name" name="ItinName" />
-			<input class="itineraryDate" value="{itinerary.StartDate}" type="date" placeholder="Itinerary Date" name="itineraryDate" />
-		    <input type="hidden" value="{itinerary.ItinId}" name="itinId"/>
+    <div class="itineraryContainer">
+        <form action="" method="post">
+            <input class="itineraryName" value="{itinerary.ItinName}" type="text" placeholder="City Name" name="ItinName" />
+            <input class="itineraryDate" value="{itinerary.StartDate}" type="date" placeholder="Date of Visit" name="itineraryDate" />
+            <input type="hidden" value="{itinerary.ItinId}" name="itinId" />
         </form>
-		<button class="saveButton" onclick={ save }>Save Itinerary</button>
-		<button class="deleteButton" onclick={ delete }>Delete Itinerary</button>
-		<p class="hide" id="savedConfirm">Saved!</p>
-		<p class="hide" id="deleteConfirm">Deleted Succesfully!</p>
-		<div id="sortable">
+        <button class="saveButton" onclick={ save }>Save Itinerary</button>
+        <button class="deleteButton" onclick={ delete }>Delete Itinerary</button>
+        <p class="hide" id="savedConfirm">Saved!</p>
+        <p class="hide" id="deleteConfirm">Deleted Succesfully!</p>
+        <div id="sortable">
             <div each={stop, index in itinerary.Stops} class="itineraryList">
                 <input name="position" type="hidden" value="{index}" />
                 <p class="landmarkName">{stop.Name}</p>
+                <p><img class="landmarkImg" src={getPhotoUrl(stop)}/></p>
                 <input type="hidden" name="placeId" value="{stop.PlaceId}" />
                 <button class="removeButton" onclick={ remove }>Remove</button>
 
             </div>
-		</div>
-	</div>
+        </div>
+    </div>
 
+   
 
 
     <script>
 
-		this.getPhotoUrl = (place) => {
-			if (place.photos[0] !== undefined) {
-				return place.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 });
-			}
+        this.getPhotoUrl = (stop) => {
+            if (stop.photos[0] !== undefined) {
+                return `https://maps.googleapis.com/maps/api/place/details/json?reference=${stop.place_id}&sensor=true&key=AIzaSyAnDomiUz3vcKkLHCi1YiytTZ7SHtyQuB0` ;
+            }
 
-		}
+        }
 
 
         this.itinerary = {
@@ -79,11 +81,10 @@
 
                                 // Assign temp to the itinerary stops
                                 this.itinerary.Stops = temp;
-
-                                console.log(this.itinerary.Stops);
                             }
                         });
                         $("#sortable").disableSelection();
+                        console.log(stop.place_id)
 
                     });
             }
@@ -99,20 +100,21 @@
                 Address: data.place.formatted_address,
                 Category: data.place.types[0],
                 Latitude: data.place.geometry.location.lat(),
-                Longitude: data.place.geometry.location.lng()
+                Longitude: data.place.geometry.location.lng(),
+                Image: data.place.id
 
 
             };
-           
+
 
             this.itinerary.Stops.push(stop);
             this.update();
         });
 
-		this.save = (event) => {
+        this.save = (event) => {
 
-			let saved= document.getElementById("savedConfirm");
-			saved.classList.toggle("hide");
+            let saved = document.getElementById("savedConfirm");
+            saved.classList.toggle("hide");
 
 
             for (let i = 0; i < this.itinerary.Stops.length; i++) {
@@ -121,7 +123,7 @@
             }
             this.itinerary.ItinName = document.querySelector("input[name=ItinName]").value;
             this.itinerary.StartDate = document.querySelector("input[name=itineraryDate]").value;
-            
+
 
             fetch('http://localhost:55900/api/itinerary', {
                 method: 'POST',
@@ -158,13 +160,13 @@
                     this.itinerary.ItinId = json.ItinId
                 });
 
-        
+
 
         }
 
         this.remove = function (event) {
             let toBeRemoved = event.item;
-            
+
 
             let index = this.itinerary.Stops.map(m => m.Name).indexOf(toBeRemoved.stop.Name);
 

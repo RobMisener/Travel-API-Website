@@ -19,12 +19,16 @@
 
 </head>
 <body>
+    <a class="home" href="@Url.Action("Index","Home")">
+        <i class="fa fa-home"></i>
 
-    <main class="wrapper">
-        @RenderBody()
-    </main>
+    </a>
 
-    @RenderSection("scripts", required: false)
+        <main class="wrapper">
+            @RenderBody()
+        </main>
+
+        @RenderSection("scripts", required: false)
 
 </body>
 </html>

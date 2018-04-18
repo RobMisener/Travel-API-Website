@@ -1,7 +1,7 @@
 ﻿<newsearch>
 	<h1>ROUTA</h1>
 
-	<input class="searchBox" type="text" name="place" placeholder="enter a location" />
+	<input class="searchBox" type="text" name="place" placeholder="enter a city" />
 
 	<input id="enter" class="searchButton" type="button" onclick="{search}" value="SEARCH" />
 

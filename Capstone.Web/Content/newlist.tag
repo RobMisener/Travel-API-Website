@@ -132,15 +132,16 @@
                 "true": "OPEN",
                 "false": "CLOSED"
             };
-            // let result = '';
-            // console.log(place.opening_hours);
+            //let result = '';
+            //console.log(place.opening_hours);
             if (place.opening_hours.open_now !== undefined) {
                 if (place.opening_hours.open_now) {
                     return "OPEN";
                 } else {
                     return "CLOSED";
                 }
-            }
+            } 
+
         }
 
     </script>
