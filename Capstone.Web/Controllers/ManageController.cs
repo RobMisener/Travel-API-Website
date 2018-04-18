@@ -70,9 +70,6 @@ namespace Capstone.Web.Controllers
             return View(model);
         }
 
-
-
-
         //
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
@@ -106,10 +103,6 @@ namespace Capstone.Web.Controllers
             AddErrors(result);
             return View(model);
         }
-
-
-
-
 
         protected override void Dispose(bool disposing)
         {

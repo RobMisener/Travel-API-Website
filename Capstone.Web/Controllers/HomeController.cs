@@ -21,9 +21,9 @@ namespace Capstone.Web.Controllers
         {
             return View();
         }
-        public ActionResult ItineraryView()
+        public ActionResult ItineraryView(int id)
         {
-            return View();
+            return View(id);
         }
     }
 }
