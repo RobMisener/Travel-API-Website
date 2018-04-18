@@ -10,13 +10,13 @@
 		<p class="hide" id="savedConfirm">Saved!</p>
 		<p class="hide" id="deleteConfirm">Deleted Succesfully!</p>
 		<div id="sortable">
-			<div each={stop, index in itinerary.Stops} class="itineraryList">
-				<input name="position" type="hidden" value="{index}" />
-				<p class="landmarkName">{stop.Name}</p>
-				<!--<img class="landmarkImg" src={getPhotoUrl(stop)} />      <====== add photos       --> 
-				<input type="hidden" name="placeId" value="{stop.PlaceId}" />
-				<button class="removeButton" onclick={remove}>Remove</button>
-			</div>
+            <div each={stop, index in itinerary.Stops} class="itineraryList">
+                <input name="position" type="hidden" value="{index}" />
+                <p class="landmarkName">{stop.Name}</p>
+                <input type="hidden" name="placeId" value="{stop.PlaceId}" />
+                <button class="removeButton" onclick={remove}>Remove</button>
+
+            </div>
 		</div>
 	</div>
 
@@ -102,7 +102,7 @@
 
 
             };
-
+           
 
             this.itinerary.Stops.push(stop);
             this.update();
