@@ -121,7 +121,7 @@ namespace Capstone.Web
         }
 
 
-		public void DeleteItinerary(int itinID)
+		public void DeleteItinerary(int itinId)
         {
             //delete itinerary from table 
             try
@@ -131,7 +131,6 @@ namespace Capstone.Web
                     conn.Open();
 
 					SqlCommand cmd = new SqlCommand("DELETE from Itinerary_Stops WHERE ItinId = @itinId", conn);
-
 					cmd.Parameters.AddWithValue("@itinId", itinId);
 					cmd.ExecuteNonQuery();
 
