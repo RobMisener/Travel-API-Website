@@ -13,29 +13,23 @@
 			<div each={stop, index in itinerary.Stops} class="itineraryList">
 				<input name="position" type="hidden" value="{index}" />
 				<p class="landmarkName">{stop.Name}</p>
+				<!--<img class="landmarkImg" src={getPhotoUrl(stop)} />      <====== add photos       --> 
 				<input type="hidden" name="placeId" value="{stop.PlaceId}" />
 				<button class="removeButton" onclick={remove}>Remove</button>
-
 			</div>
 		</div>
-
-		<!--<ul id="sortable">
-		<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
-		<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
-		<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
-		<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
-		<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
-		<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
-		<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
-	</ul>-->
-
 	</div>
 
 
 
     <script>
 
+		this.getPhotoUrl = (place) => {
+			if (place.photos[0] !== undefined) {
+				return place.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 });
+			}
 
+		}
 
 
         this.itinerary = {
