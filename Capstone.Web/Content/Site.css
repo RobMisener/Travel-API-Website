@@ -391,5 +391,16 @@ div.itineraryContainer {
     width: 30rem;
 }
 
+.hide {
+	display: none;
+}
+
+#savedConfirm {
+	border: #56c67c dashed 3px;
+	width: 30%;
+	padding: 1em 0;
+	margin: 1em auto;
+}
+
 
 

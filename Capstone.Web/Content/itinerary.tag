@@ -7,6 +7,8 @@
         </form>
         <button class="saveButton" onclick={ save }>Save Itinerary</button>
         <button class="deleteButton">Delete Itinerary</button>
+		<p class="hide" id="savedConfirm">Saved!</p>
+		<p class="hide" id="deleteConfirm">Deleted Succesfully!</p>
 
         <div each={stop in itinerary.Stops} class="itineraryList">
             <p class="landmarkName">{stop.Name}</p>
@@ -66,7 +68,10 @@
             this.update();
         });
 
-        this.save = (event) => {
+		this.save = (event) => {
+
+			let saved = document.getElementById("savedConfirm");
+			saved.classList.toggle("hide");
 
             for (let i = 0; i < this.itinerary.Stops.length; i++) {
 
@@ -74,7 +79,6 @@
             }
             this.itinerary.ItinName = document.querySelector("input[name=ItinName]").value;
             this.itinerary.StartDate = document.querySelector("input[name=itineraryDate]").value;
-            console.log(this.itinerary);
 
             fetch('http://localhost:55900/api/itinerary', {
                 method: 'POST',
