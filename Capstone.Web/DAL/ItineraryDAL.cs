@@ -121,7 +121,7 @@ namespace Capstone.Web
         }
 
 
-		public void DeleteItinerary(int itinID)
+		public void DeleteItinerary(int itinId)
         {
             //delete itinerary from table 
             try
@@ -131,13 +131,12 @@ namespace Capstone.Web
                     conn.Open();
 
 					SqlCommand cmd = new SqlCommand("DELETE from Itinerary_Stops WHERE ItinId = @itinId", conn);
-
 					cmd.Parameters.AddWithValue("@itinId", itinId);
 					cmd.ExecuteNonQuery();
 
-					SqlCommand cmd2 = new SqlCommand($"DELETE FROM Itinerary WHERE ItinId = @itinID", conn);
-					cmd.Parameters.AddWithValue("@itinId", itinId);
-					cmd.ExecuteNonQuery();
+					SqlCommand cmd2 = new SqlCommand($"DELETE FROM Itinerary WHERE ItinId = @itinId", conn);
+					cmd2.Parameters.AddWithValue("@itinId", itinId);
+					cmd2.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)

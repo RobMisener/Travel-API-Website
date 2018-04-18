@@ -383,8 +383,13 @@ select.categories {
 div.itineraryContainer {
 	width: 25vw;
 	position: absolute;
-	right: 0;
-	top: 0;
+	right: 13em;
+	top: 57em;
+
+}
+div.itineraryList {
+	width: 25vw;
+	position: relative;
 }
 
 .breaker2 {

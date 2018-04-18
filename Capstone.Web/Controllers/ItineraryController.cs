@@ -24,7 +24,7 @@ namespace Capstone.Web.Controllers
 
         //[System.Web.Http.HttpGet]
         //[System.Web.Http.Route("api/itinerary/{UserId}")]
-        //public IHttpActionResult Get()
+        //public IHttpActionResult Get(Guid UserId)
         //{
         //    var username = User.Identity.GetUserName();
         //    var returnedItinerary = dal.GetItinerary(UserId);
@@ -75,13 +75,12 @@ namespace Capstone.Web.Controllers
         //}
 
         //DELETE: Delete Itinerary
-        [System.Web.Http.HttpDelete]
+        [System.Web.Http.HttpPost]
         [System.Web.Http.Route("api/itinerary/{ItinId}")]
-        public IHttpActionResult RemoveItinerary(ItineraryModel model)
+        public IHttpActionResult RemoveItinerary(int itinId)
         {
-//            var username = User.Identity.GetUserName();
-
-            //dal.DeleteItinerary(model);
+            var userId = RequestContext.Principal.Identity.GetUserId();
+            dal.DeleteItinerary(itinId);
             return Ok();
 
         }
