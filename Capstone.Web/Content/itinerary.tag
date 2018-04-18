@@ -4,9 +4,10 @@
 		<form action="" method="post">
 			<input class="itineraryName" value="{itinerary.ItinName}" type="text" placeholder="Itinerary Name" name="ItinName" />
 			<input class="itineraryDate" value="{itinerary.StartDate}" type="date" placeholder="Itinerary Date" name="itineraryDate" />
-		</form>
+		    <input type="hidden" value="{itinerary.ItinId}" name="itinId"/>
+        </form>
 		<button class="saveButton" onclick={ save }>Save Itinerary</button>
-		<button class="deleteButton">Delete Itinerary</button>
+		<button class="deleteButton" onclick={ delete }>Delete Itinerary</button>
 		<p class="hide" id="savedConfirm">Saved!</p>
 		<p class="hide" id="deleteConfirm">Deleted Succesfully!</p>
 		<div id="sortable">
@@ -14,7 +15,7 @@
                 <input name="position" type="hidden" value="{index}" />
                 <p class="landmarkName">{stop.Name}</p>
                 <input type="hidden" name="placeId" value="{stop.PlaceId}" />
-                <button class="removeButton" onclick={remove}>Remove</button>
+                <button class="removeButton" onclick={ remove }>Remove</button>
 
             </div>
 		</div>
@@ -120,7 +121,7 @@
             }
             this.itinerary.ItinName = document.querySelector("input[name=ItinName]").value;
             this.itinerary.StartDate = document.querySelector("input[name=itineraryDate]").value;
-            console.log(this.itinerary);
+            
 
             fetch('http://localhost:55900/api/itinerary', {
                 method: 'POST',
@@ -137,10 +138,35 @@
 
         }
 
+        this.delete = (event) => {
+            let deleted = document.getElementById("deleteConfirm");
+            deleted.classList.toggle("hide");
+
+            this.itinerary.ItinId = document.querySelector("input[name=itinId]").value;
+            console.log(this.itinerary.ItinId);
+
+            fetch(`http://localhost:55900/api/itinerary/${this.itinerary.ItinId}`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                body: JSON.stringify(this.itinerary.ItinId)
+            }).then(response => response.json())
+                .then(json => {
+                    this.itinerary.ItinId = json.ItinId
+                });
+
+        
+
+        }
+
         this.remove = function (event) {
             let toBeRemoved = event.item;
+            
 
-            let index = this.itinerary.Stops.map(m => m.name).indexOf(toBeRemoved.Name);
+            let index = this.itinerary.Stops.map(m => m.Name).indexOf(toBeRemoved.stop.Name);
 
             this.itinerary.Stops.splice(index, 1);
         }

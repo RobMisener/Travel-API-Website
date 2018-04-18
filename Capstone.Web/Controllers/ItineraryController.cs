@@ -75,7 +75,7 @@ namespace Capstone.Web.Controllers
         //}
 
         //DELETE: Delete Itinerary
-        [System.Web.Http.HttpDelete]
+        [System.Web.Http.HttpPost]
         [System.Web.Http.Route("api/itinerary/{ItinId}")]
         public IHttpActionResult RemoveItinerary(int itinId)
         {

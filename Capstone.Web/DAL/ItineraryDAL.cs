@@ -134,9 +134,9 @@ namespace Capstone.Web
 					cmd.Parameters.AddWithValue("@itinId", itinId);
 					cmd.ExecuteNonQuery();
 
-					SqlCommand cmd2 = new SqlCommand($"DELETE FROM Itinerary WHERE ItinId = @itinID", conn);
-					cmd.Parameters.AddWithValue("@itinId", itinId);
-					cmd.ExecuteNonQuery();
+					SqlCommand cmd2 = new SqlCommand($"DELETE FROM Itinerary WHERE ItinId = @itinId", conn);
+					cmd2.Parameters.AddWithValue("@itinId", itinId);
+					cmd2.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)

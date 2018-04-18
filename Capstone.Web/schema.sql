@@ -60,3 +60,10 @@ Category VARCHAR(50) NOT NULL;
 
 ALTER TABLE Itinerary
 ADD ItinName Varchar(50) NOT NULL;
+
+
+SELECT * FROM Itinerary;
+SELECT * FROM Itinerary_Stops;
+
+DELETE from Itinerary_Stops WHERE ItinId = 1;
+DELETE FROM Itinerary WHERE ItinId = 1;
