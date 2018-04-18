@@ -132,9 +132,11 @@ namespace Capstone.Web
 
 					SqlCommand cmd = new SqlCommand("DELETE from Itinerary_Stops WHERE ItinId = @itinId", conn);
 
+					cmd.Parameters.AddWithValue("@itinId", itinId);
+					cmd.ExecuteNonQuery();
+
 					SqlCommand cmd2 = new SqlCommand($"DELETE FROM Itinerary WHERE ItinId = @itinID", conn);
-
-
+					cmd.Parameters.AddWithValue("@itinId", itinId);
 					cmd.ExecuteNonQuery();
                 }
             }
