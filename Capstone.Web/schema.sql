@@ -60,18 +60,3 @@ Category VARCHAR(50) NOT NULL;
 
 ALTER TABLE Itinerary
 ADD ItinName Varchar(50) NOT NULL;
-
-
-
- CREATE TABLE [dbo].[Rated_Places]
- 
- (
-	[PlaceId] VARCHAR(50),
-    [PlaceName] VARCHAR (50),
-    [ThumbsUpCount] INT, 
-    [ThumbDownCount] INT,
-	
- 	CONSTRAINT fk_RatedPlaces_Itinerary_Stops FOREIGN KEY (PlaceId) REFERENCES Itinerary_Stops(PlaceId)
- );
-
- 

@@ -119,7 +119,9 @@ namespace Capstone.Web
             }
 
         }
-        public void DeleteItinerary(int itinID)
+
+
+		public void DeleteItinerary(int itinID)
         {
             //delete itinerary from table 
             try
@@ -127,8 +129,13 @@ namespace Capstone.Web
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand($"DELETE * FROM Itinerary WHERE ItinId = @itinID", conn);
-                    cmd.ExecuteNonQuery();
+
+					SqlCommand cmd = new SqlCommand("DELETE from Itinerary_Stops WHERE ItinId = @itinId", conn);
+
+					SqlCommand cmd2 = new SqlCommand($"DELETE FROM Itinerary WHERE ItinId = @itinID", conn);
+
+
+					cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)
@@ -136,6 +143,7 @@ namespace Capstone.Web
                 Console.WriteLine("An error occurred reading the database: " + ex.Message);
             }
         }
+
 
         private const string SQL_GetItinerary = @"SELECT * FROM Itinerary_Stops JOIN Itinerary on Itinerary_Stops.ItinId = Itinerary.ItinId WHERE UserId = @UserId ORDER BY ItinId, [Order]";
 
