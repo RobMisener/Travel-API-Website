@@ -262,13 +262,12 @@ ul.indexButtons li a.searchPage {
 	}
 
 div.homeContainer div.homeVideo {
-    -webkit-filter: blur(1px);
+    /*-webkit-filter: blur(1px);
     -moz-filter: blur(1px);
     -o-filter: blur(1px);
     -ms-filter: blur(1px);
-    filter: blur(1px);
+    filter: blur(1px);*/
 }
-
 
 div.homeContainer div.homeVideo div.indexVideo {
     /*margin-top: -400px;*/
@@ -276,20 +275,56 @@ div.homeContainer div.homeVideo div.indexVideo {
     left: -50%;
 }
 
+
 div.homeContainer div.heroOverlay {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	top: 30%;
-	border: 4px solid grey;
-	padding: 2em;
+    /*background-color: red;*/
+    border: 1px solid grey;
+    border-color: white;
+    animation-name: example;
+    animation-duration: 6s;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 30%;
+    padding: 2em;
 }
+
+/* Standard syntax */
+@keyframes example {
+    from {
+        border-color: red;
+        /*background-color: red;*/
+    }
+
+    to {
+        border-color: white;
+        /*background-color: yellow;*/
+    }
+}
+
+
 div.homeContainer div.heroOverlay h1 {
-	font-size: 6em;
-	color: white;
-	margin: 0;
-	margin-bottom: .2em;
+    font-size: 6em;
+    animation-name: textAni;
+    animation-duration: 4s;
+    color: red;
+    margin: 0;
+    margin-bottom: .2em;
 }
+
+/* Standard syntax */
+@keyframes textAni {
+    from {
+        color: white;
+        /*background-color: red;*/
+    }
+
+    to {
+        color: red;
+        /*background-color: yellow;*/
+    }
+}
+
 
 .titles {
 	font-size: 4em;
