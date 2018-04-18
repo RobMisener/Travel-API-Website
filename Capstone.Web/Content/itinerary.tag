@@ -1,33 +1,35 @@
 ﻿<itinerary>
 
-    <div class="itineraryContainer">
-        <form action="" method="post">
-            <input class="itineraryName" value="{itinerary.ItinName}" type="text" placeholder="Itinerary Name" name="ItinName" />
-            <input class="itineraryDate" value="{itinerary.StartDate}" type="date" placeholder="Itinerary Date" name="itineraryDate" />
-        </form>
-        <button class="saveButton" onclick={ save }>Save Itinerary</button>
-        <button class="deleteButton">Delete Itinerary</button>
-        <div id="sortable">
-            <div each={stop, index in itinerary.Stops} class="itineraryList">
-                <input name="position" type="hidden" value="{index}" />
-                <p class="landmarkName">{stop.Name}</p>
-                <input type="hidden" name="placeId" value="{stop.PlaceId}" />
-                <button class="removeButton" onclick={remove}>Remove</button>
+	<div class="itineraryContainer">
+		<form action="" method="post">
+			<input class="itineraryName" value="{itinerary.ItinName}" type="text" placeholder="Itinerary Name" name="ItinName" />
+			<input class="itineraryDate" value="{itinerary.StartDate}" type="date" placeholder="Itinerary Date" name="itineraryDate" />
+		</form>
+		<button class="saveButton" onclick={ save }>Save Itinerary</button>
+		<button class="deleteButton">Delete Itinerary</button>
+		<p class="hide" id="savedConfirm">Saved!</p>
+		<p class="hide" id="deleteConfirm">Deleted Succesfully!</p>
+		<div id="sortable">
+			<div each={stop, index in itinerary.Stops} class="itineraryList">
+				<input name="position" type="hidden" value="{index}" />
+				<p class="landmarkName">{stop.Name}</p>
+				<input type="hidden" name="placeId" value="{stop.PlaceId}" />
+				<button class="removeButton" onclick={remove}>Remove</button>
 
-            </div>
-        </div>
+			</div>
+		</div>
 
-        <!--<ul id="sortable">
-            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
-            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
-            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
-            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
-            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
-            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
-            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
-        </ul>-->
+		<!--<ul id="sortable">
+		<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
+		<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+		<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+		<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+		<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
+		<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+		<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
+	</ul>-->
 
-    </div>
+	</div>
 
 
 
@@ -112,8 +114,10 @@
             this.update();
         });
 
-        this.save = (event) => {
+		this.save = (event) => {
 
+			let saved= document.getElementById("savedConfirm");
+			saved.classList.toggle("hide");
 
 
             for (let i = 0; i < this.itinerary.Stops.length; i++) {
