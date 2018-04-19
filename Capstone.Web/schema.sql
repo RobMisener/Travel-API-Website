@@ -46,6 +46,7 @@ CREATE TABLE [dbo].[UserRoles]
 	[ItinId] int NOT NULL,
 	[PlaceId] varchar(200) NOT NULL,
 	[Order] INT NOT NULL,
+	[Image] VARCHAR(MAX) NULL,
 
 	CONSTRAINT pk_Itinerary_Stops PRIMARY KEY (PlaceId, ItinId),
 	CONSTRAINT fk_Itinerary_Stops_Itinerary FOREIGN KEY (ItinId) REFERENCES Itinerary(ItinId)

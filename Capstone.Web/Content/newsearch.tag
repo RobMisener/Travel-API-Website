@@ -54,7 +54,7 @@
 				<option value="subway_station">Subway Station</option>
 				<option value="synagogue">Synagogue</option>
 				<option value="train_station">Train Station</option>
-				<option value="transit_station">Transit STation</option>
+				<option value="transit_station">Transit Station</option>
 				<option value="zoo">Zoo</option>
 			</select>
 			<input id="openNow_Checkbox" type="checkbox" name="" value="Bike" checked="checked">OPEN NOW

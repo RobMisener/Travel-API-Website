@@ -166,6 +166,9 @@
                 .then(json => {
                     this.itinerary.ItinId = json.ItinId
                 });
+            setTimeout(function () {
+                window.location.href = ("http://localhost:55900/Manage") //will redirect to your blog page (an ex: blog.html)
+            }, 2000);
 
             setTimeout(function () {
                 window.location.href = ("http://localhost:55900/Manage") //will redirect to your blog page (an ex: blog.html)
