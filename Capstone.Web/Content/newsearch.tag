@@ -1,9 +1,9 @@
 ﻿<newsearch>
     <a class="home" href="/"><h1>ROUTA</h1></a>
 
-	<input class="searchBox" type="text" name="place" placeholder="enter a city" />
+	<input class="searchBox" type="text" name="place" onkeypress="{ search }" placeholder="enter a city" />
 
-	<input id="enter" class="searchButton" type="button" onclick="{search}" value="SEARCH" />
+	<input id="enter" class="searchButton" type="button" onclick="{ search }" value="SEARCH" />
 
 	<div id="service-helper"></div>
 
@@ -64,6 +64,14 @@
 
 	<script>
 
+        //this.onEnter = function (event) {
+            
+        //    event.preventDefault();
+        //    if (event.keyCode === 13) {
+        //        document.getElementById("enter").click();
+        //    }
+        //}
+
 		var open = true;
 
 
@@ -86,56 +94,59 @@
 		}
 
 
-		this.search = function () {
+        this.search = function (event) {
 
-			const location = this.root.querySelector("input[name='place']").value;
-			//boolIsOpen = true;
-			var checkbox = document.querySelector('#openNow_Checkbox');
-			if (checkbox.checked) {
-				boolIsOpen = true;
-			}
-			else {
-				boolIsOpen = false;
-			}
+            if (event.keycode == 13) {
 
-			const category = this.root.querySelector("select[name='category']").value;
+                const location = this.root.querySelector("input[name='place']").value;
+                //boolIsOpen = true;
+                var checkbox = document.querySelector('#openNow_Checkbox');
+                if (checkbox.checked) {
+                    boolIsOpen = true;
+                }
+                else {
+                    boolIsOpen = false;
+                }
 
-			const geocoder = new google.maps.Geocoder();
-			const geocodeRequest = {
-				address: location
-			};
-			// call this function when done geocoding
-			geocoder.geocode(geocodeRequest, (results, status) => {
-				// if the geocoding worked successfully
-				if (status == google.maps.GeocoderStatus.OK) {
+                const category = this.root.querySelector("select[name='category']").value;
 
-					// Create a LatLng representing the coordinates
-					const latlng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-	
-					let placeRequest = {};
-					if (category) {
-						placeRequest = {
-							location: latlng,
-							query: `${category} in ${location}`
-						};
-					}
-					else {
-						 placeRequest = {
-							location: latlng,
-							query: `point of interest in ${location}`
-						}
-					}
+                const geocoder = new google.maps.Geocoder();
+                const geocodeRequest = {
+                    address: location
+                };
+                // call this function when done geocoding
+                geocoder.geocode(geocodeRequest, (results, status) => {
+                    // if the geocoding worked successfully
+                    if (status == google.maps.GeocoderStatus.OK) {
 
-					// Use the places service to send a request
-					const service = new google.maps.places.PlacesService(this.root.querySelector("#service-helper"));
-					// call this function when receiving a response
-					service.textSearch(placeRequest, (results, status) => {
-						if (status == google.maps.places.PlacesServiceStatus.OK) {
-							this.opts.bus.trigger('searchresult', { location: latlng, results: results, isOpen: boolIsOpen });
-						}
-					});
-				}
-			});
+                        // Create a LatLng representing the coordinates
+                        const latlng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+
+                        let placeRequest = {};
+                        if (category) {
+                            placeRequest = {
+                                location: latlng,
+                                query: `${category} in ${location}`
+                            };
+                        }
+                        else {
+                            placeRequest = {
+                                location: latlng,
+                                query: `point of interest in ${location}`
+                            }
+                        }
+
+                        // Use the places service to send a request
+                        const service = new google.maps.places.PlacesService(this.root.querySelector("#service-helper"));
+                        // call this function when receiving a response
+                        service.textSearch(placeRequest, (results, status) => {
+                            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                                this.opts.bus.trigger('searchresult', { location: latlng, results: results, isOpen: boolIsOpen });
+                            }
+                        });
+                    }
+                });
+            }
 		}
 	</script>
 
