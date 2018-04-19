@@ -1,14 +1,14 @@
 ﻿@{
-	ViewBag.Title = "Search";
+    ViewBag.Title = "Search";
 }
 
-
+<a class="home" href="/"><h1>ROUTA</h1></a>
 
 <newsearch></newsearch>
-<newmap></newmap>
-
-<newlist></newlist>
 <itinerary></itinerary>
+<newmap></newmap>
+<newlist></newlist>
+
 
 
 <!-- Reference the riot tags here -->
@@ -22,12 +22,14 @@
 </script>
 
 <script>
-	let bus = {};
-	riot.observable(bus);//makes it so our bus can send and receive messages
-	// Mount the riot tags to the page here
-	riot.mount('newsearch', { bus: bus });
-	riot.mount('newmap', { bus: bus });
-	riot.mount('newlist', { bus: bus });
-	riot.mount('itinerary', { bus: bus });
+    let bus = {};
+    riot.observable(bus);//makes it so our bus can send and receive messages
+    // Mount the riot tags to the page here
+    riot.mount('newsearch', { bus: bus });
+    riot.mount('newmap', { bus: bus });
+    riot.mount('newlist', { bus: bus });
+    riot.mount('itinerary', { bus: bus });
+
+
 
 </script>

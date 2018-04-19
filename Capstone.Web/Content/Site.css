@@ -34,10 +34,6 @@ header, i {
     text-decoration: none;
 }
 
-.fa fa-home {
-    font-size: 4rem;
-    margin: 0;
-}
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -354,15 +350,63 @@ div.homeContainer div.heroOverlay h1 {
 }
 
 /* Search */
+
+div.searchContainer {
+   float: left;
+   display: inline-block;
+   margin-left: 16em;
+   margin-bottom: 1vh;
+}
 newsearch h1 {
     font-size: 8em;
     margin: .4em 0;
 }
+a.home h1{
+    font-size: 8em;
+    margin: .5em 0;
+}
+
+
+
+/*collapsable*/
+.collapsible {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+    .active, .collapsible:hover {
+        background-color: #555;
+    }
+
+.advanceSearch {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    margin: 0 auto;
+    padding-bottom: 1.2em;
+}
+
+select.categories {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+
 
 /* List */
-.landmark {
+div.landmark {
     width: 40vw;
-    margin-left: 9em;
+    margin-left: 6.5em;
     position: relative;
 }
 
@@ -371,6 +415,7 @@ newsearch h1 {
     width: 18vw;
     height: auto;
     padding: 1em;
+    margin-left: -0.5em;
 }
 
 .landmarkInfo {
@@ -408,52 +453,16 @@ button.addButton {
 
 /* Map */
 newmap {
-    position: absolute;
-    right: 9em;
+
 }
 
 #map {
-    height: 50vh;
-    width: 35vw;
+    height: 49vh;
+    width: 40vw;
+    margin-left: 6.5em;
+    
 }
 
-/*collapsable*/
-.collapsible {
-    background-color: black;
-    color: white;
-    cursor: pointer;
-    padding: 18px;
-    width: 19vw;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-}
-
-    .active, .collapsible:hover {
-        background-color: #555;
-    }
-
-.advanceSearch {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color: #f1f1f1;
-    width: 50%;
-    margin: 0 auto;
-    padding-bottom: 1.2em;
-}
-
-.advanceSearchContainer {
-    margin-bottom: 4em;
-}
-
-select.categories {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    margin-bottom: 1em;
-}
 
 /* Itinerary */
 .itineraryTitle {
@@ -462,10 +471,10 @@ select.categories {
 }
 
 div.itineraryContainer {
-    width: 25vw;
-    position: absolute;
-    right: 13em;
-    top: 70em;
+    width: 38vw;
+    display:inline-block;
+    float: right;
+   
 }
 
 input.itineraryDate {
@@ -473,7 +482,7 @@ input.itineraryDate {
 }
 
 div.itineraryList {
-    width: 25vw;
+    width: 40vw;
     position: relative;
 }
 
