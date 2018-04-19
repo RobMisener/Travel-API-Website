@@ -6,34 +6,31 @@
             <input class="itineraryDate" value="{itinerary.StartDate}" type="date" placeholder="Date of Visit" name="itineraryDate" />
             <input type="hidden" value="{itinerary.ItinId}" name="itinId" />
         </form>
+
         <button class="saveButton" onclick={ save }>Save Itinerary</button>
         <button class="deleteButton" onclick={ delete }>Delete Itinerary</button>
         <p class="hide" id="savedConfirm">Saved!</p>
         <p class="hide" id="deleteConfirm">Deleted Succesfully!</p>
+
         <div id="sortable">
             <div each={stop, index in itinerary.Stops} class="itineraryList">
                 <input name="position" type="hidden" value="{index}" />
                 <p class="landmarkName">{stop.Name}</p>
-                <p><img class="landmarkImg" src={getPhotoUrl(stop)}/></p>
+                <p><img class="landmarkImg" src={stop.Image}/></p>
                 <input type="hidden" name="placeId" value="{stop.PlaceId}" />
                 <button class="removeButton" onclick={ remove }>Remove</button>
-
             </div>
         </div>
     </div>
 
-   
-
 
     <script>
 
-        this.getPhotoUrl = (stop) => {
-            if (stop.photos[0] !== undefined) {
-                return `https://maps.googleapis.com/maps/api/place/details/json?reference=${stop.place_id}&sensor=true&key=AIzaSyAnDomiUz3vcKkLHCi1YiytTZ7SHtyQuB0` ;
-            }
-
-        }
-
+		this.getPhotoUrl = (place) => {
+			if (place.photos[0] !== undefined) {
+				return place.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 });
+			}
+		}
 
         this.itinerary = {
             ItinId: 0,
@@ -43,8 +40,6 @@
         };
 
         this.on("mount", () => {
-
-
 
             if (this.opts.id != undefined) {
                 fetch(`http://localhost:55900/api/itinerary/${this.opts.id}`, {
@@ -73,7 +68,7 @@
                                     // find its associated stop in the stops aray
                                     const newIndex = i;
                                     const oldIndex = inputs[i].value;
-                                    console.log(`OLD: ${oldIndex} - NEW ${newIndex}`);
+                                    
 
                                     temp[newIndex] = this.itinerary.Stops[oldIndex];
                                     // Add it to the temp array
@@ -84,13 +79,10 @@
                             }
                         });
                         $("#sortable").disableSelection();
-                        console.log(stop.place_id)
 
                     });
             }
         })
-
-
 
         this.opts.bus.on('addPlace', data => {
 
@@ -101,11 +93,8 @@
                 Category: data.place.types[0],
                 Latitude: data.place.geometry.location.lat(),
                 Longitude: data.place.geometry.location.lng(),
-                Image: data.place.id
-
-
+				Image: data.place.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 })
             };
-
 
             this.itinerary.Stops.push(stop);
             this.update();
@@ -145,7 +134,7 @@
             deleted.classList.toggle("hide");
 
             this.itinerary.ItinId = document.querySelector("input[name=itinId]").value;
-            console.log(this.itinerary.ItinId);
+            
 
             fetch(`http://localhost:55900/api/itinerary/${this.itinerary.ItinId}`, {
                 method: 'POST',
@@ -159,8 +148,6 @@
                 .then(json => {
                     this.itinerary.ItinId = json.ItinId
                 });
-
-
 
         }
 

@@ -124,7 +124,6 @@
             var replaced = str.split(' ').join('+');
             let url = "http://www.google.com/search?q=";
             return (url + replaced);
-            console.log(replaced);
         }
 
         this.isOpen = (place) => {
