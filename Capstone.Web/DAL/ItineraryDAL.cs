@@ -42,11 +42,11 @@ namespace Capstone.Web
 
                         foreach (var stop in stops)
                         {
-                            cmd = new SqlCommand("INSERT INTO Itinerary_Stops (ItinId, PlaceId, [Order], Name, Address, Latitude, Longitude, Category) VALUES (@ItinId, @PlaceId, @Order, @Name, @Address, @Latitude, @Longitude, @Category)", conn);
+                            cmd = new SqlCommand("INSERT INTO Itinerary_Stops (ItinId, PlaceId, [Order], Name, Address, Latitude, Longitude, Category, Image) VALUES (@ItinId, @PlaceId, @Order, @Name, @Address, @Latitude, @Longitude, @Category, @Image)", conn);
                             cmd.Parameters.AddWithValue("@ItinId", newItinId);
                             cmd.Parameters.AddWithValue("@PlaceId", stop.PlaceID);
                             cmd.Parameters.AddWithValue("@Order", stop.Order);
-//                            cmd.Parameters.AddWithValue("@Image", stop.Image);
+                            cmd.Parameters.AddWithValue("@Image", stop.Image);
                             cmd.Parameters.AddWithValue("@Name", stop.Name);
                             cmd.Parameters.AddWithValue("@Address", stop.Address);
                             cmd.Parameters.AddWithValue("@Latitude", stop.Latitude);
@@ -95,11 +95,11 @@ namespace Capstone.Web
 
                         foreach (var stop in stops)
                         {
-                            cmd = new SqlCommand("INSERT INTO Itinerary_Stops (ItinId, PlaceId, [Order], Name, Address, Latitude, Longitude, Category) VALUES (@ItinId, @PlaceId, @Order, @PhotoRef, @Name, @Address, @Latitude, @Longitude, @Category)", conn);
+                            cmd = new SqlCommand("INSERT INTO Itinerary_Stops (ItinId, PlaceId, [Order], Name, Address, Latitude, Longitude, Category, Image) VALUES (@ItinId, @PlaceId, @Order, @PhotoRef, @Name, @Address, @Latitude, @Longitude, @Category, @Image)", conn);
                             cmd.Parameters.AddWithValue("@ItinId", itinId);
                             cmd.Parameters.AddWithValue("@PlaceId", stop.PlaceID);
                             cmd.Parameters.AddWithValue("@Order", stop.Order);
-//                            cmd.Parameters.AddWithValue("@Image", stop.Image);
+                            cmd.Parameters.AddWithValue("@Image", stop.Image);
                             cmd.Parameters.AddWithValue("@Name", stop.Name);
                             cmd.Parameters.AddWithValue("@Address", stop.Address);
                             cmd.Parameters.AddWithValue("@Latitude", stop.Latitude);
@@ -236,7 +236,7 @@ namespace Capstone.Web
                         ItineraryStop stop = new ItineraryStop();
                         stop.PlaceID = Convert.ToString(reader["PlaceId"]);
                         stop.Name = Convert.ToString(reader["Name"]);
-//                        stop.PhotoRef = Convert.ToString(reader["Image"]);
+                        stop.Image = Convert.ToString(reader["Image"]);
                         stop.Address = Convert.ToString(reader["Address"]);
                         stop.Order = Convert.ToInt32(reader["Order"]);
                         stop.Latitude = Convert.ToDouble(reader["Latitude"]);
