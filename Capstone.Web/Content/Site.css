@@ -276,13 +276,14 @@ div.homeContainer {
         position: relative;
     }
 
-    div.homeContainer div.homeVideo {
-        /*-webkit-filter: blur(1px);
+
+    /*div.homeContainer div.homeVideo {
+        -webkit-filter: blur(1px);
     -moz-filter: blur(1px);
     -o-filter: blur(1px);
     -ms-filter: blur(1px);
-    filter: blur(1px);*/
-    }
+    filter: blur(1px);
+    }*/
 
         div.homeContainer div.homeVideo div.indexVideo {
             /*margin-top: -400px;*/
@@ -298,6 +299,7 @@ div.homeContainer {
         border: 3px solid darkslategrey;
         border-color: darkslategrey;
         border-top-color: white;
+        border-bottom-color: #334a4b;
         animation-name: overlayAni;
         animation-duration: 5s;
         position: absolute;
@@ -316,9 +318,8 @@ div.homeContainer {
 
     to {
         /*border-color: black;*/
-
         border-top-color: white;
-        /*border-bottom-color: white;*/
+        border-bottom-color: #334a4b;
         /*background-color: yellow;*/
     }
 }
@@ -327,7 +328,7 @@ div.homeContainer {
 div.homeContainer div.heroOverlay h1 {
     font-size: 6em;
     animation-name: textAni;
-    animation-duration: 10s;
+    animation-duration: 4s;
     color: white;
     margin-top: 0;
     vertical-align: text-top;
