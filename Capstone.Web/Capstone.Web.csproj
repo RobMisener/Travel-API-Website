@@ -211,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\img\city.gif" />
+    <Content Include="Content\img\default_activity_image.jpg" />
     <Content Include="Content\img\hero.jpg" />
     <Content Include="Content\img\herocropped.jpeg" />
     <Content Include="Content\img\ning-xia-night-market-gif.gif" />

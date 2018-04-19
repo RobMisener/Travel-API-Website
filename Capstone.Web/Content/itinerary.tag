@@ -2,8 +2,8 @@
 
     <div class="itineraryContainer">
         <form action="" method="post">
-            <input class="itineraryName" value="{itinerary.ItinName}" type="text" placeholder="City Name" name="ItinName" />
-            <input class="itineraryDate" value="{itinerary.StartDate}" type="date" placeholder="Date of Visit" name="itineraryDate" />
+            <input class="itineraryName" value="{itinerary.ItinName}" type="text" placeholder="city name" name="ItinName" />
+            <input class="itineraryDate" value="{itinerary.StartDate}" type="date" placeholder="date of visit" name="itineraryDate" />
             <input type="hidden" value="{itinerary.ItinId}" name="itinId" />
         </form>
 
@@ -34,7 +34,7 @@
 
         this.itinerary = {
             ItinId: 0,
-            ItinName: "ItinName",
+            ItinName: "city name",
             StartDate: '4/16/2018',
             Stops: []
         };

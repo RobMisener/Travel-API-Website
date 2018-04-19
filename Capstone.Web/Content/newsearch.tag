@@ -1,5 +1,5 @@
 ﻿<newsearch>
-	<h1>ROUTA</h1>
+    <a class="home" href="/"><h1>ROUTA</h1></a>
 
 	<input class="searchBox" type="text" name="place" placeholder="enter a city" />
 

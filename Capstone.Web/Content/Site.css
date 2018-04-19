@@ -456,11 +456,20 @@ select.categories {
 }
 
 /* Itinerary */
+.itineraryTitle {
+    color: black;
+    /*text-decoration: none;*/
+}
+
 div.itineraryContainer {
     width: 25vw;
     position: absolute;
     right: 13em;
     top: 70em;
+}
+
+input.itineraryDate {
+    font-family: 'Montserrat', sans-serif;
 }
 
 div.itineraryList {

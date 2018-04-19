@@ -10,11 +10,11 @@
     <h4>Change your account settings</h4>
     <hr />
     <a class="links" href="@Url.Action("ChangePassword")">Change Password</a>
-    <a class="links" href="@Url.Action("Search", "Home")">Search Landmarks</a>
+    <a class="links" href="@Url.Action("Search", "Home")">Create Itinerary</a>
     @foreach (var itinerary in Model.ItineraryList)
     {
 
-        <h3><a href="@Url.Action("ItineraryView", "Home", new { id = itinerary.ItinId})">@itinerary.ItinName</a></h3>
+        <h3><a class="itineraryTitle" href="@Url.Action("ItineraryView", "Home", new { id = itinerary.ItinId})">@itinerary.ItinName</a></h3>
         <p>@itinerary.StartDate.ToString("MM/dd/yyyy")</p>
         <hr class="breaker2" />
     }
