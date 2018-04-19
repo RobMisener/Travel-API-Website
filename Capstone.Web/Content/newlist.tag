@@ -53,10 +53,10 @@
         }
 
         this.getPhotoUrl = (place) => {
-            if (place.photos[0] !== undefined) {
-                return "img/default_activity_image.jpg"
+            if (place.photos != undefined) {
+                return place.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 });
             } else {
-                return "~/Content/img/default_activity_image.jpg";
+                return "http://localhost:55900/Content/img/default_activity_image.jpg";
             }
 
         }

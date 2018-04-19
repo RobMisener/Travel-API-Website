@@ -39,7 +39,35 @@
             Stops: []
         };
 
+
+
+
         this.on("mount", () => {
+
+            $("#sortable").sortable({
+                update: (event, ui) => {
+                    // Create a new array temp
+                    const temp = [];
+
+                    // Loop through the DOM elements
+                    const inputs = document.querySelectorAll("input[name=position]")
+                    // For each element
+                    for (let i = 0; i < inputs.length; i++) {
+                        // find its associated stop in the stops aray
+                        const newIndex = i;
+                        const oldIndex = inputs[i].value;
+
+
+                        temp[newIndex] = this.itinerary.Stops[oldIndex];
+                        // Add it to the temp array
+                    }
+
+                    // Assign temp to the itinerary stops
+                    this.itinerary.Stops = temp;
+                }
+            });
+            $("#sortable").disableSelection();
+
 
             if (this.opts.id != undefined) {
                 fetch(`http://localhost:55900/api/itinerary/${this.opts.id}`, {
@@ -54,37 +82,27 @@
                     .then(json => {
                         this.itinerary = json;
                         this.itinerary.StartDate = new Date(this.itinerary.StartDate).yyyymmdd();
-                        this.update();
 
-                        $("#sortable").sortable({
-                            update: (event, ui) => {
-                                // Create a new array temp
-                                const temp = [];
 
-                                // Loop through the DOM elements
-                                const inputs = document.querySelectorAll("input[name=position]")
-                                // For each element
-                                for (let i = 0; i < inputs.length; i++) {
-                                    // find its associated stop in the stops aray
-                                    const newIndex = i;
-                                    const oldIndex = inputs[i].value;
-                                    
 
-                                    temp[newIndex] = this.itinerary.Stops[oldIndex];
-                                    // Add it to the temp array
-                                }
-
-                                // Assign temp to the itinerary stops
-                                this.itinerary.Stops = temp;
-                            }
-                        });
-                        $("#sortable").disableSelection();
-
+                        this.update();                        
                     });
             }
         })
 
         this.opts.bus.on('addPlace', data => {
+            let photoUrl;
+           
+                if (data.place.photos != undefined) {
+                    photoUrl = data.place.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 });
+                    
+                } else {
+                    photoUrl = "http://localhost:55900/Content/img/default_activity_image.jpg";
+                   
+                }
+
+            
+               console.log(data.place.photos);
 
             const stop = {
                 PlaceId: data.place.place_id,
@@ -93,7 +111,7 @@
                 Category: data.place.types[0],
                 Latitude: data.place.geometry.location.lat(),
                 Longitude: data.place.geometry.location.lng(),
-				Image: data.place.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 })
+				Image: photoUrl
             };
 
             this.itinerary.Stops.push(stop);
@@ -149,7 +167,13 @@
                     this.itinerary.ItinId = json.ItinId
                 });
 
+            setTimeout(function () {
+                window.location.href = ("http://localhost:55900/Manage") //will redirect to your blog page (an ex: blog.html)
+            }, 2000);
+
         }
+
+        
 
         this.remove = function (event) {
             let toBeRemoved = event.item;
