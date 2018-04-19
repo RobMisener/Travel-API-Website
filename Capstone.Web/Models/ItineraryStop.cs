@@ -10,6 +10,7 @@ namespace Capstone.Web.Models
 	{
         public string PlaceID { get; set; }
         public int Order { get; set; }
+        public string Image { get; set; }
 		public string Name { get; set; }
         public string Address { get; set; }
         public string Category { get; set; }
