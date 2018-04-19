@@ -1,14 +1,14 @@
 ﻿body {
-	padding-top: 0;
-	padding-bottom: 20px;
-	font-family: 'Montserrat', sans-serif;
-	margin: 0 !important;
-	height: 100%;
+    padding-top: 0;
+    padding-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 !important;
+    height: 100%;
 }
 
 html {
     width: 100%;
-	height: 100%;
+    height: 100%;
     text-align: center;
 }
 
@@ -32,7 +32,6 @@ header, i {
 .home {
     color: black;
     text-decoration: none;
-    
 }
 
 .fa fa-home {
@@ -69,9 +68,9 @@ textarea {
     vertical-align: top;
 }
 
-a#loginLink, a#registerLink, button#loginLink, a#anonLink, 
+a#loginLink, a#registerLink, button#loginLink, a#anonLink,
 button#registerLink, .loginSubmit, .registerSubmit, input.searchButton,
-.removeButton, .saveButton, .createButton, .deleteButton, input.changePassword, .links{
+.removeButton, .saveButton, .createButton, .deleteButton, input.changePassword, .links {
     background-color: #000000;
     border: none;
     color: white;
@@ -81,9 +80,10 @@ button#registerLink, .loginSubmit, .registerSubmit, input.searchButton,
     text-align: center;
     margin-top: 5px;
 }
+
 .links {
-	display: inline-block;
-	margin-top: 2em;
+    display: inline-block;
+    margin-top: 2em;
 }
 
 .pwMessage {
@@ -170,61 +170,66 @@ button#registerLink, .loginSubmit, .registerSubmit, input.searchButton,
 
 
 a#loginLink {
-	display: grid;
-	position: center;
-	border: 1px solid white;
-	-webkit-transition: all .4s ease;
-	-moz-transition: all .4s ease;
-	-o-transition: all .4s ease;
-	transition: all .4s ease;
-}
-a#loginLink:hover {
-	color: black;
-	background: white;
-	border: 1px solid black;
-	-webkit-transition: all .4s ease;
-	-moz-transition: all .4s ease;
-	-o-transition: all .4s ease;
-	transition: all .4s ease;
-}
-a#registerLink {
-	display: grid;
-	position: center;
-	border: 1px solid white;
-	-webkit-transition: all .4s ease;
-	-moz-transition: all .4s ease;
-	-o-transition: all .4s ease;
-	transition: all .4s ease;
-}
-a#registerLink:hover {
-	color: black;
-	background: white;
-	border: 1px solid black;
-	-webkit-transition: all .4s ease;
-	-moz-transition: all .4s ease;
-	-o-transition: all .4s ease;
-	transition: all .4s ease;
-}
-a#anonLink {
-	display: grid;
-	position: center;
-	border: 1px solid white;
-	-webkit-transition: all .4s ease;
-	-moz-transition: all .4s ease;
-	-o-transition: all .4s ease;
-	transition: all .4s ease;
-}
-a#anonLink:hover {
-	color: black;
-	background: white;
-	border: 1px solid black;
-	-webkit-transition: all .4s ease;
-	-moz-transition: all .4s ease;
-	-o-transition: all .4s ease;
-	transition: all .4s ease;
+    display: grid;
+    position: center;
+    border: 1px solid white;
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    transition: all .4s ease;
 }
 
-#Email, #Password, #ConfirmPassword, .searchBox, .filterButton, .itineraryName , .itineraryDate, #OldPassword, #NewPassword{
+    a#loginLink:hover {
+        color: black;
+        background: white;
+        border: 1px solid black;
+        -webkit-transition: all .4s ease;
+        -moz-transition: all .4s ease;
+        -o-transition: all .4s ease;
+        transition: all .4s ease;
+    }
+
+a#registerLink {
+    display: grid;
+    position: center;
+    border: 1px solid white;
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    transition: all .4s ease;
+}
+
+    a#registerLink:hover {
+        color: black;
+        background: white;
+        border: 1px solid black;
+        -webkit-transition: all .4s ease;
+        -moz-transition: all .4s ease;
+        -o-transition: all .4s ease;
+        transition: all .4s ease;
+    }
+
+a#anonLink {
+    display: grid;
+    position: center;
+    border: 1px solid white;
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    transition: all .4s ease;
+}
+
+    a#anonLink:hover {
+        color: black;
+        background: white;
+        border: 1px solid black;
+        -webkit-transition: all .4s ease;
+        -moz-transition: all .4s ease;
+        -o-transition: all .4s ease;
+        transition: all .4s ease;
+    }
+
+#Email, #Password, #ConfirmPassword, .searchBox, .filterButton, .itineraryName, .itineraryDate, #OldPassword, #NewPassword {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -235,69 +240,85 @@ a#anonLink:hover {
 }
 
 ul.indexButtons a,
-dd a{
+dd a {
     color: black;
     text-decoration: none;
     display: inline-block;
 }
-ul.indexButtons li {
-	list-style: none;
-}
-ul.indexButtons li a {
-	color: white;
-	padding-bottom: 1em;
-}
-ul.indexButtons li a.searchPage {
-	border: 1px solid white;	
-	padding: .5em 1em;
-}
-	/* Home */
-	div.homeContainer img.heroImg {
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: cover;
-		height: 100vh;
-		width: 100%;
-		position: relative;
-	}
 
-div.homeContainer div.homeVideo {
-    /*-webkit-filter: blur(1px);
+ul.indexButtons li {
+    list-style: none;
+}
+
+    ul.indexButtons li a {
+        color: white;
+        padding-bottom: 1em;
+    }
+
+        ul.indexButtons li a.searchPage {
+            border: 1px solid white;
+            padding: .5em 1em;
+        }
+/* Home */
+
+div.homeContainer {
+    background-color: black;
+}
+
+
+
+    div.homeContainer img.heroImg {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+        width: 100%;
+        position: relative;
+    }
+
+    div.homeContainer div.homeVideo {
+        /*-webkit-filter: blur(1px);
     -moz-filter: blur(1px);
     -o-filter: blur(1px);
     -ms-filter: blur(1px);
     filter: blur(1px);*/
-}
+    }
 
-div.homeContainer div.homeVideo div.indexVideo {
-    /*margin-top: -400px;*/
-    top: -50%;
-    left: -50%;
-}
+        div.homeContainer div.homeVideo div.indexVideo {
+            /*margin-top: -400px;*/
+            top: -50%;
+            left: -50%;
+        }
 
 
-div.homeContainer div.heroOverlay {
-    /*background-color: red;*/
-    border: 1px solid grey;
-    border-color: white;
-    animation-name: example;
-    animation-duration: 6s;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 30%;
-    padding: 2em;
-}
+    div.homeContainer div.heroOverlay {
+        /*background-color: red;*/
+        height: 120px;
+        width: 500px;
+        border: 3px solid darkslategrey;
+        border-color: darkslategrey;
+        border-top-color: white;
+        animation-name: overlayAni;
+        animation-duration: 5s;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 30%;
+        /*padding: 2em;*/
+    }
 
 /* Standard syntax */
-@keyframes example {
+@keyframes overlayAni {
     from {
-        border-color: red;
+        border-color: darkslategrey;
         /*background-color: red;*/
     }
 
     to {
-        border-color: white;
+        /*border-color: black;*/
+
+        border-top-color: white;
+        /*border-bottom-color: white;*/
         /*background-color: yellow;*/
     }
 }
@@ -306,87 +327,93 @@ div.homeContainer div.heroOverlay {
 div.homeContainer div.heroOverlay h1 {
     font-size: 6em;
     animation-name: textAni;
-    animation-duration: 4s;
-    color: red;
-    margin: 0;
-    margin-bottom: .2em;
+    animation-duration: 10s;
+    color: white;
+    margin-top: 0;
+    vertical-align: text-top;
+    margin-bottom: .4em;
 }
 
 /* Standard syntax */
 @keyframes textAni {
     from {
-        color: white;
+        color: grey;
         /*background-color: red;*/
     }
 
     to {
-        color: red;
+        color: white;
         /*background-color: yellow;*/
     }
 }
 
 
 .titles {
-	font-size: 4em;
+    font-size: 4em;
 }
 
 /* Search */
-newsearch h1{
-	font-size: 8em;
-	margin: .4em 0;
+newsearch h1 {
+    font-size: 8em;
+    margin: .4em 0;
 }
 
 /* List */
 .landmark {
-	width: 40vw;
-	margin-left: 9em;
-	position: relative;
-	
+    width: 40vw;
+    margin-left: 9em;
+    position: relative;
 }
+
 .landmarkImg {
-	display: inline-block;
-	width: 18vw;
-	height: auto;
-	padding: 1em;
+    display: inline-block;
+    width: 18vw;
+    height: auto;
+    padding: 1em;
 }
+
 .landmarkInfo {
-	display: inline-block;
-	width: 15vw;
-	vertical-align: top;
-	padding-bottom: 1em;
+    display: inline-block;
+    width: 15vw;
+    vertical-align: top;
+    padding-bottom: 1em;
 }
+
 .googleLink {
-	color: black
+    color: black
 }
+
 .landmarkName {
-	font-size: 1.5em;
-	font-weight: 700;
+    font-size: 1.5em;
+    font-weight: 700;
 }
+
 .breaker {
-	border-color: black;
+    border-color: black;
 }
+
 button.addButton {
-	border-radius: 50%;
-	background-color: black;
-	color: white;
-	text-decoration: none;
-	padding: 10px 16px;
-	position: absolute;
-	right:0;
-	right: 0;
-	bottom: 5px;
-	border-color: black;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    padding: 10px 16px;
+    position: absolute;
+    right: 0;
+    right: 0;
+    bottom: 5px;
+    border-color: black;
 }
 
 /* Map */
 newmap {
-	position: absolute;
-	right: 9em;
+    position: absolute;
+    right: 9em;
 }
 
 #map {
-	height: 50vh;
-	width: 35vw;
+    height: 50vh;
+    width: 35vw;
 }
 
 /*collapsable*/
@@ -401,39 +428,43 @@ newmap {
     outline: none;
     font-size: 15px;
 }
-.active, .collapsible:hover {
-    background-color: #555;
-}
+
+    .active, .collapsible:hover {
+        background-color: #555;
+    }
+
 .advanceSearch {
-	padding: 0 18px;
-	display: none;
-	overflow: hidden;
-	background-color: #f1f1f1;
-	width: 50%;
-	margin: 0 auto;
-	padding-bottom: 1.2em;
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    width: 50%;
+    margin: 0 auto;
+    padding-bottom: 1.2em;
 }
+
 .advanceSearchContainer {
-	margin-bottom: 4em;
+    margin-bottom: 4em;
 }
+
 select.categories {
-	display: block;
-	margin: 0 auto;
-	width: 100%;
-	margin-bottom: 1em;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    margin-bottom: 1em;
 }
 
 /* Itinerary */
 div.itineraryContainer {
-	width: 25vw;
-	position: absolute;
-	right: 13em;
-	top: 70em;
-
+    width: 25vw;
+    position: absolute;
+    right: 13em;
+    top: 70em;
 }
+
 div.itineraryList {
-	width: 25vw;
-	position: relative;
+    width: 25vw;
+    position: relative;
 }
 
 .breaker2 {
@@ -461,14 +492,12 @@ div.itineraryList {
         }
 
 .hide {
-	display: none;
+    display: none;
 }
 
 #savedConfirm {
-	border: #56c67c dashed 3px;
-	width: 30%;
-	padding: 1em 0;
-	margin: 1em auto;
+    border: #56c67c dashed 3px;
+    width: 30%;
+    padding: 1em 0;
+    margin: 1em auto;
 }
-
-
