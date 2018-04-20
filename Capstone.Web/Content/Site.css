@@ -257,42 +257,35 @@ ul.indexButtons li {
         }
 /* Home */
 
-
-/*.marquee {
-    color: red;
-    background: #f0f0f0;
-    width: 100%;
-    height: 120px;
-    line-height: 120px;
+.scroll {
+    font-size: 38px;
+    color: gold;
+    width: 280px;
+    margin: 0 auto;
+    margin-top: 45px;
     overflow: hidden;
-    position: relative;
+    white-space: nowrap;
+    box-sizing: border-box;
+    animation: scroll 40s linear infinite;
 }
 
-.text {
-    position: absolute;
-    top: 0;
-    white-space: nowrap;
-    height: 120px;
-    font-size: 30px;
-    animation-name: slide;
-    animation-duration: 30s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    -webkit-animation-name: slide;
-    -webkit-animation-duration: 30s;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-iteration-count: infinite;
-}*/
 
 
+/* Make it move */
+@keyframes scroll {
+    0% {
+        text-indent: 10.5em
+    }
+
+    100% {
+        text-indent: -105em
+    }
+}
 
 
 div.homeContainer {
     background-color: black;
 }
-
-
-
 
 
 
