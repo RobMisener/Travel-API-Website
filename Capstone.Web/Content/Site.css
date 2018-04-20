@@ -156,11 +156,8 @@ button#registerLink, .loginSubmit, .registerSubmit, input.searchButton,
 
 
 .indexButtons {
-    width: 30rem;
-    display: grid;
-    position: center;
-    margin-left: auto;
-    margin-right: auto;
+
+ 
 }
 
 
