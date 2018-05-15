@@ -1,4 +1,4 @@
-<p align="center"><img width='400px' src="http://robertmisener.com/img/ab5207631a0ec92ee23a6dfaf4c3f5cf.gif" /></p>
+<p align="center"><img width='400px' src="http://robertmisener.com/img/01f6c026e41beb8359ad4213ef38fdff.gif" /></p>
 
 # Routa
 
