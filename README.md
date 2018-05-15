@@ -1,5 +1,4 @@
-<p align="center"><img width='400px' src="http://robertmisener.com/img/01f6c026e41beb8359ad4213ef38fdff.gif" /></p>
-
+<img src="http://robertmisener.com/img/01f6c026e41beb8359ad4213ef38fdff.gif" title="source: robertmisener.com" />
 # Routa
 
 ## Installation:
