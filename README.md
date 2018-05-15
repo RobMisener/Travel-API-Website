@@ -1,7 +1,8 @@
 # Routa
-<img src="http://robertmisener.com/img/ab5207631a0ec92ee23a6dfaf4c3f5cf.gif" title="source: robertmisener.com" />
+<img src="https://robertmisener.com/img/ab5207631a0ec92ee23a6dfaf4c3f5cf.gif" title="source: robertmisener.com" />
+
 ## Installation:
-Clone and run with VS and CORS chrome extension
+Clone and run with Visual Studio and CORS chrome extension.
 
 ## Overview: 
 Routa is an ASP.NET MVC that allows users to search for travel hotspots in the city of their choice and add each location of their choice to a daily travel itinerary. It uses C#, JavaScript, ASP.NET MVC, RIOT.js, and GoogleMaps/GooglePlaces API.
