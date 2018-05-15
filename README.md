@@ -15,7 +15,7 @@ Routa uses the GoogleMaps/GooglePlaces API to instantly return hotpsots and loca
 The user may also choose to use advanced search features to narrow down locations by bars, museums, and hotspots of interest. The user may add these locations to their itinerary and save it after they register. 
 
 ## Registration
-A registered user can access their itinerary by date at any time from the SQL databases when they are logged in to Routa. 
+A registered user can access their itinerary by date at any time from the SQL database whenever they are logged in to Routa. 
 
 
 
