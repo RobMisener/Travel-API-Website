@@ -1,6 +1,7 @@
 # Routa
 
-<img src="https://github.com/Travel-API-Website/ImagesForReadme/ab5207631a0ec92ee23a6dfaf4c3f5cf.gif" />
+<img src="https://github.com/RobMisener/Travel-API-Website/raw/master/ImagesForReadme/ab5207631a0ec92ee23a6dfaf4c3f5cf.gif" />
+
 ## Installation:
 Clone and run with Visual Studio and CORS chrome extension.
 
